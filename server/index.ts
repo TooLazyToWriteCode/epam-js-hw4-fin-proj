@@ -5,7 +5,7 @@ import { port } from "./../config/backend";
 import { srcDBFile } from "./../config/paths";
 
 const postLoad = (): void => {
-    console.log(`json server: started on port ${port}`);
+    console.log(`json server: has been started on port ${port}`);
 };
 
 export default (): Server => {
