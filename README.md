@@ -8,35 +8,37 @@
 
 ### Packages
 
--   `json-server`
--   `react`
--   `react-dom`
--   `react-router-dom`
--   `redux`
--   `webpack`
+-   [ ] `json-server`
+-   [ ] `react`
+-   [ ] `react-dom`
+-   [ ] `react-router-dom`
+-   [ ] `redux`
+-   [ ] `webpack`
 
 ### Basic
 
--   [ ] **Pagination** One of:
-    -   [ ] A "Load more" button
-    -   [ ] Endless scroll
-    -   [ ] Numbered pages
+-   [ ] **Pagination** Is one of:
+    -   [ ] **A "Load More" button** Loads the next section in the common list.
+    -   [ ] **Endless scroll** Is the same as a "Load More" button but the next
+            section is loaded automatically when an end of a page is reached.
+    -   [ ] **Numbered pages** Is the traditional approach with only one section
+            per a page.
 -   [ ] **Adaptive Design**
 -   [ ] **Navigation Menu**
 -   [ ] **Redux for the state management**
 
 ### Pages
 
--   [ ] **Главная страница** Здесь должен выводиться список покемонов плашками.
+-   [ ] **The main page** Здесь должен выводиться список покемонов плашками.
         В каждой плашке должна быть картинка покемона, его имя и кнопка
         "Поймать". Если покемон уже пойман - кнопка должна быть `disabled`. При
         нажатии на покемона - нужно переходить на страничку покемона.
--   [ ] **Страница покемона** Здесь должна выводится информация по указанному
+-   [ ] **A pokemon page** Здесь должна выводится информация по указанному
         покемону: id, имя, картинка, статус (пойман или нет). Если покемон
         пойман, то нужно еще показывать дату его поимки.
--   [ ] **Пойманные покемоны** Здесь логика точно такая же, как и на главной
-        странице, за исключением того, что выводиться должны только пойманные
-        покемоны.
+-   [ ] **The caught pokemons page** Здесь логика точно такая же, как и на
+        главной странице, за исключением того, что выводиться должны только
+        пойманные покемоны.
 
 ## Recommendations
 
