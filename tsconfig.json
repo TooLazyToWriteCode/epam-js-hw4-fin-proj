@@ -6,6 +6,7 @@
         "jsx": "react-jsx",
         "module": "commonjs",
         "noImplicitReturns": true,
+        "skipLibCheck": true,
         "strict": true,
         "target": "esnext"
     }
