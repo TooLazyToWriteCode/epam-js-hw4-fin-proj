@@ -1,8 +1,7 @@
-import { TaskFunction } from "gulp";
+import gulp from "gulp";
 
-import start from "../server";
+import start from "./../server";
 
-export const serveDB: TaskFunction = (done) => {
-    start();
-    done();
-};
+gulp.task("serve:db", (done) => {
+    start().addListener("close", done);
+});

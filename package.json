@@ -21,6 +21,6 @@
     },
     "scripts": {
         "fmt": "prettier -w .",
-        "serve:db": "gulp serveDB"
+        "serve:db": "gulp serve:db"
     }
 }
