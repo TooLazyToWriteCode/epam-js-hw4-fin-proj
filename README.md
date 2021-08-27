@@ -8,7 +8,7 @@
 
 ### Packages
 
--   [ ] `json-server`
+-   [x] `json-server`
 -   [ ] `react`
 -   [ ] `react-dom`
 -   [ ] `react-router-dom`
@@ -48,3 +48,9 @@
         and it to get them.
 -   [ ] Make a maintainable architecture, at least separate the business
         logic from the views.
+
+## Installation
+
+1. Install Yarn by running `npm i -g yarn`.
+2. Install the dependencies by running `yarn install`.
+3. (optional) Install the recommendations in VSCode.
