@@ -1,7 +1,7 @@
-import gulp from "gulp";
+import { task } from "gulp";
 
 import start from "./../server";
 
-gulp.task("serve:db", (done) => {
+task("serve:db", (done) => {
     start().addListener("close", done);
 });
