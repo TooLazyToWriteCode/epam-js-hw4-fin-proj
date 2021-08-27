@@ -1,8 +1,8 @@
 # The final project
 
-|  Deadline  |               Task               |
-| :--------: | :------------------------------: |
-| 09.09.2021 | Create the `pokedex` application |
+|               Task               |  Deadline  |
+| :------------------------------: | :--------: |
+| Create the `pokedex` application | 09.09.2021 |
 
 ## Requirements
 
