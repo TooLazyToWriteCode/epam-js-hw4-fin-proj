@@ -4,7 +4,9 @@
 | :--------: | :------------------------------: |
 | 09.09.2021 | Create the `pokedex` application |
 
-## Required packages
+## Requirements
+
+### Packages
 
 -   `json-server`
 -   `react`
@@ -12,8 +14,6 @@
 -   `react-router-dom`
 -   `redux`
 -   `webpack`
-
-## Requirements
 
 ### Basic
 
