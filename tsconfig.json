@@ -1,5 +1,5 @@
 {
-    "include": ["./server/**/*", "./src/**/*"],
+    "include": ["./config/**/*", "./server/**/*", "./src/**/*"],
     "compilerOptions": {
         "esModuleInterop": true,
         "jsx": "react-jsx",
