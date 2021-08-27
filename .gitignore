@@ -1,4 +1,7 @@
 /.yarn/*
+/node*/
+
+/.pnp.*
 
 !/.yarn/sdks/
 !/.yarn/patches/
