@@ -1,5 +1,6 @@
 {
-    "include": ["./config/**/*", "./server/**/*", "./src/**/*"],
+    "exclude": ["./.*", "./node*"],
+    "include": ["./**/*"],
     "compilerOptions": {
         "esModuleInterop": true,
         "jsx": "react-jsx",
