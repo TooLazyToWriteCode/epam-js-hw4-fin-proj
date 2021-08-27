@@ -1,8 +1,9 @@
 {
-    "include": ["./src/**/*"],
+    "include": ["./server/**/*", "./src/**/*"],
     "compilerOptions": {
+        "esModuleInterop": true,
         "jsx": "react-jsx",
-        "module": "esnext",
+        "module": "commonjs",
         "target": "esnext"
     }
 }
