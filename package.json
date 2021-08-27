@@ -8,6 +8,7 @@
         "@types/webpack": "^5.28.0",
         "@types/webpack-dev-server": "^4.0.3",
         "@types/webpack-stream": "^3.2.12",
+        "cypress": "^8.3.1",
         "gulp": "^4.0.2",
         "gulp-typedoc": "^3.0.1",
         "json-server": "^0.16.3",
