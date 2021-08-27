@@ -39,15 +39,12 @@
 
 ## Recommendations
 
-1.  Используйте какой-нибудь CSS framework, чтобы верстка заняла минимум
-    времени.
-2.  Пойманных покемонов лучше выносить в отдельную коллекцию и затем связывать
-    их средствами `json-server`. Подробности можно найти в документации.
-3.  Постарайтесь показать себя во всей красе. Если есть какой-то опыт с
-    дополнительными пакетами, не указанными в списке - не стесняйтесь их
-    использовать.
-4.  Приветствуется создание доступного интерфейса.
-5.  Постарайтесь построить хорошую архитектуру приложения. Как минимум, стоит
-    отделить бизнес-логику приложения от ее презентационного слоя (`view`).
-6.  Приветствуется покрытие `unit`-тестами.
-7.  Поддержка браузеров: последние версии современных браузеров.
+-   [ ] Cover the application with the unit tests.
+-   [ ] Use a CSS framework to spend less time on creating the layout.
+-   [ ] Support the latest versions of the modern web browsers.
+-   [ ] Try to use as much of your skills and knowledge as possible.
+-   [ ] Create the accessible to as many people as possible design.
+-   [ ] Caught pokemons should be put in a separate collection and then
+        connected via the `json-server` features.
+-   [ ] Make a maintainable architecture, at least separate the business
+        logic from the views.
