@@ -18,23 +18,23 @@
 ### Basic
 
 -   [ ] **Pagination** Is one of:
-    -   [ ] **A "Load More" button** Loads the next section in the common list.
-    -   [ ] **Endless scroll** Loads the next section as a page end is reached.
-    -   [ ] **Numbered pages (traditional)** Has only one section per a page.
+    -   [ ] **A "Load More" button** loads the next section in the common list.
+    -   [ ] **Endless scroll** loads the next section as a page end is reached.
+    -   [ ] **Numbered pages (traditional)** have only one section per a page.
 -   [ ] **Adaptive Design**
 -   [ ] **Navigation Menu**
 -   [ ] **Redux for the state management**
 
 ### Pages
 
--   [ ] **The main page** Contains tiles with diferent pokemons. Each tile
+-   [ ] **The main page** contains tiles with diferent pokemons. Each tile
         should have a picture of a pokemon, its name and a "Catch" button. If
         a pokemon is already caught, then a button should be disabled. When a
         pokemon is clicked, a user should be redirected to a pokemon page.
--   [ ] **A pokemon page** Contains information for a given pokemon, such as an
-        ID, a name, a picture, whether it is caught. If a pokemon is indeed
-        caught, a date when a pokemon was caught should additionally be shown.
--   [ ] **The caught pokemons page** Is same as the main page but only caught
+-   [ ] **A pokemon page** contains information for a given pokemon, such as an
+        ID, a name, a picture, whether it is caught. If a pokemon is caught, a
+        date when a pokemon was caught should be shown.
+-   [ ] **The caught pokemons page** is same as the main page but only caught
         pokemons should be shown.
 
 ## Recommendations
