@@ -20,6 +20,7 @@
         "webpack-stream": "^6.1.2"
     },
     "scripts": {
+        "doc": "gulp doc",
         "fmt": "prettier -w .",
         "serve:db": "gulp serve:db"
     }
