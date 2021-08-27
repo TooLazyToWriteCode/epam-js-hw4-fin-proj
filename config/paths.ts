@@ -5,4 +5,4 @@ export const publicDir = join(rootDir, "public");
 export const serverDir = join(rootDir, "server");
 export const srcDir = join(rootDir, "src");
 
-export const srcDbFile = join(serverDir, "db.json");
+export const srcDBFile = join(serverDir, "db.json");
