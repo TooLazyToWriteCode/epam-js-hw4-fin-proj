@@ -27,16 +27,15 @@
 
 ### Pages
 
--   [ ] **The main page** Здесь должен выводиться список покемонов плашками.
-        В каждой плашке должна быть картинка покемона, его имя и кнопка
-        "Поймать". Если покемон уже пойман - кнопка должна быть `disabled`. При
-        нажатии на покемона - нужно переходить на страничку покемона.
--   [ ] **A pokemon page** Здесь должна выводится информация по указанному
-        покемону: id, имя, картинка, статус (пойман или нет). Если покемон
-        пойман, то нужно еще показывать дату его поимки.
--   [ ] **The caught pokemons page** Здесь логика точно такая же, как и на
-        главной странице, за исключением того, что выводиться должны только
-        пойманные покемоны.
+-   [ ] **The main page** Contains tiles with diferent pokemons. Each tile
+        should have a picture of a pokemon, its name and a "Catch" button. If
+        a pokemon is already caught, then a button should be disabled. When a
+        pokemon is clicked, a user should be redirected to a pokemon page.
+-   [ ] **A pokemon page** Contains information for a given pokemon, such as an
+        ID, a name, a picture, whether it is caught. If a pokemon is indeed
+        caught, a date when a pokemon was caught should additionally be shown.
+-   [ ] **The caught pokemons page** Is same as the main page but only caught
+        pokemons should be shown.
 
 ## Recommendations
 
