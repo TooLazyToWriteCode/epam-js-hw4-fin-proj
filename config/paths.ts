@@ -11,4 +11,4 @@ export const outDocDir = join(outDir, "doc");
 
 export const srcDBFile = join(serverDir, "db.json");
 
-export const srcFiles = join(srcDir, "**", "*.ts(|x)");
+export const srcFiles = join(srcDir, "**", "*.ts{,x}");
