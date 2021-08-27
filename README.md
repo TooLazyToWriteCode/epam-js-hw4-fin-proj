@@ -19,10 +19,8 @@
 
 -   [ ] **Pagination** Is one of:
     -   [ ] **A "Load More" button** Loads the next section in the common list.
-    -   [ ] **Endless scroll** Is the same as a "Load More" button but the next
-            section is loaded automatically when an end of a page is reached.
-    -   [ ] **Numbered pages** Is the traditional approach with only one section
-            per a page.
+    -   [ ] **Endless scroll** Loads the next section as a page end is reached.
+    -   [ ] **Numbered pages (traditional)** Has only one section per a page.
 -   [ ] **Adaptive Design**
 -   [ ] **Navigation Menu**
 -   [ ] **Redux for the state management**
