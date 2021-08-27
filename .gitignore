@@ -1,5 +1,7 @@
 /.yarn/*
+/build/
 /node*/
+/out/
 
 /.pnp.*
 
