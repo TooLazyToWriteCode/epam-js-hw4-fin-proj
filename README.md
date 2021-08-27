@@ -44,7 +44,7 @@
 -   [ ] Support the latest versions of the modern web browsers.
 -   [ ] Try to use as much of your skills and knowledge as possible.
 -   [ ] Create the accessible to as many people as possible design.
--   [ ] Caught pokemons should be put in a separate collection and then
-        connected via the `json-server` features.
+-   [ ] Put caught pokemons in a separate collection and use `json-server`
+        and it to get them.
 -   [ ] Make a maintainable architecture, at least separate the business
         logic from the views.
