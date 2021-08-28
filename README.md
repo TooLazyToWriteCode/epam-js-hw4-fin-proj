@@ -9,7 +9,7 @@
 ### Packages
 
 -   [x] `json-server`
--   [ ] `react`
+-   [x] `react`
 -   [ ] `react-dom`
 -   [ ] `react-router-dom`
 -   [ ] `redux`
