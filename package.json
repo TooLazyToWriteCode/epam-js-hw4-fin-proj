@@ -45,9 +45,12 @@
         "webpack-manifest-plugin": "^4.0.2"
     },
     "scripts": {
+        "build:dev": "webpack --mode development",
+        "build:prod": "webpack --mode production",
         "doc": "typedoc",
         "fmt": "prettier -w .",
         "serve:db": "ts-node ./server/index.ts",
+        "serve:dev": "webpack serve --mode none",
         "test": "cypress"
     }
 }
