@@ -23,8 +23,8 @@ export default (
     const fontsMatch = /eot|otf|ttf|woff2?/;
     const imagesMatch = /a?png|avif|gif|jpe?g|svg|webp/;
 
-    // The URL from which the application is served. It may be relative
-    // to the current host name or absolute (i.e. in a case of CDN).
+    // The URL from which the application is served. It may be relative to
+    // the current host name or absolute (for example, in a case of CDN).
     process.env.BASE_URL = process.env.BASE_URL || "/";
 
     const dynPlugins: webpack.WebpackPluginInstance[] = [];
@@ -73,7 +73,7 @@ export default (
         module: {
             rules: [
                 {
-                    test: /\.(c|sa|sc)ss$/,
+                    test: /\.(sa|s?c)ss$/,
                     use: [
                         MiniCSSExtractPlugin.loader,
                         cssLoader,
@@ -81,7 +81,7 @@ export default (
                     ],
                 },
                 {
-                    test: /\.ts(|x)$/,
+                    test: /\.tsx?$/,
                     use: [babelLoader, "ts-loader"],
                 },
                 {
