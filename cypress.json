@@ -1,0 +1,10 @@
+{
+    "downloadsFolder": "./out/test/downloads",
+    "fixturesFolder": "./test/fixtures",
+    "integrationFolder": "./test/integration",
+    "pluginsFile": "./test/plugins",
+    "screenshotsFolder": "./out/test/screenshots",
+    "supportFile": "./test/support",
+    "testFiles": "./{src,test}/**/*.spec.ts{,x}",
+    "videosFolder": "./out/test/videos"
+}

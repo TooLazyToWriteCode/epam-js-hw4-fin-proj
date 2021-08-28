@@ -29,6 +29,7 @@
     "scripts": {
         "doc": "gulp doc",
         "fmt": "prettier -w .",
-        "serve:db": "gulp serve:db"
+        "serve:db": "gulp serve:db",
+        "test": "cypress"
     }
 }
