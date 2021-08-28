@@ -116,10 +116,6 @@ export default (
         },
         output: {
             filename: `${filename}.js`,
-
-            // I think eight is enough for a hash -- it should
-            // not collide with old hashes and is not lengthy.
-            //hashDigestLength: 8,
             path: outputPath,
             publicPath: publicPath,
         },
