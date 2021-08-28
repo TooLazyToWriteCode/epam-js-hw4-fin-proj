@@ -69,7 +69,6 @@ export default (
         devServer: { hot: true },
         devtool: isProd ? false : "source-map",
         entry: { app: `${sourceDir}/index.ts` },
-        stats: { assets: false, modules: false },
         module: {
             rules: [
                 {
@@ -134,6 +133,12 @@ export default (
             // mapping should also be set in the TypeScript config.
             alias: { "@": sourceDir },
             extensions: [".js", ".jsx", ".ts", ".tsx"],
+        },
+        stats: {
+            assets: false,
+            chunks: false,
+            entrypoints: false,
+            modules: false,
         },
     };
 };
