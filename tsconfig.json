@@ -8,6 +8,9 @@
         "noImplicitReturns": true,
         "skipLibCheck": true,
         "strict": true,
-        "target": "esnext"
+        "target": "esnext",
+        "paths": {
+            "@/*": ["./src/*"],
+        }
     }
 }

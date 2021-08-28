@@ -17,6 +17,7 @@ export default (
     const isProd = envName === "production";
 
     const outputDir = `${__dirname}/out/build/${envName}`;
+    const sourceDir = `${__dirname}/src`;
 
     const fontsMatch = /eot|otf|ttf|woff2?/;
     const imagesMatch = /a?png|avif|gif|jpe?g|svg|webp/;
@@ -51,7 +52,7 @@ export default (
     return {
         devServer: { hot: true },
         devtool: isProd ? false : "source-map",
-        entry: { app: `${__dirname}/src/index.ts` },
+        entry: { app: `${sourceDir}/index.ts` },
         module: {
             rules: [
                 {
@@ -98,7 +99,7 @@ export default (
             /** @see https://webpack.js.org/plugins/html-webpack-plugin */
             new HTMLWebpackPlugin({
                 filename: `${outputDir}/index.html`,
-                template: `${__dirname}/src/index.ejs`,
+                template: `${sourceDir}/index.ejs`,
                 title: "Poke Catch",
             }),
 
@@ -109,6 +110,9 @@ export default (
             new WebpackManifestPlugin({}),
         ].concat(dynPlugins),
         resolve: {
+            // Map the directories as some other string. Note: this
+            // mapping should also be set in the TypeScript config.
+            alias: { "@": sourceDir },
             extensions: [".js", ".jsx", ".ts", ".tsx"],
         },
     };
