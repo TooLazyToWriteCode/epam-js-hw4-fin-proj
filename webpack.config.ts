@@ -18,6 +18,9 @@ export default (
 
     const outputDir = `${__dirname}/out/build/${envName}`;
 
+    const fontsMatch = /eot|otf|ttf|woff2?/;
+    const imagesMatch = /a?png|avif|gif|jpe?g|svg|webp/;
+
     let dynPlugins: webpack.WebpackPluginInstance[] = [];
 
     if (!env.WEBPACK_SERVE) {
@@ -62,6 +65,11 @@ export default (
                 {
                     test: /\.ts(|x)$/,
                     use: [babelLoader, "ts-loader"],
+                },
+                {
+                    test: new RegExp(`\\.(${fontsMatch}|${imagesMatch})$`),
+                    loader: "file-loader",
+                    options: { name: "[path][name].[fullhash].[ext]" },
                 },
             ],
         },
