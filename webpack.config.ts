@@ -10,8 +10,8 @@ import incstr from "incstr";
 import webpack from "webpack";
 
 export default (
-    env: NodeJS.ProcessEnv,
-    argv: NodeJS.ProcessEnv
+    env: NodeJS.ProcessEnv = {},
+    argv: NodeJS.ProcessEnv = {}
 ): webpack.Configuration => {
     let isDev = false;
     let isProd = false;
