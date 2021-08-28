@@ -1,4 +1,5 @@
 {
+    "componentFolder": "./test/component",
     "downloadsFolder": "./out/test/downloads",
     "fixturesFolder": "./test/fixtures",
     "integrationFolder": "./test/integration",
