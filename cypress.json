@@ -2,9 +2,8 @@
     "downloadsFolder": "./out/test/downloads",
     "fixturesFolder": "./test/fixtures",
     "integrationFolder": "./test/integration",
-    "pluginsFile": "./test/plugins",
+    "pluginsFile": "./test/plugins/index.ts",
     "screenshotsFolder": "./out/test/screenshots",
-    "supportFile": "./test/support",
-    "testFiles": "./{src,test}/**/*.spec.ts{,x}",
+    "supportFile": "./test/support/index.ts",
     "videosFolder": "./out/test/videos"
 }
