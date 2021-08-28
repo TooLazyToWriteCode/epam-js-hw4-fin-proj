@@ -1,9 +1,20 @@
+import { CleanWebpackPlugin } from "clean-webpack-plugin";
+import { WebpackManifestPlugin } from "webpack-manifest-plugin";
+import MiniCSSExtractPlugin from "mini-css-extract-plugin";
+
 import webpack from "webpack";
 
 export default (
-    _env: NodeJS.ProcessEnv,
+    env: NodeJS.ProcessEnv,
     _argv: NodeJS.ProcessEnv
 ): webpack.Configuration => {
+    let dynPlugins: webpack.WebpackPluginInstance[] = [];
+
+    if (!env.WEBPACK_SERVE) {
+        /** @see https://npmjs.com/package/clean-webpack-plugin */
+        dynPlugins.push(new CleanWebpackPlugin());
+    }
+
     return {
         devServer: { hot: true },
         entry: { app: `${__dirname}/src/index.ts` },
@@ -16,5 +27,12 @@ export default (
             path: `${__dirname}/out/build/assets`,
             publicPath: "/assets/",
         },
+        plugins: [
+            /** @see https://webpack.js.org/plugins/mini-css-extract-plugin */
+            new MiniCSSExtractPlugin({ filename: "[name].[fullhash].css" }),
+
+            /** @see https://npmjs.com/package/webpack-manifest-plugin */
+            new WebpackManifestPlugin({}),
+        ].concat(dynPlugins),
     };
 };
