@@ -1,5 +1,5 @@
 {
-    "exclude": ["./.*", "./node*", "./out"],
+    "exclude": ["./.yarn", "./node*", "./out"],
     "include": ["./**/*"],
     "compilerOptions": {
         "esModuleInterop": true,
