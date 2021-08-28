@@ -25,6 +25,11 @@ export default (
         dynPlugins.push(new CleanWebpackPlugin());
     }
 
+    const babelLoader: webpack.RuleSetRule = {
+        loader: "babel-loader",
+        options: { compact: false },
+    };
+
     const cssLoader: webpack.RuleSetRule = {
         loader: "css-loader",
         options: {
@@ -47,13 +52,17 @@ export default (
         module: {
             rules: [
                 {
-                    test: /\.(css|sass|scss)$/,
+                    test: /\.(c|sa|sc)ss$/,
                     use: [
                         MiniCSSExtractPlugin.loader,
                         cssLoader,
                         "sass-loader",
                     ],
                 },
+                {
+                    test: /\.ts(|x)$/,
+                    use: [babelLoader, "ts-loader"],
+                }
             ],
         },
         optimization: {
