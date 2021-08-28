@@ -55,8 +55,9 @@
         "build:docs": "typedoc",
         "build:prod": "webpack --mode production",
         "fmt": "prettier -w .",
-        "run:test": "cypress run",
         "serve:db": "ts-node ./server/index.ts",
-        "serve:dev": "webpack serve"
+        "serve:dev": "webpack serve",
+        "test:e2e": "cypress run",
+        "test:unit": "cypress run-ct"
     }
 }
