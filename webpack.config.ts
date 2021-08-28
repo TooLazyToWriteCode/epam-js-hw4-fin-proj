@@ -22,6 +22,10 @@ export default (
     const fontsMatch = /eot|otf|ttf|woff2?/;
     const imagesMatch = /a?png|avif|gif|jpe?g|svg|webp/;
 
+    // The URL from which the application is served. It may be relative
+    // to the current host name or absolute (i.e. in a case of CDN).
+    process.env.BASE_URL = process.env.BASE_URL || "/";
+
     const dynPlugins: webpack.WebpackPluginInstance[] = [];
 
     // `webpack-dev-server`, instead of writing a bundle to a hard drive, keeps
@@ -31,14 +35,14 @@ export default (
     // located one directory above `output.path`. To fix this, we will use the
     // root path as `output.path` in a case `webpack-dev-server` is run.
     let outputPath = outputDir;
-    let publicPath = "/";
+    let publicPath = process.env.BASE_URL;
 
     if (!env.WEBPACK_SERVE) {
         /** @see https://npmjs.com/package/clean-webpack-plugin */
         dynPlugins.push(new CleanWebpackPlugin());
 
         outputPath = `${outputDir}/assets`;
-        publicPath = "/assets/";
+        publicPath = `${process.env.BASE_URL}assets/`;
     }
 
     const babelLoader: webpack.RuleSetRule = {
@@ -120,6 +124,9 @@ export default (
 
             /** @see https://npmjs.com/package/webpack-manifest-plugin */
             new WebpackManifestPlugin({}),
+
+            /** @see https://webpack.js.org/plugins/environment-plugin */
+            new webpack.EnvironmentPlugin(["BASE_URL"]),
         ].concat(dynPlugins),
         resolve: {
             // Map the directories as some other string. Note: this
