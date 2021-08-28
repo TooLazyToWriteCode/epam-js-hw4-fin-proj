@@ -13,7 +13,7 @@
 -   [ ] `react-dom`
 -   [ ] `react-router-dom`
 -   [ ] `redux`
--   [ ] `webpack`
+-   [x] `webpack`
 
 ### Basic
 
