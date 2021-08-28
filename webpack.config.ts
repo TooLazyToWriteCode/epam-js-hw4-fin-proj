@@ -32,6 +32,9 @@ export default (
     const publicDir = `${__dirname}/public`;
     const sourceDir = `${__dirname}/src`;
 
+    const filePath = isProd ? "" : "[path]";
+    const filename = isProd ? "[contenthash]" : "[name].[chunkhash]";
+
     const fontsMatch = /eot|otf|ttf|woff2?/;
     const imagesMatch = /a?png|avif|gif|jpe?g|svg|webp/;
 
@@ -100,7 +103,7 @@ export default (
                 {
                     test: new RegExp(`\\.(${fontsMatch}|${imagesMatch})$`),
                     loader: "file-loader",
-                    options: { name: "[path][name].[fullhash].[ext]" },
+                    options: { name: `${filePath}${filename}.[ext]` },
                 },
             ],
         },
@@ -112,11 +115,11 @@ export default (
             ],
         },
         output: {
-            filename: "[name].[fullhash].js",
+            filename: `${filename}.js`,
 
             // I think eight is enough for a hash -- it should
             // not collide with old hashes and is not lengthy.
-            hashDigestLength: 8,
+            //hashDigestLength: 8,
             path: outputPath,
             publicPath: publicPath,
         },
@@ -134,7 +137,7 @@ export default (
             }),
 
             /** @see https://webpack.js.org/plugins/mini-css-extract-plugin */
-            new MiniCSSExtractPlugin({ filename: "[name].[fullhash].css" }),
+            new MiniCSSExtractPlugin({ filename: `"${filename}.css` }),
 
             /** @see https://npmjs.com/package/webpack-manifest-plugin */
             new WebpackManifestPlugin({}),
