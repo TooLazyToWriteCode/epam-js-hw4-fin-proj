@@ -1,6 +1,7 @@
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import { WebpackManifestPlugin } from "webpack-manifest-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
+import HTMLWebpackPlugin from "html-webpack-plugin";
 import MiniCSSExtractPlugin from "mini-css-extract-plugin";
 import TerserWebpackPlugin from "terser-webpack-plugin";
 
@@ -46,6 +47,13 @@ export default (
             /** @see https://webpack.js.org/plugins/copy-webpack-plugin */
             new CopyWebpackPlugin({
                 patterns: [{ from: `${__dirname}/public`, to: outputDir }],
+            }),
+
+            /** @see https://webpack.js.org/plugins/html-webpack-plugin */
+            new HTMLWebpackPlugin({
+                filename: `${outputDir}/index.html`,
+                template: `${__dirname}/src/index.ejs`,
+                title: "Poke Catch",
             }),
 
             /** @see https://webpack.js.org/plugins/mini-css-extract-plugin */
