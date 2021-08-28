@@ -22,11 +22,23 @@ export default (
     const fontsMatch = /eot|otf|ttf|woff2?/;
     const imagesMatch = /a?png|avif|gif|jpe?g|svg|webp/;
 
-    let dynPlugins: webpack.WebpackPluginInstance[] = [];
+    const dynPlugins: webpack.WebpackPluginInstance[] = [];
+
+    // `webpack-dev-server`, instead of writing a bundle to a hard drive, keeps
+    // it in memory to increase performance. The problem is that it only serves
+    // files from the `output.path` directory and some other real filesystem
+    // locations, and the in-memory HTML file does not get served as it is
+    // located one directory above `output.path`. To fix this, we will use the
+    // root path as `output.path` in a case `webpack-dev-server` is run.
+    let outputPath = outputDir;
+    let publicPath = "/";
 
     if (!env.WEBPACK_SERVE) {
         /** @see https://npmjs.com/package/clean-webpack-plugin */
         dynPlugins.push(new CleanWebpackPlugin());
+
+        outputPath = `${outputDir}/assets`;
+        publicPath = "/assets/";
     }
 
     const babelLoader: webpack.RuleSetRule = {
@@ -87,8 +99,8 @@ export default (
             // I think eight is enough for a hash -- it should
             // not collide with old hashes and is not lengthy.
             hashDigestLength: 8,
-            path: `${outputDir}/assets`,
-            publicPath: "/assets/",
+            path: outputPath,
+            publicPath: publicPath,
         },
         plugins: [
             /** @see https://webpack.js.org/plugins/copy-webpack-plugin */
