@@ -17,6 +17,7 @@ export default (
     const isProd = envName === "production";
 
     const outputDir = `${__dirname}/out/build/${envName}`;
+    const publicDir = `${__dirname}/public`;
     const sourceDir = `${__dirname}/src`;
 
     const fontsMatch = /eot|otf|ttf|woff2?/;
@@ -30,10 +31,10 @@ export default (
 
     // `webpack-dev-server`, instead of writing a bundle to a hard drive, keeps
     // it in memory to increase performance. The problem is that it only serves
-    // files from the `output.path` directory and some other real filesystem
-    // locations, and the in-memory HTML file does not get served as it is
-    // located one directory above `output.path`. To fix this, we will use the
-    // root path as `output.path` in a case `webpack-dev-server` is run.
+    // files from the `output.path` and `devServer.static` directories, and the
+    // in-memory HTML file does not get served as it is located one directory
+    // up from `output.path`. To fix this, we will set `output.path` to the root
+    // path in a case `webpack-dev-server` is run.
     let outputPath = outputDir;
     let publicPath = process.env.BASE_URL;
 
@@ -66,7 +67,7 @@ export default (
     };
 
     return {
-        devServer: { hot: true },
+        devServer: { hot: true, static: publicDir },
         devtool: isProd ? false : "source-map",
         entry: { app: `${sourceDir}/index.ts` },
         module: {
@@ -109,7 +110,7 @@ export default (
         plugins: [
             /** @see https://webpack.js.org/plugins/copy-webpack-plugin */
             new CopyWebpackPlugin({
-                patterns: [{ from: `${__dirname}/public`, to: outputDir }],
+                patterns: [{ from: publicDir, to: outputDir }],
             }),
 
             /** @see https://webpack.js.org/plugins/html-webpack-plugin */
