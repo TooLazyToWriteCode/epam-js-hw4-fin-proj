@@ -7,6 +7,8 @@
         "react-router-dom": "^5.2.1"
     },
     "devDependencies": {
+        "@babel/core": "^7.15.0",
+        "@babel/preset-env": "^7.15.0",
         "@cypress/react": "^5.9.4",
         "@types/json-server": "^0.14.4",
         "@types/node": "^16.7.2",
