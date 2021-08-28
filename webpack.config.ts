@@ -33,10 +33,10 @@ export default (
     const cssLoader: webpack.RuleSetRule = {
         loader: "css-loader",
         options: {
-          // Mangle the class names of the CSS modules.
-          // Read this article to understand it better:
-          // https://freecodecamp.org/news/625440de600b.
-          modules: {
+            // Mangle the class names of the CSS modules.
+            // Read this article to understand it better:
+            // https://freecodecamp.org/news/625440de600b.
+            modules: {
                 localIdentName: "[path][name]__[local]",
                 getLocalIdent: isProd
                     ? incstr.idGenerator({ prefix: "m_" })
@@ -62,7 +62,7 @@ export default (
                 {
                     test: /\.ts(|x)$/,
                     use: [babelLoader, "ts-loader"],
-                }
+                },
             ],
         },
         optimization: {
