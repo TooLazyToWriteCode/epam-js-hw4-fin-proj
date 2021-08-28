@@ -18,6 +18,8 @@ export const pluginConfig: Cypress.PluginConfig = (on, config) => {
     on("dev-server:start", async (options) => {
         return startDevServer({ options, webpackConfig });
     });
+
+    return config;
 };
 
 export default pluginConfig;
