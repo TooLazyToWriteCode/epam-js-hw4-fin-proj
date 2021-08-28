@@ -6,6 +6,6 @@
     "search.exclude": {
         "**/.pnp.*": true,
         "**/.yarn": true,
-        "**/yarn.lock": true
+        "**/yarn.*": true
     }
 }
