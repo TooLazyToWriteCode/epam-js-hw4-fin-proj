@@ -1,0 +1,2 @@
+report-dir: ./out/test/coverage
+temp-dir: ./out/test/.nyc_output
