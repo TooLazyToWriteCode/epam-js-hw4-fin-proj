@@ -6,8 +6,13 @@ import webpack from "webpack";
 
 export default (
     env: NodeJS.ProcessEnv,
-    _argv: NodeJS.ProcessEnv
+    argv: NodeJS.ProcessEnv
 ): webpack.Configuration => {
+    const envName = argv.mode || "production";
+    const isProd = envName === "production";
+
+    const outputDir = `${__dirname}/out/build/${envName}`;
+
     let dynPlugins: webpack.WebpackPluginInstance[] = [];
 
     if (!env.WEBPACK_SERVE) {
@@ -17,6 +22,7 @@ export default (
 
     return {
         devServer: { hot: true },
+        devtool: isProd ? false : "source-map",
         entry: { app: `${__dirname}/src/index.ts` },
         output: {
             filename: "[name].[fullhash].js",
@@ -24,7 +30,7 @@ export default (
             // I think eight is enough for a hash -- it should
             // not collide with old hashes and is not lengthy.
             hashDigestLength: 8,
-            path: `${__dirname}/out/build/assets`,
+            path: `${outputDir}/assets`,
             publicPath: "/assets/",
         },
         plugins: [
