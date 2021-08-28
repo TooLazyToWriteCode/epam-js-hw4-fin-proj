@@ -69,6 +69,7 @@ export default (
         devServer: { hot: true },
         devtool: isProd ? false : "source-map",
         entry: { app: `${sourceDir}/index.ts` },
+        stats: { assets: false, modules: false },
         module: {
             rules: [
                 {
