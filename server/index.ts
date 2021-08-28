@@ -1,13 +1,10 @@
-import { Server } from "http";
-import { create, router } from "json-server";
+import jsonServer from "json-server";
 
-import { port } from "./../config/backend";
-import { srcDBFile } from "./../config/paths";
+const port = Number(process.env.PORT || 3031);
+const router = jsonServer.router(`${__dirname}/db.json`);
 
-const postLoad = (): void => {
-    console.log(`json server: has been started on port ${port}`);
+const onListen = (): void => {
+    console.log(`json server: started (port ${port})`);
 };
 
-export default (): Server => {
-    return create().use(router(srcDBFile)).listen(port, postLoad);
-};
+jsonServer.create().use(router).listen(port, onListen);
