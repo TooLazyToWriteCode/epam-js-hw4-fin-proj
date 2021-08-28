@@ -4938,6 +4938,13 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
+"incstr@npm:^1.2.3":
+  version: 1.2.3
+  resolution: "incstr@npm:1.2.3"
+  checksum: ee2767b8da04f7d91197cf4dcb574c5df0a33f8d9cf32f9e0bf1573946932904744d7dd2152d109f20be54ae215a1256dd37a10f7630ad409233e721cbff9dd3
+  languageName: node
+  linkType: hard
+
 "indent-string@npm:^4.0.0":
   version: 4.0.0
   resolution: "indent-string@npm:4.0.0"
@@ -7455,6 +7462,7 @@ fsevents@~2.3.2:
     copy-webpack-plugin: ^9.0.1
     cypress: ^8.3.1
     html-webpack-plugin: ^5.3.2
+    incstr: ^1.2.3
     json-server: ^0.16.3
     mini-css-extract-plugin: ^2.2.0
     prettier: ^2.3.2
