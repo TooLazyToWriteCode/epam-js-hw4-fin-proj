@@ -1,6 +1,8 @@
 import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import { WebpackManifestPlugin } from "webpack-manifest-plugin";
+import CopyWebpackPlugin from "copy-webpack-plugin";
 import MiniCSSExtractPlugin from "mini-css-extract-plugin";
+import TerserWebpackPlugin from "terser-webpack-plugin";
 
 import webpack from "webpack";
 
@@ -24,6 +26,13 @@ export default (
         devServer: { hot: true },
         devtool: isProd ? false : "source-map",
         entry: { app: `${__dirname}/src/index.ts` },
+        optimization: {
+            minimizer: [
+                new TerserWebpackPlugin({
+                    terserOptions: { toplevel: true },
+                }),
+            ],
+        },
         output: {
             filename: "[name].[fullhash].js",
 
@@ -34,6 +43,11 @@ export default (
             publicPath: "/assets/",
         },
         plugins: [
+            /** @see https://webpack.js.org/plugins/copy-webpack-plugin */
+            new CopyWebpackPlugin({
+                patterns: [{ from: `${__dirname}/public`, to: outputDir }],
+            }),
+
             /** @see https://webpack.js.org/plugins/mini-css-extract-plugin */
             new MiniCSSExtractPlugin({ filename: "[name].[fullhash].css" }),
 
