@@ -5,6 +5,8 @@ import HTMLWebpackPlugin from "html-webpack-plugin";
 import MiniCSSExtractPlugin from "mini-css-extract-plugin";
 import TerserWebpackPlugin from "terser-webpack-plugin";
 
+// @ts-ignore TS7016
+import incstr from "incstr";
 import webpack from "webpack";
 
 export default (
@@ -23,10 +25,37 @@ export default (
         dynPlugins.push(new CleanWebpackPlugin());
     }
 
+    const cssLoader: webpack.RuleSetRule = {
+        loader: "css-loader",
+        options: {
+          // Mangle the class names of the CSS modules.
+          // Read this article to understand it better:
+          // https://freecodecamp.org/news/625440de600b.
+          modules: {
+                localIdentName: "[path][name]__[local]",
+                getLocalIdent: isProd
+                    ? incstr.idGenerator({ prefix: "m_" })
+                    : undefined,
+            },
+        },
+    };
+
     return {
         devServer: { hot: true },
         devtool: isProd ? false : "source-map",
         entry: { app: `${__dirname}/src/index.ts` },
+        module: {
+            rules: [
+                {
+                    test: /\.(css|sass|scss)$/,
+                    use: [
+                        MiniCSSExtractPlugin.loader,
+                        cssLoader,
+                        "sass-loader",
+                    ],
+                },
+            ],
+        },
         optimization: {
             minimizer: [
                 new TerserWebpackPlugin({
@@ -62,5 +91,8 @@ export default (
             /** @see https://npmjs.com/package/webpack-manifest-plugin */
             new WebpackManifestPlugin({}),
         ].concat(dynPlugins),
+        resolve: {
+            extensions: [".js", ".jsx", ".ts", ".tsx"],
+        },
     };
 };
