@@ -46,8 +46,8 @@
     },
     "scripts": {
         "build:dev": "webpack",
+        "build:docs": "typedoc",
         "build:prod": "webpack --mode production",
-        "doc": "typedoc",
         "fmt": "prettier -w .",
         "run:test": "cypress run",
         "serve:db": "ts-node ./server/index.ts",
