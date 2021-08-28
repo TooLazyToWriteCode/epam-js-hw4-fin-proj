@@ -1,5 +1,5 @@
 import "cypress";
 
-const plugins: Cypress.PluginConfig = (_on, _config) => {};
+export const pluginConfig: Cypress.PluginConfig = (_on, _config) => {};
 
-export default plugins;
+export default pluginConfig;
