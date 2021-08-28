@@ -13,10 +13,22 @@ export default (
     env: NodeJS.ProcessEnv,
     argv: NodeJS.ProcessEnv
 ): webpack.Configuration => {
-    const envName = argv.mode || "production";
-    const isProd = envName === "production";
+    let isDev = false;
+    let isProd = false;
+    let mode: "production" | "development";
 
-    const outputDir = `${__dirname}/out/build/${envName}`;
+    // We will use the development mode by default instead of how webpack
+    // handles such setting and treat the `none` mode as the development
+    // one. Production pipelines should specify the mode explicitly anyway.
+    if (argv.mode === "production") {
+        isProd = true;
+        mode = "production";
+    } else {
+        isDev = true;
+        mode = "development";
+    }
+
+    const outputDir = `${__dirname}/out/build/${mode}`;
     const publicDir = `${__dirname}/public`;
     const sourceDir = `${__dirname}/src`;
 
@@ -67,6 +79,7 @@ export default (
     };
 
     return {
+        mode,
         devServer: { hot: true, static: publicDir },
         devtool: isProd ? false : "source-map",
         entry: { app: `${sourceDir}/index.ts` },
