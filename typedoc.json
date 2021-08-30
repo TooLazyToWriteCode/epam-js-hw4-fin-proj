@@ -1,5 +1,5 @@
 {
-    "entryPoints": ["./src/index.ts"],
+    "entryPoints": ["./src"],
     "json": "./out/docs.json",
     "name": " Poke Catch API Reference",
     "out": "./out/docs"
