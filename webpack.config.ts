@@ -6,7 +6,7 @@ import MiniCSSExtractPlugin from "mini-css-extract-plugin";
 import TerserWebpackPlugin from "terser-webpack-plugin";
 
 // @ts-ignore TS7016
-import incstr from "incstr";
+import { idGenerator } from "incstr";
 import webpack from "webpack";
 
 export default (
@@ -80,7 +80,7 @@ export default (
             modules: {
                 localIdentName: "[path][name]__[local]",
                 getLocalIdent: isProd
-                    ? incstr.idGenerator({ prefix: "m_" })
+                    ? idGenerator({ prefix: "m_" })
                     : undefined,
             },
         },
