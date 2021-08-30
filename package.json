@@ -58,6 +58,8 @@
         "serve:db": "ts-node ./server/index.ts",
         "serve:dev": "webpack serve",
         "test:e2e": "cypress run",
-        "test:unit": "cypress run-ct"
+        "test:e2e:gui": "cypress open",
+        "test:unit": "cypress run-ct",
+        "test:unit:gui": "cypress open-ct"
     }
 }
