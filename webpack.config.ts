@@ -61,6 +61,11 @@ export default (
         publicPath = `${process.env.BASE_URL}assets/`;
     }
 
+    if (isDev) {
+        /** @see https://npmjs.com/package/webpack-manifest-plugin */
+        dynPlugins.push(new WebpackManifestPlugin({}));
+    }
+
     const babelLoader: webpack.RuleSetRule = {
         loader: "babel-loader",
         options: { compact: false },
@@ -134,9 +139,6 @@ export default (
 
             /** @see https://webpack.js.org/plugins/mini-css-extract-plugin */
             new MiniCSSExtractPlugin({ filename: `"${filename}.css` }),
-
-            /** @see https://npmjs.com/package/webpack-manifest-plugin */
-            new WebpackManifestPlugin({}),
 
             /** @see https://webpack.js.org/plugins/environment-plugin */
             new webpack.EnvironmentPlugin(["BASE_URL"]),
