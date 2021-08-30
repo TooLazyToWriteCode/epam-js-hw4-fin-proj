@@ -1,6 +1,6 @@
 import { mount } from "@cypress/react";
 
-import App from "@/App";
+import App from "@/components/App";
 
 describe("App", () => {
     it("mounts without errors", () => {
