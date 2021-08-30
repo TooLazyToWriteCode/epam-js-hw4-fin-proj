@@ -14,7 +14,7 @@ export const pluginConfig: Cypress.PluginConfig = (on, config) => {
     // config directly and set the environment manually.
     config.env.reactDevtools = true;
 
-    const webpackConfig = webpackFunction({ WEBPACK_SERVE: "true" });
+    const webpackConfig = webpackFunction({ WEBPACK_SERVE: "on" });
 
     on("dev-server:start", (options) => {
         return startDevServer({ options, webpackConfig });
