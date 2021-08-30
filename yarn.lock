@@ -1940,10 +1940,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^16.7.4":
-  version: 16.7.4
-  resolution: "@types/node@npm:16.7.4"
-  checksum: da7813e6c37e7813645a9d40de6d9f803fbadb2975748d307ec31d8e4f9baabccf49b667a39e4b1288d477ec7d34a339e8a41d8703a1d7ab0ec8eb2516073f27
+"@types/node@npm:^16.7.6":
+  version: 16.7.6
+  resolution: "@types/node@npm:16.7.6"
+  checksum: a8533386a1d4ca0ed67885413001af8789c63948df288f3d36e31bd8fccffacf5dffb95e190c8cd57bb40385f010fb9a30f596bad6bb26b2bb88737d54d8ed95
   languageName: node
   linkType: hard
 
@@ -9593,7 +9593,7 @@ resolve@1.1.7:
     "@types/copy-webpack-plugin": ^8.0.1
     "@types/json-server": ^0.14.4
     "@types/mini-css-extract-plugin": ^2.2.0
-    "@types/node": ^16.7.4
+    "@types/node": ^16.7.6
     "@types/react": ^17.0.19
     "@types/react-dom": ^17.0.9
     "@types/react-redux": ^7.1.18
@@ -9619,13 +9619,13 @@ resolve@1.1.7:
     react-dom: ^17.0.2
     react-redux: ^7.2.4
     react-router-dom: ^5.2.1
-    sass: ^1.38.1
+    sass: ^1.38.2
     sass-loader: ^12.1.0
     speed-measure-webpack-plugin: ^1.5.0
     terser-webpack-plugin: ^5.1.4
     ts-loader: ^9.2.5
     ts-node: ^10.2.1
-    typedoc: ^0.21.7
+    typedoc: ^0.21.9
     typescript: 4.3.5
     webpack: ^5.51.1
     webpack-cli: ^4.8.0
@@ -9704,14 +9704,14 @@ resolve@1.1.7:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.38.1":
-  version: 1.38.1
-  resolution: "sass@npm:1.38.1"
+"sass@npm:^1.38.2":
+  version: 1.38.2
+  resolution: "sass@npm:1.38.2"
   dependencies:
     chokidar: ">=3.0.0 <4.0.0"
   bin:
     sass: sass.js
-  checksum: e260889fd9163f68b3916fa69f2b7c99d2980e54e8938ac3a74f6d5a4fe4d0c15450871273286f5abdaecd6e218ff70b70e8f32188203ac6a9f08582fd721b3a
+  checksum: 41a0cf4539562dbe114d375cca3bbc090eeb13286d02367e772a09282c5bc4232226f1fbe08edbcc958f2dda9e17bc4c4aedd4da87c5aa4a4e3b816202913b33
   languageName: node
   linkType: hard
 
@@ -9977,14 +9977,14 @@ resolve@1.1.7:
   languageName: node
   linkType: hard
 
-"shiki@npm:^0.9.3":
-  version: 0.9.7
-  resolution: "shiki@npm:0.9.7"
+"shiki@npm:^0.9.8":
+  version: 0.9.8
+  resolution: "shiki@npm:0.9.8"
   dependencies:
     json5: ^2.2.0
     onigasm: ^2.2.5
     vscode-textmate: 5.2.0
-  checksum: e44025ba34dad58513fd40155d6ab20e55b1422fd6eb649ac35080ee086800046132ac33e81724b1c6986912c7ac1d8830d1dd1c3034207226b61c1421aafee1
+  checksum: ffbce5e5e3449b453d7acb7bd728546e4b5ea87e5df4d2ec69dc95c6c5165166c101eb6db2851e5bb333b7194133936b18b440f8dd0d8859de7ef0abe1951131
   languageName: node
   linkType: hard
 
@@ -10870,9 +10870,9 @@ resolve@1.1.7:
   languageName: node
   linkType: hard
 
-"typedoc@npm:^0.21.7":
-  version: 0.21.7
-  resolution: "typedoc@npm:0.21.7"
+"typedoc@npm:^0.21.9":
+  version: 0.21.9
+  resolution: "typedoc@npm:0.21.9"
   dependencies:
     glob: ^7.1.7
     handlebars: ^4.7.7
@@ -10880,13 +10880,13 @@ resolve@1.1.7:
     marked: ^3.0.2
     minimatch: ^3.0.0
     progress: ^2.0.3
-    shiki: ^0.9.3
+    shiki: ^0.9.8
     typedoc-default-themes: ^0.12.10
   peerDependencies:
     typescript: 4.0.x || 4.1.x || 4.2.x || 4.3.x || 4.4.x
   bin:
     typedoc: bin/typedoc
-  checksum: 695efb85c588851db3238926fa739755a89003a761f1e50a15b13d33f7377e345882dd3bb659307296e90ca28f1827af4fb844f859d20cc7e14e7b4efe852f91
+  checksum: 5079e55f7d233874aedd5be4acc9ad9deab4b1cacee9a5c950baa19a6990003945e0eccc792f288cbac9d0e900d1f7b7856fc40318bdfef413ed94b7e7690406
   languageName: node
   linkType: hard
 
@@ -11546,8 +11546,8 @@ typescript@4.3.5:
   linkType: hard
 
 "ws@npm:^7.4.5":
-  version: 7.5.3
-  resolution: "ws@npm:7.5.3"
+  version: 7.5.4
+  resolution: "ws@npm:7.5.4"
   peerDependencies:
     bufferutil: ^4.0.1
     utf-8-validate: ^5.0.2
@@ -11556,7 +11556,7 @@ typescript@4.3.5:
       optional: true
     utf-8-validate:
       optional: true
-  checksum: 423dc0d859fa74020f5555140905b862470a60ea1567bb9ad55a087263d7718b9c94f69678be1cee9868925c570f1e6fc79d09f90c39057bc63fa2edbb2c547b
+  checksum: 48582e4feb1fc6b6b977a0ee6136e5cd1c6a14bc5cb6ce5acf596652b34be757cdf0c225235b3263d56d057bc5d6e528dbe27fc88a3d09828aa803c6696f4b2c
   languageName: node
   linkType: hard
 
