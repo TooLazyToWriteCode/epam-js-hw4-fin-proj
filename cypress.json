@@ -1,8 +1,8 @@
 {
-    "componentFolder": "./test/component",
+    "componentFolder": "./test/components",
     "downloadsFolder": "./out/test/downloads",
     "fixturesFolder": "./test/fixtures",
-    "integrationFolder": "./test/integration",
+    "integrationFolder": "./test/integrations",
     "pluginsFile": "./test/plugins/index.ts",
     "screenshotsFolder": "./out/test/screenshots",
     "supportFile": "./test/support/index.ts",
