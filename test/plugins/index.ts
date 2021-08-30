@@ -9,9 +9,9 @@ import webpackFunction from "../../webpack.config";
 export const pluginConfig: Cypress.PluginConfig = (on, config) => {
     codeCoveragePlugin(on, config);
 
-    // The `load-webpack` plugin does not seem to support
-    // TypeScript config, so we have to load the webpack
-    // config directly and set the environment manually.
+    // The `load-webpack` plugin does not seem to support TypeScript
+    // webpack configs, so we have to load the config directly and
+    // configure the environment manually instead of relying on it.
     config.env.reactDevtools = true;
 
     const webpackConfig = webpackFunction({ WEBPACK_SERVE: "on" });
