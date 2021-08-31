@@ -1539,9 +1539,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@cypress/webpack-dev-server@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "@cypress/webpack-dev-server@npm:1.4.0"
+"@cypress/webpack-dev-server@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "@cypress/webpack-dev-server@npm:1.5.0"
   dependencies:
     debug: 4.3.2
     semver: ^7.3.4
@@ -1550,7 +1550,7 @@ __metadata:
     html-webpack-plugin: ">=4"
     webpack: ">=4"
     webpack-dev-server: ">=3.0.0"
-  checksum: b791201e50fe3b551f279f99e7b8f5d904ac2546fda2b501f3b359d8004dc01ee957bb33b6ea67e45d944e87776c7cee4663854629b808ad313452a41898de75
+  checksum: ecf431f3cf3021eaea0cb6b9d40da2aa18f0feb7a9ede34360b639c2cbb05b3a461766e2b6a7f0f5181c225363a8fc9fec645fb623b5dae22b9956d29a048f8f
   languageName: node
   linkType: hard
 
@@ -2089,10 +2089,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^16.7.6":
-  version: 16.7.6
-  resolution: "@types/node@npm:16.7.6"
-  checksum: a8533386a1d4ca0ed67885413001af8789c63948df288f3d36e31bd8fccffacf5dffb95e190c8cd57bb40385f010fb9a30f596bad6bb26b2bb88737d54d8ed95
+"@types/node@npm:^16.7.8":
+  version: 16.7.8
+  resolution: "@types/node@npm:16.7.8"
+  checksum: 060ea222ce8f3eb05bd86a7785ca5807503a50602dd805c5be997a5ae684fa6224c9ad8890bcc5551c05d14a8bcd735f94567691342d197f5f7f7f893ed0d46b
   languageName: node
   linkType: hard
 
@@ -6788,13 +6788,6 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"is-absolute-url@npm:^3.0.3":
-  version: 3.0.3
-  resolution: "is-absolute-url@npm:3.0.3"
-  checksum: 5159b51d065d9ad29e16a2f78d6c0e41c43227caf90a45e659c54ea6fd50ef0595b1871ce392e84b1df7cfdcad9a8e66eec0813a029112188435abf115accb16
-  languageName: node
-  linkType: hard
-
 "is-accessor-descriptor@npm:^0.1.6":
   version: 0.1.6
   resolution: "is-accessor-descriptor@npm:0.1.6"
@@ -7639,13 +7632,6 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"killable@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "killable@npm:1.0.1"
-  checksum: 911a85c6e390c19d72c4e3149347cf44042cbd7d18c3c6c5e4f706fdde6e0ed532473392e282c7ef27f518407e6cb7d2a0e71a2ae8d8d8f8ffdb68891a29a68a
-  languageName: node
-  linkType: hard
-
 "kind-of@npm:^3.0.2, kind-of@npm:^3.0.3, kind-of@npm:^3.2.0":
   version: 3.2.2
   resolution: "kind-of@npm:3.2.2"
@@ -8168,14 +8154,14 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"mini-css-extract-plugin@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "mini-css-extract-plugin@npm:2.2.0"
+"mini-css-extract-plugin@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "mini-css-extract-plugin@npm:2.2.1"
   dependencies:
     schema-utils: ^3.1.0
   peerDependencies:
     webpack: ^5.0.0
-  checksum: 783b5a8c1c6f0f67f1cf3bd289c7072fb0356a0c1f5ccd78c868d6c8fd9bd7c0e48d73b1827ca34cef35d79dd65fd95be6208dc40984cc32bc17c62a38ecf9e3
+  checksum: 8b3f094a41c053e70fb0c33dbadb7dfac2e8a62565386b9ca2aa1d4f31891f61d7f47c49dccd7ce9880b1f15723b23b31d6a71a1a747b53811544c863af71d84
   languageName: node
   linkType: hard
 
@@ -10077,13 +10063,13 @@ resolve@1.1.7:
     "@babel/preset-env": ^7.15.0
     "@cypress/code-coverage": ^3.9.10
     "@cypress/react": ^5.9.4
-    "@cypress/webpack-dev-server": ^1.4.0
+    "@cypress/webpack-dev-server": ^1.5.0
     "@material-ui/core": ^4.12.3
     "@reduxjs/toolkit": ^1.6.1
     "@types/copy-webpack-plugin": ^8.0.1
     "@types/json-server": ^0.14.4
     "@types/mini-css-extract-plugin": ^2.2.0
-    "@types/node": ^16.7.6
+    "@types/node": ^16.7.8
     "@types/react": ^17.0.19
     "@types/react-dom": ^17.0.9
     "@types/react-redux": ^7.1.18
@@ -10105,7 +10091,7 @@ resolve@1.1.7:
     incstr: ^1.2.3
     json-server: ^0.16.3
     lodash: ^4.17.21
-    mini-css-extract-plugin: ^2.2.0
+    mini-css-extract-plugin: ^2.2.1
     prettier: ^2.3.2
     react: ^17.0.2
     react-dom: ^17.0.2
@@ -10118,11 +10104,11 @@ resolve@1.1.7:
     ts-loader: ^9.2.5
     ts-node: ^10.2.1
     typedoc: ^0.21.9
-    typescript: 4.3.5
+    typescript: ~4.3.5
     wait-on: ^6.0.0
     webpack: ^5.51.1
     webpack-cli: ^4.8.0
-    webpack-dev-server: 4.0.0-rc.0
+    webpack-dev-server: 4.0.0
     webpack-manifest-plugin: ^4.0.2
   languageName: unknown
   linkType: soft
@@ -11465,23 +11451,23 @@ resolve@1.1.7:
   languageName: node
   linkType: hard
 
-typescript@4.3.5:
-  version: 4.3.5
-  resolution: "typescript@npm:4.3.5"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: bab033b5e2b0790dd35b77fd005df976ef80b8d84fd2c6e63cc31808151875beae9216e5a315fe7068e8499905c3c354248fe83272cdfc13b7705635f0c66c97
-  languageName: node
-  linkType: hard
-
-"typescript@patch:typescript@4.3.5#~builtin<compat/typescript>":
+"typescript@patch:typescript@~4.3.5#~builtin<compat/typescript>":
   version: 4.3.5
   resolution: "typescript@patch:typescript@npm%3A4.3.5#~builtin<compat/typescript>::version=4.3.5&hash=d8b4e7"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: bc2c4fdf0f1557fdafe4ef74848c72ebd9c8c60829568248f869121aea2bb20e16649a252431d0acb185ec118143be22bed73d08f64379557810d82756afedde
+  languageName: node
+  linkType: hard
+
+typescript@~4.3.5:
+  version: 4.3.5
+  resolution: "typescript@npm:4.3.5"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: bab033b5e2b0790dd35b77fd005df976ef80b8d84fd2c6e63cc31808151875beae9216e5a315fe7068e8499905c3c354248fe83272cdfc13b7705635f0c66c97
   languageName: node
   linkType: hard
 
@@ -11918,13 +11904,14 @@ typescript@4.3.5:
   languageName: node
   linkType: hard
 
-"webpack-dev-server@npm:4.0.0-rc.0":
-  version: 4.0.0-rc.0
-  resolution: "webpack-dev-server@npm:4.0.0-rc.0"
+"webpack-dev-server@npm:4.0.0":
+  version: 4.0.0
+  resolution: "webpack-dev-server@npm:4.0.0"
   dependencies:
     ansi-html: ^0.0.7
     bonjour: ^3.5.0
     chokidar: ^3.5.1
+    colorette: ^1.2.2
     compression: ^1.7.4
     connect-history-api-fallback: ^1.6.0
     del: ^6.0.0
@@ -11934,8 +11921,6 @@ typescript@4.3.5:
     http-proxy-middleware: ^2.0.0
     internal-ip: ^6.2.0
     ipaddr.js: ^2.0.1
-    is-absolute-url: ^3.0.3
-    killable: ^1.0.1
     open: ^8.0.9
     p-retry: ^4.5.0
     portfinder: ^1.0.28
@@ -11947,15 +11932,15 @@ typescript@4.3.5:
     strip-ansi: ^7.0.0
     url: ^0.11.0
     webpack-dev-middleware: ^5.0.0
-    ws: ^7.5.3
+    ws: ^8.1.0
   peerDependencies:
-    webpack: ^4.0.0 || ^5.0.0
+    webpack: ^4.37.0 || ^5.0.0
   peerDependenciesMeta:
     webpack-cli:
       optional: true
   bin:
     webpack-dev-server: bin/webpack-dev-server.js
-  checksum: 9dc2e6f151199d050088b19f7b473e44c5cfb3e06c8572f92e71f6acf4fd6f483416a8c4bf53783bfd3093e05028394be984906b148d8e7dbb05bcbc345598be
+  checksum: abf88fb940b8fcb3fc6bae6a218ecfc001c7da5b7df3db45f5ee684be1c9e05bd9e491b044f81b1e3df6d33796264b6aebce358a18522e407a62fd6cbcc9f705
   languageName: node
   linkType: hard
 
@@ -12144,9 +12129,9 @@ typescript@4.3.5:
   languageName: node
   linkType: hard
 
-"ws@npm:^7.5.3":
-  version: 7.5.4
-  resolution: "ws@npm:7.5.4"
+"ws@npm:^8.1.0":
+  version: 8.2.1
+  resolution: "ws@npm:8.2.1"
   peerDependencies:
     bufferutil: ^4.0.1
     utf-8-validate: ^5.0.2
@@ -12155,7 +12140,7 @@ typescript@4.3.5:
       optional: true
     utf-8-validate:
       optional: true
-  checksum: 48582e4feb1fc6b6b977a0ee6136e5cd1c6a14bc5cb6ce5acf596652b34be757cdf0c225235b3263d56d057bc5d6e528dbe27fc88a3d09828aa803c6696f4b2c
+  checksum: 22906903c7952790a911627f99e3419d8f251a6a540d9ba4f334a7e0865d7ea7026d8ad23829c3c0f2843a9f15bdb91c646e7f8853a5a5ba25a57dea2cf7d416
   languageName: node
   linkType: hard
 
