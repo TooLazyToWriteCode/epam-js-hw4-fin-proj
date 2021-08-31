@@ -1,5 +1,5 @@
-describe("Poke Catch", () => {
-    it("does something", () => {
-        expect(5).to.equal(5);
+describe("The Main Page", () => {
+    it("exists and loads", () => {
+        cy.visit("localhost:3032");
     });
 });

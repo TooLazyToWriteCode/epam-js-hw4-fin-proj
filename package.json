@@ -42,6 +42,7 @@
         "sass": "^1.38.2",
         "sass-loader": "^12.1.0",
         "speed-measure-webpack-plugin": "^1.5.0",
+        "start-server-and-test": "^1.13.1",
         "terser-webpack-plugin": "^5.1.4",
         "ts-loader": "^9.2.5",
         "ts-node": "^10.2.1",
@@ -59,8 +60,8 @@
         "fmt": "prettier -w .",
         "serve:db": "ts-node ./server/index.ts",
         "serve:dev": "webpack serve",
-        "test:e2e": "cypress run",
-        "test:e2e:gui": "cypress open",
+        "test:e2e": "PORT=3032 server-test 'yarn serve:dev' 3032 'yarn cypress run'",
+        "test:e2e:gui": "PORT=3032 server-test 'yarn serve:dev' 3032 'yarn cypress open'",
         "test:unit": "cypress run-ct",
         "test:unit:gui": "cypress open-ct"
     }
