@@ -1,4 +1,3 @@
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import { WebpackManifestPlugin } from "webpack-manifest-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import HTMLWebpackPlugin from "html-webpack-plugin";
@@ -61,9 +60,6 @@ export default (
     let publicPath = process.env.BASE_URL;
 
     if (!env.WEBPACK_SERVE) {
-        /** @see https://npmjs.com/package/clean-webpack-plugin */
-        dynPlugins.push(new CleanWebpackPlugin());
-
         outputPath = `${outputDir}/assets`;
         publicPath = `${process.env.BASE_URL}assets/`;
     }
@@ -127,6 +123,7 @@ export default (
             ],
         },
         output: {
+            clean: true,
             filename: `${filename}.js`,
             path: outputPath,
             publicPath: publicPath,
