@@ -17,15 +17,17 @@ export default (
     let isProd = false;
     let mode: "production" | "development";
 
-    // We will use the development mode by default instead of how webpack
-    // handles such setting and treat the `none` mode as the development
-    // one. Production pipelines should specify the mode explicitly anyway.
-    if (argv.mode === "production") {
-        isProd = true;
-        mode = "production";
-    } else {
-        isDev = true;
-        mode = "development";
+    switch (argv.mode) {
+        case "development":
+            isDev = true;
+            mode = "development";
+            break;
+        case "production":
+            isProd = true;
+            mode = "production";
+            break;
+        default:
+            throw new Error("the mode is invalid or not explicitly set");
     }
 
     const outputDir = `${__dirname}/out/build/${mode}`;
