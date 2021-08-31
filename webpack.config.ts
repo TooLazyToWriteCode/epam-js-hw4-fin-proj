@@ -38,9 +38,14 @@ export default (
     const fontsMatch = /eot|otf|ttf|woff2?/;
     const imagesMatch = /a?png|avif|gif|jpe?g|svg|webp/;
 
+    const servePort = Number(process.env.PORT || 3030);
+
     // The URL from which the application is served. It may be relative to
     // the current host name or absolute (for example, in a case of CDN).
     process.env.BASE_URL = process.env.BASE_URL || "/";
+
+    process.env.SERVER_HOST = process.env.SERVER_HOST || "localhost";
+    process.env.SERVER_PORT = process.env.SERVER_PORT || "3031";
 
     const dynPlugins: webpack.WebpackPluginInstance[] = [];
 
@@ -88,7 +93,7 @@ export default (
 
     return {
         mode,
-        devServer: { hot: true, static: publicDir },
+        devServer: { hot: true, port: servePort, static: publicDir },
         devtool: isProd ? false : "source-map",
         entry: { app: `${sourceDir}/index.ts` },
         module: {
@@ -141,7 +146,11 @@ export default (
             new MiniCSSExtractPlugin({ filename: `"${filename}.css` }),
 
             /** @see https://webpack.js.org/plugins/environment-plugin */
-            new webpack.EnvironmentPlugin(["BASE_URL"]),
+            new webpack.EnvironmentPlugin([
+                "BASE_URL",
+                "SERVER_HOST",
+                "SERVER_PORT",
+            ]),
         ].concat(dynPlugins),
         resolve: {
             // Map the directories as some other string. Note: this
