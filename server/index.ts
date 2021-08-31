@@ -1,10 +1,8 @@
 import jsonServer from "json-server";
 
 const port = Number(process.env.PORT || 3031);
-const router = jsonServer.router(`${__dirname}/db.json`);
+const server = jsonServer.create();
 
-const onListen = (): void => {
-    console.log(`json server: started (port ${port})`);
-};
-
-jsonServer.create().use(router).listen(port, onListen);
+server.get("/", (_, response) => response.send("GET / now has status OK"));
+server.use(jsonServer.router(`${__dirname}/db.json`));
+server.listen(port, () => console.log(`json server: started (port ${port})`));
