@@ -72,9 +72,8 @@ const getMode = (argv: Argv): Mode => {
     return mode;
 };
 
-const getOutputPaths = (buildDir: string, env: Env): Output => {
+const getOutput = (baseURL: string, buildDir: string, env: Env): Output => {
     const output: Output = {};
-    const baseURL = process.env.BASE_URL || "/";
 
     // `webpack-dev-server`, instead of writing a bundle to a hard drive, keeps
     // it in memory to increase performance. The problem is that it only serves
@@ -92,16 +91,18 @@ const getDevServerPort = (): number => {
     return Number(process.env.PORT || 3030);
 };
 
-const setBaseURL = (): void => {
+const getBaseURL = (): string => {
     const noSlashError = new Error('the BASE_URL variable must end with "/"');
 
     // The URL from which the application is served. It may be either relative
     // to the current hostname or absolute (for example, in a case CDN is used).
-    process.env.BASE_URL = process.env.BASE_URL || "/";
+    const baseURL = process.env.BASE_URL || "/";
 
-    if (!process.env.BASE_URL.endsWith("/")) {
+    if (!baseURL.endsWith("/")) {
         throw noSlashError;
     }
+
+    return baseURL;
 };
 
 const outputDir = join(__dirname, "out");
@@ -110,6 +111,7 @@ const sourceDir = join(__dirname, "src");
 
 export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
     const { isDev, isProd, mode } = getMode(argv);
+    const baseURL = getBaseURL();
     const buildDir = join(outputDir, "build", mode);
 
     const fontsMatch = /eot|otf|ttf|woff2?/;
@@ -137,8 +139,6 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
             },
         },
     };
-
-    setBaseURL();
 
     return {
         mode,
@@ -177,7 +177,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
             ],
         },
         output: {
-            ...getOutputPaths(buildDir, env),
+            ...getOutput(baseURL, buildDir, env),
             clean: true,
             filename: `${filename}.js`,
         },
