@@ -2,6 +2,7 @@
     "packageManager": "yarn@3.0.1",
     "private": true,
     "dependencies": {
+        "@loadable/component": "^5.15.0",
         "@material-ui/core": "^4.12.3",
         "@reduxjs/toolkit": "^1.6.1",
         "react": "^17.0.2",
@@ -17,6 +18,7 @@
         "@cypress/webpack-dev-server": "^1.5.0",
         "@types/copy-webpack-plugin": "^8.0.1",
         "@types/json-server": "^0.14.4",
+        "@types/loadable__component": "^5.13.4",
         "@types/mini-css-extract-plugin": "^2.2.0",
         "@types/node": "^16.7.10",
         "@types/react": "^17.0.19",

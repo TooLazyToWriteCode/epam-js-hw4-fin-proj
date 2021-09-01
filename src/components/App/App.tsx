@@ -1,11 +1,13 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
+import loadable from "@loadable/component";
 
 import { store } from "@/store";
-import Caught from "@/components/pages/Caught";
-import Home from "@/components/pages/Home";
-import Pokemon from "@/components/pages/Pokemon";
 import "./App.scss";
+
+const Caught = loadable(() => import("@/components/pages/Caught"));
+const Home = loadable(() => import("@/components/pages/Home"));
+const Pokemon = loadable(() => import("@/components/pages/Pokemon"));
 
 /** The root component. */
 export const App: React.ReactElement = (
