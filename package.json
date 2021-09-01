@@ -55,6 +55,9 @@
         "webpack-dev-server": "4.1.0",
         "webpack-manifest-plugin": "^4.0.2"
     },
+    "engines": {
+        "node": ">=14.16.0"
+    },
     "scripts": {
         "build:dev": "webpack --mode development",
         "build:docs": "typedoc",
