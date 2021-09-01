@@ -1,7 +1,7 @@
 import { WebpackManifestPlugin } from "webpack-manifest-plugin";
+import CSSExtractPlugin from "mini-css-extract-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import HTMLWebpackPlugin from "html-webpack-plugin";
-import MiniCSSExtractPlugin from "mini-css-extract-plugin";
 import TerserWebpackPlugin from "terser-webpack-plugin";
 
 // @ts-ignore TS7016
@@ -30,9 +30,13 @@ export default (
             throw new Error("the mode is invalid or not explicitly set");
     }
 
-    const outputDir = join(__dirname, "out", "build", mode);
+    const outputDir = join(__dirname, "out");
+    const cacheDir = join(outputDir, "cache", "webpack", mode);
+    const buildDir = join(outputDir, "build", mode);
     const publicDir = join(__dirname, "public");
     const sourceDir = join(__dirname, "src");
+
+    const cacheType = env.WEBPACK_SERVE ? "memory" : "filesystem";
 
     const filePath = isProd ? "" : "[path]";
     const filename = isProd ? "[contenthash]" : "[name].[chunkhash]";
@@ -61,13 +65,8 @@ export default (
     // in-memory HTML file does not get served as it is located one directory
     // up from `output.path`. To fix this, we will set `output.path` to the root
     // path in a case `webpack-dev-server` is run.
-    let outputPath = outputDir;
-    let publicPath = process.env.BASE_URL;
-
-    if (!env.WEBPACK_SERVE) {
-        outputPath = join(outputDir, "assets");
-        publicPath = `${process.env.BASE_URL}assets/`;
-    }
+    const buildPath = env.WEBPACK_SERVE ? buildDir : join(buildDir, "assets");
+    const publicURL = process.env.BASE_URL + env.WEBPACK_SERVE ? "" : "assets/";
 
     if (isDev) {
         /** @see https://npmjs.com/package/webpack-manifest-plugin */
@@ -96,6 +95,7 @@ export default (
 
     return {
         mode,
+        cache: { type: cacheType, cacheLocation: cacheDir },
         devtool: isProd ? false : "source-map",
         entry: { app: join(sourceDir, "index.ts") },
         devServer: {
@@ -108,11 +108,7 @@ export default (
             rules: [
                 {
                     test: /\.(sa|s?c)ss$/,
-                    use: [
-                        MiniCSSExtractPlugin.loader,
-                        cssLoader,
-                        "sass-loader",
-                    ],
+                    use: [CSSExtractPlugin.loader, cssLoader, "sass-loader"],
                 },
                 {
                     test: /\.tsx?$/,
@@ -126,6 +122,7 @@ export default (
             ],
         },
         optimization: {
+            runtimeChunk: true,
             minimizer: [
                 new TerserWebpackPlugin({
                     terserOptions: { toplevel: true },
@@ -135,24 +132,24 @@ export default (
         output: {
             clean: true,
             filename: `${filename}.js`,
-            path: outputPath,
-            publicPath: publicPath,
+            path: buildPath,
+            publicPath: publicURL,
         },
         plugins: [
             /** @see https://webpack.js.org/plugins/copy-webpack-plugin */
             new CopyWebpackPlugin({
-                patterns: [{ from: publicDir, to: outputDir }],
+                patterns: [{ from: publicDir, to: buildDir }],
             }),
 
             /** @see https://webpack.js.org/plugins/html-webpack-plugin */
             new HTMLWebpackPlugin({
-                filename: join(outputDir, "index.html"),
+                filename: join(buildDir, "index.html"),
                 template: join(sourceDir, "index.ejs"),
                 title: "Poke Catch",
             }),
 
             /** @see https://webpack.js.org/plugins/mini-css-extract-plugin */
-            new MiniCSSExtractPlugin({ filename: `"${filename}.css` }),
+            new CSSExtractPlugin({ filename: `"${filename}.css` }),
 
             /** @see https://webpack.js.org/plugins/environment-plugin */
             new webpack.EnvironmentPlugin([
@@ -166,6 +163,7 @@ export default (
             // mapping should also be set in the TypeScript config.
             alias: { "@": sourceDir },
             extensions: [".js", ".jsx", ".ts", ".tsx"],
+            symlinks: false,
         },
         stats: {
             assets: false,
