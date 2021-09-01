@@ -11,7 +11,7 @@
 -   [x] `json-server`
 -   [x] `react`
 -   [x] `react-dom`
--   [ ] `react-router-dom`
+-   [x] `react-router-dom`
 -   [x] `redux`
 -   [x] `webpack`
 
