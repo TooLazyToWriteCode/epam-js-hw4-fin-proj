@@ -2072,10 +2072,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^16.7.8":
-  version: 16.7.8
-  resolution: "@types/node@npm:16.7.8"
-  checksum: 060ea222ce8f3eb05bd86a7785ca5807503a50602dd805c5be997a5ae684fa6224c9ad8890bcc5551c05d14a8bcd735f94567691342d197f5f7f7f893ed0d46b
+"@types/node@npm:^16.7.10":
+  version: 16.7.10
+  resolution: "@types/node@npm:16.7.10"
+  checksum: 0518803caa1a14f4070e770a280eda1c4b4581a425cbda481cdd54b1f34a7ea497ff067fd23b90e3d4f4fdcfba15c1316182875e9cf9f5b2e880de1e595de053
   languageName: node
   linkType: hard
 
@@ -2269,9 +2269,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/webpack-dev-server@npm:^4.0.3":
-  version: 4.0.3
-  resolution: "@types/webpack-dev-server@npm:4.0.3"
+"@types/webpack-dev-server@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "@types/webpack-dev-server@npm:4.1.0"
   dependencies:
     "@types/bonjour": "*"
     "@types/connect-history-api-fallback": "*"
@@ -2281,8 +2281,8 @@ __metadata:
     "@types/webpack": ^4
     "@types/webpack-dev-middleware": "*"
     chokidar: ^3.5.1
-    http-proxy-middleware: ^1.0.0
-  checksum: 34f2b95be05453c520dadf0d4f0b9bff4dc5968ffe583bb896c7ee06086cfefd6018eb0ebbdc2ae3a4420403e01975db6a58be9c79786d55fa38d128874eee09
+    http-proxy-middleware: ^2.0.0
+  checksum: fc64ec2b63ec58156b6778ea793c1cd1e2c997cbad9e9f346b231014e4f63865bef756e871cc625eaaf7f0301a9d087c2dd62ca5f971a3b60840ca6573da5d81
   languageName: node
   linkType: hard
 
@@ -6396,19 +6396,6 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"http-proxy-middleware@npm:^1.0.0":
-  version: 1.3.1
-  resolution: "http-proxy-middleware@npm:1.3.1"
-  dependencies:
-    "@types/http-proxy": ^1.17.5
-    http-proxy: ^1.18.1
-    is-glob: ^4.0.1
-    is-plain-obj: ^3.0.0
-    micromatch: ^4.0.2
-  checksum: c6f0fe6d5aa58f3757084f1fad8109e7384fdea1b0a5c62f58ac767c42f367a18d3819bed8cbf8b5183f17e3e14fad04322f179c569629004da5fbec9b81a88a
-  languageName: node
-  linkType: hard
-
 "http-proxy-middleware@npm:^2.0.0":
   version: 2.0.1
   resolution: "http-proxy-middleware@npm:2.0.1"
@@ -7210,6 +7197,17 @@ fsevents@~2.3.2:
     merge-stream: ^2.0.0
     supports-color: ^8.0.0
   checksum: cef42e551033839940ed26c121b7d19ff85316fb5e4b815e1fca28744c884173bb3a6be64729bc95c281902db5142685700fc0922628b646151b0f5dcabbeb37
+  languageName: node
+  linkType: hard
+
+"jest-worker@npm:^27.0.6":
+  version: 27.1.0
+  resolution: "jest-worker@npm:27.1.0"
+  dependencies:
+    "@types/node": "*"
+    merge-stream: ^2.0.0
+    supports-color: ^8.0.0
+  checksum: 6df593e5a9eae9fc5a5c809706ab91145a3fca9128c2fdc199f7e6e7f3428abe3e70c181eb1bee6574470d0212ca18556e2c9e3afd18aaa6495643597a5ca28c
   languageName: node
   linkType: hard
 
@@ -9931,14 +9929,14 @@ resolve@1.1.7:
     "@types/copy-webpack-plugin": ^8.0.1
     "@types/json-server": ^0.14.4
     "@types/mini-css-extract-plugin": ^2.2.0
-    "@types/node": ^16.7.8
+    "@types/node": ^16.7.10
     "@types/react": ^17.0.19
     "@types/react-dom": ^17.0.9
     "@types/react-redux": ^7.1.18
     "@types/react-router-dom": ^5.1.8
     "@types/terser-webpack-plugin": ^5.0.4
     "@types/webpack": ^5.28.0
-    "@types/webpack-dev-server": ^4.0.3
+    "@types/webpack-dev-server": ^4.1.0
     babel-loader: ^8.2.2
     babel-plugin-istanbul: ^6.0.0
     chalk: ^4.1.2
@@ -9961,7 +9959,7 @@ resolve@1.1.7:
     sass: ^1.38.2
     sass-loader: ^12.1.0
     speed-measure-webpack-plugin: ^1.5.0
-    terser-webpack-plugin: ^5.1.4
+    terser-webpack-plugin: ^5.2.0
     ts-loader: ^9.2.5
     ts-node: ^10.2.1
     typedoc: ^0.21.9
@@ -9969,7 +9967,7 @@ resolve@1.1.7:
     wait-on: ^6.0.0
     webpack: ^5.51.1
     webpack-cli: ^4.8.0
-    webpack-dev-server: 4.0.0
+    webpack-dev-server: 4.1.0
     webpack-manifest-plugin: ^4.0.2
   languageName: unknown
   linkType: soft
@@ -10085,7 +10083,7 @@ resolve@1.1.7:
   languageName: node
   linkType: hard
 
-"schema-utils@npm:^3.0.0, schema-utils@npm:^3.1.0":
+"schema-utils@npm:^3.0.0, schema-utils@npm:^3.1.0, schema-utils@npm:^3.1.1":
   version: 3.1.1
   resolution: "schema-utils@npm:3.1.1"
   dependencies:
@@ -10933,7 +10931,7 @@ resolve@1.1.7:
   languageName: node
   linkType: hard
 
-"terser-webpack-plugin@npm:^5.1.3, terser-webpack-plugin@npm:^5.1.4":
+"terser-webpack-plugin@npm:^5.1.3":
   version: 5.1.4
   resolution: "terser-webpack-plugin@npm:5.1.4"
   dependencies:
@@ -10946,6 +10944,29 @@ resolve@1.1.7:
   peerDependencies:
     webpack: ^5.1.0
   checksum: 7e5f97ac1944aaff12460201496314ab75d842f4f088e0344ca5143caf85a340d7b0294ed6b4e32b52bbd1bea71648d6417034e889872c582c1be4840e9bd0e7
+  languageName: node
+  linkType: hard
+
+"terser-webpack-plugin@npm:^5.2.0":
+  version: 5.2.0
+  resolution: "terser-webpack-plugin@npm:5.2.0"
+  dependencies:
+    jest-worker: ^27.0.6
+    p-limit: ^3.1.0
+    schema-utils: ^3.1.1
+    serialize-javascript: ^6.0.0
+    source-map: ^0.6.1
+    terser: ^5.7.2
+  peerDependencies:
+    webpack: ^5.1.0
+  peerDependenciesMeta:
+    "@swc/core":
+      optional: true
+    esbuild:
+      optional: true
+    uglify-js:
+      optional: true
+  checksum: df2a4a340d1c8efb611b61987d4f2c2217efdff479dd2e44d7628ef32df2dafc8322c7e8a1267bdaec530824f7a66fc1cf71a39f0a5bb721c710235d6ee86c92
   languageName: node
   linkType: hard
 
@@ -10962,7 +10983,7 @@ resolve@1.1.7:
   languageName: node
   linkType: hard
 
-"terser@npm:^5.3.8, terser@npm:^5.7.0":
+"terser@npm:^5.3.8, terser@npm:^5.7.0, terser@npm:^5.7.2":
   version: 5.7.2
   resolution: "terser@npm:5.7.2"
   dependencies:
@@ -11765,9 +11786,9 @@ typescript@~4.3.5:
   languageName: node
   linkType: hard
 
-"webpack-dev-server@npm:4.0.0":
-  version: 4.0.0
-  resolution: "webpack-dev-server@npm:4.0.0"
+"webpack-dev-server@npm:4.1.0":
+  version: 4.1.0
+  resolution: "webpack-dev-server@npm:4.1.0"
   dependencies:
     ansi-html: ^0.0.7
     bonjour: ^3.5.0
@@ -11801,7 +11822,7 @@ typescript@~4.3.5:
       optional: true
   bin:
     webpack-dev-server: bin/webpack-dev-server.js
-  checksum: abf88fb940b8fcb3fc6bae6a218ecfc001c7da5b7df3db45f5ee684be1c9e05bd9e491b044f81b1e3df6d33796264b6aebce358a18522e407a62fd6cbcc9f705
+  checksum: 5d26b8ef5eae2db597c9cbd14e64bd0dfe5a6fefa775fa22771b9d9e305e92155595a36329e8c996cbe0e457c3f0e87fc9bea9917b37cd94fdf0dfb52ad1d29f
   languageName: node
   linkType: hard
 
