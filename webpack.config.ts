@@ -88,7 +88,7 @@ const getOutput = (baseURL: string, buildDir: string, env: Env): Output => {
 };
 
 const getDevServerPort = (): number => {
-    return Number(process.env.PORT || 3030);
+    return Number(process.env.PORT === undefined ? 3030 : process.env.PORT);
 };
 
 const getBaseURL = (): string => {
@@ -96,13 +96,13 @@ const getBaseURL = (): string => {
 
     // The URL from which the application is served. It may be either relative
     // to the current hostname or absolute (for example, in a case CDN is used).
-    const baseURL = process.env.BASE_URL || "/";
+    const url = process.env.BASE_URL === undefined ? "/" : process.env.BASE_URL;
 
-    if (!baseURL.endsWith("/")) {
+    if (!url.endsWith("/")) {
         throw noSlashError;
     }
 
-    return baseURL;
+    return url;
 };
 
 const outputDir = join(__dirname, "out");
@@ -199,7 +199,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
 
             /** @see https://webpack.js.org/plugins/environment-plugin */
             new webpack.EnvironmentPlugin({
-                BASE_URL: process.env.BASE_URL,
+                BASE_URL: baseURL,
 
                 // The host & port of the backend server which serves the API.
                 SERVER_HOST: "localhost",
