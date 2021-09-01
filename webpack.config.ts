@@ -143,7 +143,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
     return {
         mode,
         cache: getCache(cacheDir, env, mode),
-        context: assetsDir,
+        context: env.WEBPACK_SERVE ? sourceDir : assetsDir,
         devtool: isProd ? false : "source-map",
         entry: { app: join(sourceDir, "index.ts") },
         devServer: {
