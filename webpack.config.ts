@@ -19,7 +19,7 @@ interface Mode {
     isDev: boolean;
     isProd: boolean;
     mode: "production" | "development";
-};
+}
 
 const getCache = (env: Env, mode: Mode["mode"]): Cache => {
     const cacheLocation = join(outputDir, "cache", "webpack", mode);
@@ -108,10 +108,7 @@ const outputDir = join(__dirname, "out");
 const publicDir = join(__dirname, "public");
 const sourceDir = join(__dirname, "src");
 
-export default (
-    env: Argv = {},
-    argv: Env = {}
-): webpack.Configuration => {
+export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
     const { isDev, isProd, mode } = getMode(argv);
     const buildDir = join(outputDir, "build", mode);
 
