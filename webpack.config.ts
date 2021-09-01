@@ -6,6 +6,7 @@ import TerserWebpackPlugin from "terser-webpack-plugin";
 
 // @ts-ignore TS7016
 import { idGenerator } from "incstr";
+import { join } from "path";
 import webpack from "webpack";
 
 export default (
@@ -29,9 +30,9 @@ export default (
             throw new Error("the mode is invalid or not explicitly set");
     }
 
-    const outputDir = `${__dirname}/out/build/${mode}`;
-    const publicDir = `${__dirname}/public`;
-    const sourceDir = `${__dirname}/src`;
+    const outputDir = join(__dirname, "out", "build", mode);
+    const publicDir = join(__dirname, "public");
+    const sourceDir = join(__dirname, "src");
 
     const filePath = isProd ? "" : "[path]";
     const filename = isProd ? "[contenthash]" : "[name].[chunkhash]";
@@ -44,6 +45,10 @@ export default (
     // The URL from which the application is served. It may be relative to
     // the current host name or absolute (for example, in a case of CDN).
     process.env.BASE_URL = process.env.BASE_URL || "/";
+
+    if (!process.env.BASE_URL.endsWith("/")) {
+        throw new Error('the BASE_URL environment variable must end with "/"');
+    }
 
     process.env.SERVER_HOST = process.env.SERVER_HOST || "localhost";
     process.env.SERVER_PORT = process.env.SERVER_PORT || "3031";
@@ -60,7 +65,7 @@ export default (
     let publicPath = process.env.BASE_URL;
 
     if (!env.WEBPACK_SERVE) {
-        outputPath = `${outputDir}/assets`;
+        outputPath = join(outputDir, "assets");
         publicPath = `${process.env.BASE_URL}assets/`;
     }
 
@@ -93,7 +98,7 @@ export default (
         mode,
         devServer: { hot: true, port: servePort, static: publicDir },
         devtool: isProd ? false : "source-map",
-        entry: { app: `${sourceDir}/index.ts` },
+        entry: { app: join(sourceDir, "index.ts") },
         module: {
             rules: [
                 {
@@ -136,8 +141,8 @@ export default (
 
             /** @see https://webpack.js.org/plugins/html-webpack-plugin */
             new HTMLWebpackPlugin({
-                filename: `${outputDir}/index.html`,
-                template: `${sourceDir}/index.ejs`,
+                filename: join(outputDir, "index.html"),
+                template: join(sourceDir, "index.ejs"),
                 title: "Poke Catch",
             }),
 
