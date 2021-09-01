@@ -114,8 +114,8 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
     const baseURL = getBaseURL();
     const buildDir = join(outputDir, "build", mode);
 
-    const fontsMatch = /eot|otf|ttf|woff2?/;
-    const imagesMatch = /a?png|avif|gif|jpe?g|svg|webp/;
+    const fontsRegexp = /\.(eot|otf|ttf|woff2?)$/;
+    const imagesRegexp = /\.(a?png|avif|gif|jpe?g|svg|webp)$/;
 
     const filePath = isProd ? "" : "[path]";
     const filename = isProd ? "[contenthash]" : "[name].[chunkhash]";
@@ -162,7 +162,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
                     use: [babelLoader, "ts-loader"],
                 },
                 {
-                    test: new RegExp(`\\.(${fontsMatch}|${imagesMatch})$`),
+                    test: [fontsRegexp, imagesRegexp],
                     loader: "file-loader",
                     options: { name: `${filePath}${filename}.[ext]` },
                 },
