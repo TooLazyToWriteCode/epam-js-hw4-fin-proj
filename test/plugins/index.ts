@@ -6,6 +6,17 @@ import "cypress";
 
 import webpackFunction from "../../webpack.config";
 
+const addStartDevServerEvent = (on: Cypress.PluginEvents): void => {
+    const argv = { mode: "development" };
+    const env = { WEBPACK_SERVE: "on" };
+
+    const webpackConfig = webpackFunction(env, argv);
+
+    on("dev-server:start", (options) => {
+        return startDevServer({ options, webpackConfig });
+    });
+};
+
 export const pluginConfig: Cypress.PluginConfig = (on, config) => {
     codeCoveragePlugin(on, config);
 
@@ -14,15 +25,7 @@ export const pluginConfig: Cypress.PluginConfig = (on, config) => {
     // configure the environment manually instead of relying on it.
     config.env.reactDevtools = true;
 
-    const webpackConfig = webpackFunction(
-        { WEBPACK_SERVE: "on" },
-        { mode: "development" }
-    );
-
-    on("dev-server:start", (options) => {
-        return startDevServer({ options, webpackConfig });
-    });
-
+    addStartDevServerEvent(on);
     return config;
 };
 
