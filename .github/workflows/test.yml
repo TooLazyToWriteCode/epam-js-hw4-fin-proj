@@ -8,16 +8,13 @@ jobs:
         steps:
             - name: Checkout the project
               uses: actions/checkout@v2
-
             - name: Install Node & Yarn
               uses: actions/setup-node@v2
               with:
                   cache: yarn
                   node-version: "14"
-
             - name: Install the packages
               run: yarn install
-
             - name: Run the E2E tests
               run: yarn run test:e2e:once
     unit:
@@ -25,15 +22,12 @@ jobs:
         steps:
             - name: Checkout the project
               uses: actions/checkout@v2
-
             - name: Install Node & Yarn
               uses: actions/setup-node@v2
               with:
                   cache: yarn
                   node-version: "14"
-
             - name: Install the packages
               run: yarn install
-
             - name: Run the unit tests
               run: yarn run test:unit:once
