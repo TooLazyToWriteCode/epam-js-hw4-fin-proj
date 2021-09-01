@@ -21,11 +21,9 @@ interface Mode {
     mode: "production" | "development";
 }
 
-const getCache = (env: Env, mode: Mode["mode"]): Cache => {
-    const cacheLocation = join(outputDir, "cache", "webpack", mode);
-
+const getCache = (dir: string, env: Env, mode: Mode["mode"]): Cache => {
     const fileCache: Cache = {
-        cacheLocation,
+        cacheLocation: dir,
         type: "filesystem",
     };
 
@@ -105,20 +103,22 @@ const getBaseURL = (): string => {
     return url;
 };
 
-const outputDir = join(__dirname, "out");
-const publicDir = join(__dirname, "public");
-const sourceDir = join(__dirname, "src");
-
 export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
     const { isDev, isProd, mode } = getMode(argv);
     const baseURL = getBaseURL();
-    const buildDir = join(outputDir, "build", mode);
 
-    const fontsRegexp = /\.(eot|otf|ttf|woff2?)$/;
-    const imagesRegexp = /\.(a?png|avif|gif|jpe?g|svg|webp)$/;
+    const outputDir = join(__dirname, "out");
+    const publicDir = join(__dirname, "public");
+    const sourceDir = join(__dirname, "src");
+
+    const assetsDir = join(sourceDir, "assets");
+    const buildDir = join(outputDir, "build", mode);
+    const cacheDir = join(outputDir, "cache", "webpack", mode);
 
     const filePath = isProd ? "" : "[path]";
-    const filename = isProd ? "[contenthash]" : "[name].[chunkhash]";
+    const filename = `${isProd ? "" : "[name]."}[contenthash]`;
+    const fontsRegexp = /\.(eot|otf|ttf|woff2?)$/;
+    const imagesRegexp = /\.(a?png|avif|gif|jpe?g|svg|webp)$/;
 
     const babelLoader: webpack.RuleSetRule = {
         loader: "babel-loader",
@@ -142,7 +142,8 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
 
     return {
         mode,
-        cache: getCache(env, mode),
+        cache: getCache(cacheDir, env, mode),
+        context: assetsDir,
         devtool: isProd ? false : "source-map",
         entry: { app: join(sourceDir, "index.ts") },
         devServer: {
@@ -163,8 +164,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
                 },
                 {
                     test: [fontsRegexp, imagesRegexp],
-                    loader: "file-loader",
-                    options: { name: `${filePath}${filename}.[ext]` },
+                    type: "asset/resource",
                 },
             ],
         },
@@ -178,6 +178,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
         },
         output: {
             ...getOutput(baseURL, buildDir, env),
+            assetModuleFilename: `${filePath}${filename}[ext][query]`,
             clean: true,
             filename: `${filename}.js`,
         },
@@ -195,7 +196,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
             }),
 
             /** @see https://webpack.js.org/plugins/mini-css-extract-plugin */
-            new CSSExtractPlugin({ filename: `"${filename}.css` }),
+            new CSSExtractPlugin({ filename: `${filename}.css` }),
 
             /** @see https://webpack.js.org/plugins/environment-plugin */
             new webpack.EnvironmentPlugin({
