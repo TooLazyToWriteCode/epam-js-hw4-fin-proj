@@ -9,58 +9,72 @@ import { idGenerator } from "incstr";
 import { join } from "path";
 import webpack from "webpack";
 
-export default (
-    env: NodeJS.ProcessEnv = {},
-    argv: NodeJS.ProcessEnv = {}
-): webpack.Configuration => {
-    let isDev = false;
-    let isProd = false;
-    let mode: "production" | "development";
+type Argv = NodeJS.ProcessEnv;
+type Cache = webpack.Configuration["cache"];
+type Env = NodeJS.ProcessEnv;
+type Output = webpack.Configuration["output"];
+type Plugin = webpack.WebpackPluginInstance;
 
-    switch (argv.mode) {
-        case "development":
-            isDev = true;
-            mode = "development";
-            break;
-        case "production":
-            isProd = true;
-            mode = "production";
-            break;
-        default:
-            throw new Error("the mode is invalid or not explicitly set");
-    }
+interface Mode {
+    isDev: boolean;
+    isProd: boolean;
+    mode: "production" | "development";
+};
 
-    const outputDir = join(__dirname, "out");
-    const cacheDir = join(outputDir, "cache", "webpack", mode);
-    const buildDir = join(outputDir, "build", mode);
-    const publicDir = join(__dirname, "public");
-    const sourceDir = join(__dirname, "src");
+const getCache = (env: Env, mode: Mode["mode"]): Cache => {
+    const cacheLocation = join(outputDir, "cache", "webpack", mode);
 
-    const filePath = isProd ? "" : "[path]";
-    const filename = isProd ? "[contenthash]" : "[name].[chunkhash]";
+    const fileCache: Cache = {
+        cacheLocation,
+        type: "filesystem",
+    };
 
-    const fontsMatch = /eot|otf|ttf|woff2?/;
-    const imagesMatch = /a?png|avif|gif|jpe?g|svg|webp/;
+    const memoryCache: Cache = {
+        type: "memory",
+    };
 
-    const port = Number(process.env.PORT || 3030);
+    return env.WEBPACK_SERVE ? memoryCache : fileCache;
+};
 
-    // The URL from which the application is served. It may be relative to
-    // the current host name or absolute (for example, in a case of CDN).
-    process.env.BASE_URL = process.env.BASE_URL || "/";
-
-    if (!process.env.BASE_URL.endsWith("/")) {
-        throw new Error('the BASE_URL environment variable must end with "/"');
-    }
-
-    process.env.SERVER_HOST = process.env.SERVER_HOST || "localhost";
-    process.env.SERVER_PORT = process.env.SERVER_PORT || "3031";
-
-    const dynPlugins: webpack.WebpackPluginInstance[] = [];
+const getDynPlugins = (isDev: Mode["isDev"]): Plugin[] => {
+    const plugins: Plugin[] = [];
 
     if (isDev) {
         /** @see https://npmjs.com/package/webpack-manifest-plugin */
-        dynPlugins.push(new WebpackManifestPlugin({}));
+        plugins.push(new WebpackManifestPlugin({}));
     }
+
+    return plugins;
+};
+
+const getMode = (argv: Argv): Mode => {
+    const error = new Error("the mode is invalid or not explicitly set");
+
+    const mode: Mode = {
+        isDev: false,
+        isProd: false,
+        mode: "production",
+    };
+
+    switch (argv.mode) {
+        case "development":
+            mode.isDev = true;
+            mode.mode = "development";
+            break;
+        case "production":
+            mode.isProd = true;
+            mode.mode = "production";
+            break;
+        default:
+            throw error;
+    }
+
+    return mode;
+};
+
+const getOutputPaths = (buildDir: string, env: Env): Output => {
+    const output: Output = {};
+    const baseURL = process.env.BASE_URL || "/";
 
     // `webpack-dev-server`, instead of writing a bundle to a hard drive, keeps
     // it in memory to increase performance. The problem is that it only serves
@@ -68,19 +82,44 @@ export default (
     // in-memory HTML file does not get served as it is located one directory
     // up from `output.path`. To fix this, we will set `output.path` to the root
     // path in a case `webpack-dev-server` is run.
-    const buildPath = env.WEBPACK_SERVE ? buildDir : join(buildDir, "assets");
-    const publicURL = process.env.BASE_URL + env.WEBPACK_SERVE ? "" : "assets/";
+    output.path = env.WEBPACK_SERVE ? buildDir : join(buildDir, "assets");
+    output.publicPath = baseURL + (env.WEBPACK_SERVE ? "" : "assets/");
 
-    const fileCache: webpack.Configuration["cache"] = {
-        cacheLocation: cacheDir,
-        type: "filesystem",
+    return output;
+};
+
+const getDevServerPort = (): number => {
+    return Number(process.env.PORT || 3030);
+};
+
+const setBaseURL = (): void => {
+    const noSlashError = new Error('the BASE_URL variable must end with "/"');
+
+    // The URL from which the application is served. It may be either relative
+    // to the current hostname or absolute (for example, in a case CDN is used).
+    process.env.BASE_URL = process.env.BASE_URL || "/";
+
+    if (!process.env.BASE_URL.endsWith("/")) {
+        throw noSlashError;
     }
+};
 
-    const memoryCache: webpack.Configuration["cache"] = {
-        type: "memory",
-    }
+const outputDir = join(__dirname, "out");
+const publicDir = join(__dirname, "public");
+const sourceDir = join(__dirname, "src");
 
-    const cache = env.WEBPACK_SERVE ? memoryCache : fileCache;
+export default (
+    env: Argv = {},
+    argv: Env = {}
+): webpack.Configuration => {
+    const { isDev, isProd, mode } = getMode(argv);
+    const buildDir = join(outputDir, "build", mode);
+
+    const fontsMatch = /eot|otf|ttf|woff2?/;
+    const imagesMatch = /a?png|avif|gif|jpe?g|svg|webp/;
+
+    const filePath = isProd ? "" : "[path]";
+    const filename = isProd ? "[contenthash]" : "[name].[chunkhash]";
 
     const babelLoader: webpack.RuleSetRule = {
         loader: "babel-loader",
@@ -102,15 +141,17 @@ export default (
         },
     };
 
+    setBaseURL();
+
     return {
         mode,
-        cache,
+        cache: getCache(env, mode),
         devtool: isProd ? false : "source-map",
         entry: { app: join(sourceDir, "index.ts") },
         devServer: {
-            port,
             historyApiFallback: true,
             hot: true,
+            port: getDevServerPort(),
             static: publicDir,
         },
         module: {
@@ -139,10 +180,9 @@ export default (
             ],
         },
         output: {
+            ...getOutputPaths(buildDir, env),
             clean: true,
             filename: `${filename}.js`,
-            path: buildPath,
-            publicPath: publicURL,
         },
         plugins: [
             /** @see https://webpack.js.org/plugins/copy-webpack-plugin */
@@ -161,12 +201,14 @@ export default (
             new CSSExtractPlugin({ filename: `"${filename}.css` }),
 
             /** @see https://webpack.js.org/plugins/environment-plugin */
-            new webpack.EnvironmentPlugin([
-                "BASE_URL",
-                "SERVER_HOST",
-                "SERVER_PORT",
-            ]),
-        ].concat(dynPlugins),
+            new webpack.EnvironmentPlugin({
+                BASE_URL: process.env.BASE_URL,
+
+                // The host & port of the backend server which serves the API.
+                SERVER_HOST: "localhost",
+                SERVER_PORT: "3031",
+            }),
+        ].concat(getDynPlugins(isDev)),
         resolve: {
             // Map the directories as some other string. Note: this
             // mapping should also be set in the TypeScript config.
