@@ -10,9 +10,9 @@
 
 -   [x] `json-server`
 -   [x] `react`
--   [ ] `react-dom`
+-   [x] `react-dom`
 -   [ ] `react-router-dom`
--   [ ] `redux`
+-   [x] `redux`
 -   [x] `webpack`
 
 ### Basic
@@ -27,14 +27,14 @@
 
 ### Pages
 
--   [ ] **The main page** contains tiles with diferent pokemons. Each tile
+-   [ ] **The home page** contains tiles with diferent pokemons. Each tile
         should have a picture of a pokemon, its name and a "Catch" button. If
         a pokemon is already caught, then a button should be disabled. When a
         pokemon is clicked, a user should be redirected to a pokemon page.
 -   [ ] **A pokemon page** contains information for a given pokemon, such as an
         ID, a name, a picture, whether it is caught. If a pokemon is caught, a
         date when a pokemon was caught should be shown.
--   [ ] **The caught pokemons page** is same as the main page but only caught
+-   [ ] **The caught pokemons page** is same as the home page but only caught
         pokemons should be shown.
 
 ## Recommendations
