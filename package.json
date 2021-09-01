@@ -41,6 +41,7 @@
         "lodash": "^4.17.21",
         "mini-css-extract-plugin": "^2.2.1",
         "prettier": "^2.3.2",
+        "regenerator-runtime": "^0.13.9",
         "sass": "^1.38.2",
         "sass-loader": "^12.1.0",
         "speed-measure-webpack-plugin": "^1.5.0",
