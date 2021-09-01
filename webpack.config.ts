@@ -21,7 +21,31 @@ interface Mode {
     mode: "production" | "development";
 }
 
-const getCache = (dir: string, env: Env, mode: Mode["mode"]): Cache => {
+const getBabelPlugins = (isDev: boolean): string[] => {
+    const plugins: string[] = [];
+
+    if (isDev) {
+        plugins.push("istanbul");
+    }
+
+    return plugins;
+};
+
+const getBaseURL = (): string => {
+    const noSlashError = new Error('the BASE_URL variable must end with "/"');
+
+    // The URL from which the application is served. It may be either relative
+    // to the current hostname or absolute (for example, in a case CDN is used).
+    const url = process.env.BASE_URL === undefined ? "/" : process.env.BASE_URL;
+
+    if (!url.endsWith("/")) {
+        throw noSlashError;
+    }
+
+    return url;
+};
+
+const getCache = (dir: string, env: Env): Cache => {
     const fileCache: Cache = {
         cacheLocation: dir,
         type: "filesystem",
@@ -32,6 +56,10 @@ const getCache = (dir: string, env: Env, mode: Mode["mode"]): Cache => {
     };
 
     return env.WEBPACK_SERVE ? memoryCache : fileCache;
+};
+
+const getDevServerPort = (): number => {
+    return Number(process.env.PORT === undefined ? 3030 : process.env.PORT);
 };
 
 const getDynPlugins = (isDev: Mode["isDev"]): Plugin[] => {
@@ -85,24 +113,6 @@ const getOutput = (baseURL: string, buildDir: string, env: Env): Output => {
     return output;
 };
 
-const getDevServerPort = (): number => {
-    return Number(process.env.PORT === undefined ? 3030 : process.env.PORT);
-};
-
-const getBaseURL = (): string => {
-    const noSlashError = new Error('the BASE_URL variable must end with "/"');
-
-    // The URL from which the application is served. It may be either relative
-    // to the current hostname or absolute (for example, in a case CDN is used).
-    const url = process.env.BASE_URL === undefined ? "/" : process.env.BASE_URL;
-
-    if (!url.endsWith("/")) {
-        throw noSlashError;
-    }
-
-    return url;
-};
-
 export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
     const { isDev, isProd, mode } = getMode(argv);
     const baseURL = getBaseURL();
@@ -122,7 +132,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
 
     const babelLoader: webpack.RuleSetRule = {
         loader: "babel-loader",
-        options: { compact: false },
+        options: { compact: false, plugins: getBabelPlugins(isDev) },
     };
 
     const cssLoader: webpack.RuleSetRule = {
@@ -142,7 +152,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
 
     return {
         mode,
-        cache: getCache(cacheDir, env, mode),
+        cache: getCache(cacheDir, env),
         context: env.WEBPACK_SERVE ? sourceDir : assetsDir,
         devtool: isProd ? false : "source-map",
         entry: { app: join(sourceDir, "index.ts") },
