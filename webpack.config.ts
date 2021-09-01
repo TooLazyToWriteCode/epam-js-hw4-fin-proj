@@ -150,6 +150,11 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
         },
     };
 
+    const tsLoader: webpack.RuleSetRule = {
+        loader: "ts-loader",
+        options: { compilerOptions: { module: "esnext" } },
+    };
+
     return {
         mode,
         cache: getCache(cacheDir, env),
@@ -170,7 +175,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
                 },
                 {
                     test: /\.tsx?$/,
-                    use: [babelLoader, "ts-loader"],
+                    use: [babelLoader, tsLoader],
                 },
                 {
                     test: [fontsRegexp, imagesRegexp],
