@@ -36,8 +36,6 @@ export default (
     const publicDir = join(__dirname, "public");
     const sourceDir = join(__dirname, "src");
 
-    const cacheType = env.WEBPACK_SERVE ? "memory" : "filesystem";
-
     const filePath = isProd ? "" : "[path]";
     const filename = isProd ? "[contenthash]" : "[name].[chunkhash]";
 
@@ -59,6 +57,11 @@ export default (
 
     const dynPlugins: webpack.WebpackPluginInstance[] = [];
 
+    if (isDev) {
+        /** @see https://npmjs.com/package/webpack-manifest-plugin */
+        dynPlugins.push(new WebpackManifestPlugin({}));
+    }
+
     // `webpack-dev-server`, instead of writing a bundle to a hard drive, keeps
     // it in memory to increase performance. The problem is that it only serves
     // files from the `output.path` and `devServer.static` directories, and the
@@ -68,10 +71,16 @@ export default (
     const buildPath = env.WEBPACK_SERVE ? buildDir : join(buildDir, "assets");
     const publicURL = process.env.BASE_URL + env.WEBPACK_SERVE ? "" : "assets/";
 
-    if (isDev) {
-        /** @see https://npmjs.com/package/webpack-manifest-plugin */
-        dynPlugins.push(new WebpackManifestPlugin({}));
+    const fileCache: webpack.Configuration["cache"] = {
+        cacheLocation: cacheDir,
+        type: "filesystem",
     }
+
+    const memoryCache: webpack.Configuration["cache"] = {
+        type: "memory",
+    }
+
+    const cache = env.WEBPACK_SERVE ? memoryCache : fileCache;
 
     const babelLoader: webpack.RuleSetRule = {
         loader: "babel-loader",
@@ -95,7 +104,7 @@ export default (
 
     return {
         mode,
-        cache: { type: cacheType, cacheLocation: cacheDir },
+        cache,
         devtool: isProd ? false : "source-map",
         entry: { app: join(sourceDir, "index.ts") },
         devServer: {
