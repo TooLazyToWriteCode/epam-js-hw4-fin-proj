@@ -1,4 +1,5 @@
 {
+    "baseUrl": "http://localhost:3030",
     "componentFolder": "./test/components",
     "downloadsFolder": "./out/test/downloads",
     "fixturesFolder": "./test/fixtures",
