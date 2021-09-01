@@ -40,7 +40,7 @@ export default (
     const fontsMatch = /eot|otf|ttf|woff2?/;
     const imagesMatch = /a?png|avif|gif|jpe?g|svg|webp/;
 
-    const servePort = Number(process.env.PORT || 3030);
+    const port = Number(process.env.PORT || 3030);
 
     // The URL from which the application is served. It may be relative to
     // the current host name or absolute (for example, in a case of CDN).
@@ -96,9 +96,14 @@ export default (
 
     return {
         mode,
-        devServer: { hot: true, port: servePort, static: publicDir },
         devtool: isProd ? false : "source-map",
         entry: { app: join(sourceDir, "index.ts") },
+        devServer: {
+            port,
+            historyApiFallback: true,
+            hot: true,
+            static: publicDir,
+        },
         module: {
             rules: [
                 {
