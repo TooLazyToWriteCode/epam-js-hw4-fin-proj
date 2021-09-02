@@ -221,6 +221,12 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
                 SERVER_HOST: "localhost",
                 SERVER_PORT: "3031",
 
+                // The API request template for an image of a pokemon. %I% will
+                // be replaced with a pokemon ID. The server must accept this
+                // number and return either the corresponding image or the 404
+                // status code error page.
+                SERVER_POKEMON_IMAGE_QUERY: "/images/%I%.png",
+
                 // The API request template for a page of pokemons. %P%
                 // will be replaced with a page number. The server must
                 // accept this number and return the corresponding page.
