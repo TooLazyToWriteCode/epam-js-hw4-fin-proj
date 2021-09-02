@@ -2,7 +2,7 @@ import "./Home.scss";
 
 /** The home page. */
 export const Home: React.FC<{}> = () => (
-    <div>This is the home page. Nothing to see here yet.</div>
+    <span>This is the home page. Nothing to see here.</span>
 );
 
 export default Home;
