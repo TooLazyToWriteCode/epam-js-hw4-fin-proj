@@ -220,6 +220,14 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
                 // The host & port of the backend server which serves the API.
                 SERVER_HOST: "localhost",
                 SERVER_PORT: "3031",
+
+                // The API request template for a page of pokemons. %P%
+                // will be replaced with a page number. The server must
+                // accept this number and return the corresponding page.
+                SERVER_POKEMONS_QUERY: "/pokemons?_limit=20&_page=%P%",
+
+                // The amount of pokemons on a single page.
+                SERVER_POKEMONS_ON_PAGE: "20",
             }),
         ].concat(getDynPlugins(isDev)),
         resolve: {
