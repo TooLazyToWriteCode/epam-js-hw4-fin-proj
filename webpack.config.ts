@@ -217,7 +217,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
             new webpack.EnvironmentPlugin({
                 BASE_URL: baseURL,
 
-                // The host & port of the backend server which serves the API.
+                // The host & port of the server with the API.
                 SERVER_HOST: "localhost",
                 SERVER_PORT: "3031",
 
