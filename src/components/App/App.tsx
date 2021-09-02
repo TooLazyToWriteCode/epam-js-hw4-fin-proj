@@ -1,5 +1,5 @@
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider as ReduxProvider } from "react-redux";
-import ReactRouter from "react-router-dom";
 import loadable from "@loadable/component";
 
 import { store } from "@/store";
@@ -10,11 +10,11 @@ const Home = loadable(() => import("@/components/pages/Home"));
 /** The root component. */
 export const App: React.ReactElement = (
     <ReduxProvider store={store}>
-        <ReactRouter.BrowserRouter>
-            <ReactRouter.Switch>
-                <ReactRouter.Route exact path="/" children={<Home />} />
-            </ReactRouter.Switch>
-        </ReactRouter.BrowserRouter>
+        <BrowserRouter>
+            <Switch>
+                <Route exact path="/" children={<Home />} />
+            </Switch>
+        </BrowserRouter>
     </ReduxProvider>
 );
 
