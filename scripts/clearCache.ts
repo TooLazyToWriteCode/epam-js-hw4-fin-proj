@@ -1,8 +1,8 @@
-import { existsSync, rmSync } from "fs";
 import { join } from "path";
+import fs from "fs";
 
 const cacheDir = join(__dirname, "..", "out", "cache");
 
-if (existsSync(cacheDir)) {
-    rmSync(cacheDir, { force: true, recursive: true });
+if (fs.existsSync(cacheDir)) {
+    fs.rmSync(cacheDir, { force: true, recursive: true });
 }
