@@ -67,6 +67,10 @@ const getDevServerPort = (): number | string => {
 const getDynCSSLoaders = (mode: Mode): Use[] => {
     const use: Use[] = [];
 
+    if (mode.isDev) {
+        use.push("style-loader");
+    }
+
     if (mode.isProd) {
         use.push(MiniCSSExtractPlugin.loader);
     }
