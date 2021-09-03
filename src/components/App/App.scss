@@ -1,5 +1,15 @@
+$apple-fonts: apple-system, BlinkMacSystemFont;
+$linux-fonts: "Droid Sans", "Noto Sans";
+$win-fonts: "Segoe UI", Arial, Helvetica;
+$os-fonts: $apple-fonts, $linux-fonts, $win-fonts;
+$fonts: "Roboto", $os-fonts, system-ui, sans-serif;
+
 :global(body) {
     border: 0;
     margin: 0;
     padding: 0;
+}
+
+.wrap {
+    font: 400 16px $fonts;
 }

@@ -2,12 +2,14 @@ import { Provider } from "react-redux";
 
 import { store } from "@/store";
 import Router from "@/components/Router";
-import "./App.scss";
+import styles from "./App.scss";
 
 /** The root component. */
 export const App: React.ReactElement = (
     <Provider store={store}>
-        <Router />
+        <div className={styles.wrap}>
+            <Router />
+        </div>
     </Provider>
 );
 
