@@ -1,7 +1,8 @@
+import { MinifyOptions as TerserOptions } from "terser";
 import { WebpackManifestPlugin } from "webpack-manifest-plugin";
-import CSSExtractPlugin from "mini-css-extract-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import HTMLWebpackPlugin from "html-webpack-plugin";
+import MiniCSSExtractPlugin from "mini-css-extract-plugin";
 import TerserWebpackPlugin from "terser-webpack-plugin";
 
 // @ts-ignore TS7016
@@ -14,6 +15,7 @@ type Cache = webpack.Configuration["cache"];
 type Env = NodeJS.ProcessEnv;
 type Output = webpack.Configuration["output"];
 type Plugin = webpack.WebpackPluginInstance;
+type Use = webpack.RuleSetUseItem;
 
 interface Mode {
     isDev: boolean;
@@ -62,12 +64,27 @@ const getDevServerPort = (): number | string => {
     return process.env.PORT === undefined ? "auto" : Number(process.env.PORT);
 };
 
-const getDynPlugins = (isDev: Mode["isDev"]): Plugin[] => {
+const getDynCSSLoaders = (mode: Mode): Use[] => {
+    const use: Use[] = [];
+
+    if (mode.isProd) {
+        use.push(MiniCSSExtractPlugin.loader);
+    }
+
+    return use;
+};
+
+const getDynPlugins = (mode: Mode, filename: string): Plugin[] => {
     const plugins: Plugin[] = [];
 
-    if (isDev) {
+    if (mode.isDev) {
         /** @see https://npmjs.com/package/webpack-manifest-plugin */
         plugins.push(new WebpackManifestPlugin({}));
+    }
+
+    if (mode.isProd) {
+        /** @see https://webpack.js.org/plugins/mini-css-extract-plugin */
+        plugins.push(new MiniCSSExtractPlugin({ filename: `${filename}.css` }));
     }
 
     return plugins;
@@ -114,7 +131,7 @@ const getOutput = (baseURL: string, buildDir: string, env: Env): Output => {
 };
 
 export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
-    const { isDev, isProd, mode } = getMode(argv);
+    const mode = getMode(argv);
     const baseURL = getBaseURL();
 
     const outputDir = join(__dirname, "out");
@@ -122,17 +139,17 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
     const sourceDir = join(__dirname, "src");
 
     const assetsDir = join(sourceDir, "assets");
-    const buildDir = join(outputDir, "build", mode);
-    const cacheDir = join(outputDir, "cache", "webpack", mode);
+    const buildDir = join(outputDir, "build", mode.mode);
+    const cacheDir = join(outputDir, "cache", "webpack", mode.mode);
 
-    const filePath = isProd ? "" : "[path]";
-    const filename = `${isProd ? "" : "[name]."}[contenthash]`;
+    const filePath = mode.isProd ? "" : "[path]";
+    const filename = `${mode.isProd ? "" : "[name]."}[contenthash]`;
     const fontsRegexp = /\.(eot|otf|ttf|woff2?)$/;
     const imagesRegexp = /\.(a?png|avif|gif|jpe?g|svg|webp)$/;
 
     const babelLoader: webpack.RuleSetRule = {
         loader: "babel-loader",
-        options: { compact: false, plugins: getBabelPlugins(isDev) },
+        options: { compact: false, plugins: getBabelPlugins(mode.isDev) },
     };
 
     const cssLoader: webpack.RuleSetRule = {
@@ -143,7 +160,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
             // https://freecodecamp.org/news/625440de600b.
             modules: {
                 localIdentName: "[path][name]__[local]",
-                getLocalIdent: isProd
+                getLocalIdent: mode.isProd
                     ? idGenerator({ prefix: "m_" })
                     : undefined,
             },
@@ -156,11 +173,11 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
     };
 
     return {
-        mode,
         cache: getCache(cacheDir, env),
         context: env.WEBPACK_SERVE ? sourceDir : assetsDir,
-        devtool: isProd ? false : "source-map",
+        devtool: mode.isProd ? false : "source-map",
         entry: { app: join(sourceDir, "index.ts") },
+        mode: mode.mode,
         devServer: {
             historyApiFallback: true,
             hot: true,
@@ -171,7 +188,10 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
             rules: [
                 {
                     test: /\.(sa|s?c)ss$/,
-                    use: [CSSExtractPlugin.loader, cssLoader, "sass-loader"],
+                    use: getDynCSSLoaders(mode).concat([
+                        cssLoader,
+                        "sass-loader",
+                    ]),
                 },
                 {
                     test: /\.tsx?$/,
@@ -186,7 +206,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
         optimization: {
             runtimeChunk: true,
             minimizer: [
-                new TerserWebpackPlugin({
+                new TerserWebpackPlugin<TerserOptions>({
                     terserOptions: { toplevel: true },
                 }),
             ],
@@ -197,7 +217,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
             clean: true,
             filename: `${filename}.js`,
         },
-        plugins: [
+        plugins: getDynPlugins(mode, filename).concat([
             /** @see https://webpack.js.org/plugins/copy-webpack-plugin */
             new CopyWebpackPlugin({
                 patterns: [{ from: publicDir, to: buildDir }],
@@ -209,9 +229,6 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
                 template: join(sourceDir, "index.ejs"),
                 title: "Poke Catch",
             }),
-
-            /** @see https://webpack.js.org/plugins/mini-css-extract-plugin */
-            new CSSExtractPlugin({ filename: `${filename}.css` }),
 
             /** @see https://webpack.js.org/plugins/environment-plugin */
             new webpack.EnvironmentPlugin({
@@ -235,7 +252,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
                 // The amount of pokemons on a single page.
                 SERVER_POKEMONS_ON_PAGE: "20",
             }),
-        ].concat(getDynPlugins(isDev)),
+        ]),
         resolve: {
             // Map the directories as some other string. Note: this
             // mapping should also be set in the TypeScript config.
