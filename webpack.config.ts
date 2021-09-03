@@ -58,8 +58,8 @@ const getCache = (dir: string, env: Env): Cache => {
     return env.WEBPACK_SERVE ? memoryCache : fileCache;
 };
 
-const getDevServerPort = (): number => {
-    return Number(process.env.PORT === undefined ? 3030 : process.env.PORT);
+const getDevServerPort = (): number | string => {
+    return process.env.PORT === undefined ? "auto" : Number(process.env.PORT);
 };
 
 const getDynPlugins = (isDev: Mode["isDev"]): Plugin[] => {
@@ -219,7 +219,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
 
                 // The host & port of the server with the API.
                 SERVER_HOST: "localhost",
-                SERVER_PORT: "3031",
+                SERVER_PORT: "3333",
 
                 // The API request template for an image of a pokemon. %I% will
                 // be replaced with a pokemon ID. The server must accept this

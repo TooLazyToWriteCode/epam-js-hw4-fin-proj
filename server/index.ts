@@ -2,7 +2,7 @@ import { join } from "path";
 import express from "express";
 import jsonServer from "json-server";
 
-const port = Number(process.env.PORT === undefined ? 3031 : process.env.PORT);
+const port = process.env.PORT === undefined ? 3333 : Number(process.env.PORT);
 const server = jsonServer.create();
 
 server.get("/", (_, response) => response.send("GET / now has status 200"));
