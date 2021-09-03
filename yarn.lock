@@ -1578,13 +1578,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@fontsource/roboto@npm:^4.5.0":
-  version: 4.5.0
-  resolution: "@fontsource/roboto@npm:4.5.0"
-  checksum: c045f5aaad68e4dcf4a293b764fefbf023298544ec453d72373104cf8d933f0e59e574d67fcf772b13ed511adfff2734d111c411e6fa6926e8379227d8460d8c
-  languageName: node
-  linkType: hard
-
 "@gar/promisify@npm:^1.0.1":
   version: 1.1.2
   resolution: "@gar/promisify@npm:1.1.2"
@@ -9898,7 +9891,6 @@ resolve@1.1.7:
     "@cypress/code-coverage": ^3.9.10
     "@cypress/react": ^5.9.4
     "@cypress/webpack-dev-server": ^1.5.0
-    "@fontsource/roboto": ^4.5.0
     "@loadable/component": ^5.15.0
     "@material-ui/core": ^4.12.3
     "@reduxjs/toolkit": ^1.6.1
