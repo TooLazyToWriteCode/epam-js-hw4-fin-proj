@@ -47,6 +47,7 @@
         "sass": "^1.39.0",
         "sass-loader": "^12.1.0",
         "speed-measure-webpack-plugin": "^1.5.0",
+        "style-loader": "^3.2.1",
         "terser": "^5.7.2",
         "terser-webpack-plugin": "^5.2.2",
         "ts-loader": "^9.2.5",
