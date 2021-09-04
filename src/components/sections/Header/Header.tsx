@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import pages from "@/pages";
 import styles from "./Header.scss";
 
-type Index = number | false;
+type PageIndex = number | false;
 
 interface LocationState {
     pathname: string;
@@ -26,7 +26,10 @@ const getPageIndex = (location: LocationState): Index => {
 /** The header at the top of the page. */
 export const Header: React.FC<{}> = () => {
     const location = useLocation<LocationState>();
-    const [pageIndex, setPageIndex] = useState<Index>(getPageIndex(location));
+
+    const [pageIndex, setPageIndex] = useState<PageIndex>(
+        getPageIndex(location)
+    );
 
     useEffect(() => setPageIndex(getPageIndex(location)), [location]);
 
