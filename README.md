@@ -22,7 +22,7 @@
     -   [ ] **Endless scroll** loads the next section as a page end is reached.
     -   [ ] **Numbered pages (traditional)** have only one section per a page.
 -   [ ] **Adaptive Design**
--   [ ] **Navigation Menu**
+-   [x] **Navigation Menu**
 -   [ ] **Redux for the state management**
 
 ### Pages
@@ -40,12 +40,12 @@
 ## Recommendations
 
 -   [ ] Cover the application with the unit tests.
--   [ ] Use a CSS framework to spend less time on creating the layout.
+-   [x] Use a CSS framework to spend less time on creating the layout.
 -   [ ] Support the latest versions of the modern web browsers.
 -   [ ] Try to use as much of your skills and knowledge as possible.
 -   [ ] Create the accessible to as many people as possible design.
--   [ ] Put caught pokemons in a separate collection and use `json-server`
-        and it to get them.
+-   [ ] Put caught pokemons in a separate collection and use it +
+        `json-server` to get them.
 -   [ ] Make a maintainable architecture, at least separate the business
         logic from the views.
 
