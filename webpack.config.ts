@@ -1,4 +1,3 @@
-import { MinifyOptions as TerserOptions } from "terser";
 import { WebpackManifestPlugin } from "webpack-manifest-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import HTMLWebpackPlugin from "html-webpack-plugin";
@@ -210,7 +209,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
         optimization: {
             runtimeChunk: true,
             minimizer: [
-                new TerserWebpackPlugin<TerserOptions>({
+                new TerserWebpackPlugin({
                     terserOptions: { toplevel: true },
                 }),
             ],
