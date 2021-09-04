@@ -10,4 +10,8 @@ describe("Router", () => {
     it("has something", () => {
         cy.root().should("not.be.empty");
     });
+
+    it("has the header", () => {
+        cy.get("header").should("exist");
+    });
 });

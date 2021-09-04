@@ -3,7 +3,7 @@ export interface Page {
     /** The name (used in titles, etc.). */
     readonly name: string;
 
-    /** The path or URI. */
+    /** The path or the URI. */
     readonly path: string;
 }
 
@@ -11,6 +11,9 @@ export interface Page {
 export interface Pages {
     /** The caught pokemons page information. */
     readonly caught: Page;
+
+    /** The 404 Not Found error page information. */
+    readonly error404: Page;
 
     /** The home page information. */
     readonly home: Page;
@@ -24,6 +27,10 @@ export const pages: Pages = {
     caught: {
         name: "Caught Pokemons",
         path: "/caught",
+    },
+    error404: {
+        name: "Page Not Found",
+        path: "*",
     },
     home: {
         name: "Home",

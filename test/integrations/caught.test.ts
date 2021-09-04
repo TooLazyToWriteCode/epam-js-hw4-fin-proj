@@ -1,6 +1,6 @@
 describe("The home page", () => {
     beforeEach(() => {
-        cy.visit("/");
+        cy.visit("/caught");
     });
 
     it("has the link to the caught pokemons page in the header", () => {

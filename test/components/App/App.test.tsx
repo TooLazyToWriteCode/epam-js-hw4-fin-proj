@@ -11,7 +11,7 @@ describe("App", () => {
         cy.root().should("not.be.empty");
     });
 
-    it("has a wrap", () => {
+    it("has the wrapper", () => {
         cy.get(".components-App-App__wrap").should("exist");
     });
 });
