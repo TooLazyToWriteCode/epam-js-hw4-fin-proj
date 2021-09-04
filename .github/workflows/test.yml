@@ -17,6 +17,8 @@ jobs:
               run: yarn install
             - name: Run the E2E tests
               run: yarn run test:e2e:once
+            - name: Verify the coverage
+              run: yarn run verify:coverage:for-e2e
     unit:
         runs-on: ubuntu-latest
         steps:
@@ -31,3 +33,5 @@ jobs:
               run: yarn install
             - name: Run the unit tests
               run: yarn run test:unit:once
+            - name: Verify the coverage
+              run: yarn run verify:coverage:for-unit
