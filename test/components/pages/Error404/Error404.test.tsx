@@ -13,6 +13,6 @@ describe("pages/Error404", () => {
     });
 
     it("has something", () => {
-        cy.root().should("not.be.empty");
+        cy.root().should("not.be.empty").end();
     });
 });

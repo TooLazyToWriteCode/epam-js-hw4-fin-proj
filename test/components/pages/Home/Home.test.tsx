@@ -13,6 +13,6 @@ describe("pages/Home", () => {
     });
 
     it("has something", () => {
-        cy.root().should("not.be.empty");
+        cy.root().should("not.be.empty").end();
     });
 });
