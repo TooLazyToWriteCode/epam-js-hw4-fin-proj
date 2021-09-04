@@ -12,7 +12,7 @@ interface LocationState {
     pathname: string;
 }
 
-const getPathIndex = (location: LocationState): Index => {
+const getPageIndex = (location: LocationState): Index => {
     switch (location.pathname.replace(/(?!^)\/$/, "")) {
         case pages.home.path:
             return 0;
@@ -26,15 +26,15 @@ const getPathIndex = (location: LocationState): Index => {
 /** The header at the top of the page. */
 export const Header: React.FC<{}> = () => {
     const location = useLocation<LocationState>();
-    const [index, setIndex] = useState<Index>(getPathIndex(location));
+    const [pageIndex, setPageIndex] = useState<Index>(getPageIndex(location));
 
-    useEffect(() => setIndex(getPathIndex(location)), [location]);
+    useEffect(() => setPageIndex(getPageIndex(location)), [location]);
 
     return (
         <Paper component="header">
             <Toolbar variant="dense">
                 <StylesProvider injectFirst>
-                    <Tabs value={index} variant="fullWidth">
+                    <Tabs value={pageIndex} variant="fullWidth">
                         <Tab
                             classes={{ root: styles.tab }}
                             component={Link}
