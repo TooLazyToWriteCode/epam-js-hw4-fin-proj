@@ -242,16 +242,16 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
                 SERVER_HOST: "localhost",
                 SERVER_PORT: "3333",
 
-                // The API request template for an image of a pokemon. %I% will
+                // The API request template for an image of a pokemon. :id will
                 // be replaced with a pokemon ID. The server must accept this
                 // number and return either the corresponding image or the 404
                 // status code error page.
-                SERVER_POKEMON_IMAGE_QUERY: "/images/%I%.png",
+                SERVER_POKEMON_IMAGE_QUERY: "/images/:id.png",
 
-                // The API request template for a page of pokemons. %P%
+                // The API request template for a page of pokemons. :page
                 // will be replaced with a page number. The server must
                 // accept this number and return the corresponding page.
-                SERVER_POKEMONS_QUERY: "/pokemons?_limit=20&_page=%P%",
+                SERVER_POKEMONS_QUERY: "/pokemons?_limit=20&_page=:page",
 
                 // The amount of pokemons on a single page.
                 SERVER_POKEMONS_ON_PAGE: "20",
