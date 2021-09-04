@@ -1,5 +1,5 @@
 {
-    "packageManager": "yarn@3.1.0-rc.2",
+    "packageManager": "yarn@3.0.2",
     "private": true,
     "dependencies": {
         "@loadable/component": "^5.15.0",
