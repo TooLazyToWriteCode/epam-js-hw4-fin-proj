@@ -3,6 +3,7 @@ import CopyWebpackPlugin from "copy-webpack-plugin";
 import HTMLWebpackPlugin from "html-webpack-plugin";
 import MiniCSSExtractPlugin from "mini-css-extract-plugin";
 import TerserWebpackPlugin from "terser-webpack-plugin";
+import TSCheckerPlugin from "fork-ts-checker-webpack-plugin";
 
 // @ts-ignore TS7016
 import { idGenerator } from "incstr";
@@ -63,7 +64,7 @@ const getDevServerPort = (): number | string => {
     return process.env.PORT === undefined ? "auto" : Number(process.env.PORT);
 };
 
-const getDynCSSLoaders = (mode: Mode): Use[] => {
+const getDynamicCSSLoaders = (mode: Mode): Use[] => {
     const use: Use[] = [];
 
     if (mode.isDev) {
@@ -77,7 +78,7 @@ const getDynCSSLoaders = (mode: Mode): Use[] => {
     return use;
 };
 
-const getDynPlugins = (mode: Mode, filename: string): Plugin[] => {
+const getDynamicPlugins = (mode: Mode, filename: string): Plugin[] => {
     const plugins: Plugin[] = [];
 
     if (mode.isDev) {
@@ -140,6 +141,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
     const outputDir = join(__dirname, "out");
     const publicDir = join(__dirname, "public");
     const sourceDir = join(__dirname, "src");
+    const tsConfigFile = join(__dirname, "tsconfig.json");
 
     const assetsDir = join(sourceDir, "assets");
     const buildDir = join(outputDir, "build", mode.mode);
@@ -149,11 +151,6 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
     const filename = `${mode.isProd ? "" : "[name]."}[contenthash]`;
     const fontsRegexp = /\.(eot|otf|ttf|woff2?)$/;
     const imagesRegexp = /\.(a?png|avif|gif|jpe?g|svg|webp)$/;
-
-    const babelLoader: webpack.RuleSetRule = {
-        loader: "babel-loader",
-        options: { compact: false, plugins: getBabelPlugins(mode.isDev) },
-    };
 
     const cssLoader: webpack.RuleSetRule = {
         loader: "css-loader",
@@ -168,11 +165,6 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
                     : undefined,
             },
         },
-    };
-
-    const tsLoader: webpack.RuleSetRule = {
-        loader: "ts-loader",
-        options: { compilerOptions: { module: "esnext" } },
     };
 
     return {
@@ -191,14 +183,18 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
             rules: [
                 {
                     test: /\.(sa|s?c)ss$/,
-                    use: getDynCSSLoaders(mode).concat([
+                    use: getDynamicCSSLoaders(mode).concat([
                         cssLoader,
                         "sass-loader",
                     ]),
                 },
                 {
                     test: /\.tsx?$/,
-                    use: [babelLoader, tsLoader],
+                    loader: "babel-loader",
+                    options: {
+                        compact: false,
+                        plugins: getBabelPlugins(mode.isDev),
+                    },
                 },
                 {
                     test: [fontsRegexp, imagesRegexp],
@@ -220,7 +216,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
             clean: true,
             filename: `${filename}.js`,
         },
-        plugins: getDynPlugins(mode, filename).concat([
+        plugins: getDynamicPlugins(mode, filename).concat([
             /** @see https://webpack.js.org/plugins/copy-webpack-plugin */
             new CopyWebpackPlugin({
                 patterns: [{ from: publicDir, to: buildDir }],
@@ -231,6 +227,11 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
                 filename: join(buildDir, "index.html"),
                 template: join(sourceDir, "index.ejs"),
                 title: "Poke Catch",
+            }),
+
+            /** @see https://npmjs.com/package/fork-ts-checker-webpack-plugin */
+            new TSCheckerPlugin({
+                typescript: { configFile: tsConfigFile },
             }),
 
             /** @see https://webpack.js.org/plugins/environment-plugin */
