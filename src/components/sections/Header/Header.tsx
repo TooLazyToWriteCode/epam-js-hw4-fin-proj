@@ -12,7 +12,7 @@ interface LocationState {
     pathname: string;
 }
 
-const getPageIndex = (location: LocationState): Index => {
+const getPageIndex = (location: LocationState): PageIndex => {
     switch (location.pathname.replace(/(?!^)\/$/, "")) {
         case pages.home.path:
             return 0;
