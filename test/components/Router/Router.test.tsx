@@ -3,7 +3,11 @@ import { mount } from "@cypress/react";
 import Router from "@/components/Router";
 
 describe("Router", () => {
-    it("mounts without errors", () => {
+    beforeEach(() => {
         mount(<Router />);
+    });
+
+    it("has something", () => {
+        cy.root().should("not.be.empty");
     });
 });
