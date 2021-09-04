@@ -1,11 +1,12 @@
 import Pokemon from "@/components/pages/Pokemon";
 import pages from "@/pages";
 
-import { mountPage } from "../../../helpers";
+import { mountPage } from "../../../helpers/mount";
+import { getNormalPath } from "../../../helpers/paths";
 
 describe("pages/Pokemon", () => {
     beforeEach(() => {
-        mountPage(pages.pokemon.path, <Pokemon />);
+        mountPage(getNormalPath(pages.pokemon.path), <Pokemon />);
     });
 
     it("has something", () => {

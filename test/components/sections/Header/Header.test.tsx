@@ -1,12 +1,14 @@
 import Header from "@/components/sections/Header";
 import pages, { Page } from "@/pages";
 
-import { getUnglobbedPath, mountPage } from "../../../helpers";
+import { mountPage } from "../../../helpers/mount";
+import { goThroughPages } from "../../../helpers/pages";
+import { getNormalPath } from "../../../helpers/paths";
 
-Object.entries(pages).forEach(([name, page]: [string, Page]) => {
+goThroughPages((name, page) => {
     describe(`sections/Header@${name}`, () => {
         beforeEach(() => {
-            mountPage(getUnglobbedPath(page.path), <Header />);
+            mountPage(getNormalPath(page.path), <Header />);
         });
 
         it("has a link with a proper text to the caught pokemons page", () => {

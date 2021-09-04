@@ -1,12 +1,14 @@
 import App from "@/components/App";
 import pages, { Page } from "@/pages";
 
-import { getUnglobbedPath, mountPage } from "../../helpers";
+import { mountPage } from "../../helpers/mount";
+import { goThroughPages } from "../../helpers/pages";
+import { getNormalPath } from "../../helpers/paths";
 
-Object.entries(pages).forEach(([name, page]: [string, Page]) => {
+goThroughPages((name, page) => {
     describe(`App@${name}`, () => {
         beforeEach(() => {
-            mountPage(getUnglobbedPath(page.path), <App />);
+            mountPage(getNormalPath(page.path), <App />);
         });
 
         it("has the header", () => {

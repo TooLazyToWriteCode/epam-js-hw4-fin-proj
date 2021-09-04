@@ -1,11 +1,12 @@
 import Home from "@/components/pages/Home";
 import pages from "@/pages";
 
-import { mountPage } from "../../../helpers";
+import { mountPage } from "../../../helpers/mount";
+import { getNormalPath } from "../../../helpers/paths";
 
 describe("pages/Home", () => {
     beforeEach(() => {
-        mountPage(pages.home.path, <Home />);
+        mountPage(getNormalPath(pages.home.path), <Home />);
     });
 
     it("has something", () => {

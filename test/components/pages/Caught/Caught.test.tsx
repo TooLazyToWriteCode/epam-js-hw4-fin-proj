@@ -1,11 +1,12 @@
 import Caught from "@/components/pages/Caught";
 import pages from "@/pages";
 
-import { mountPage } from "../../../helpers";
+import { mountPage } from "../../../helpers/mount";
+import { getNormalPath } from "../../../helpers/paths";
 
 describe("pages/Caught", () => {
     beforeEach(() => {
-        mountPage(pages.home.path, <Caught />);
+        mountPage(getNormalPath(pages.home.path), <Caught />);
     });
 
     it("has something", () => {
