@@ -144,13 +144,15 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
     const tsConfigFile = join(__dirname, "tsconfig.json");
 
     const assetsDir = join(sourceDir, "assets");
-    const buildDir = join(outputDir, "build", mode.mode);
-    const cacheDir = join(outputDir, "cache", "webpack", mode.mode);
+    const buildRootDir = join(outputDir, "build");
+    const buildDir = join(buildRootDir, mode.mode);
+    const cacheRootDir = join(outputDir, "cache");
+    const cacheDir = join(cacheRootDir, "webpack", mode.mode);
 
     const filePath = mode.isProd ? "" : "[path]";
     const filename = `${mode.isProd ? "" : "[name]."}[contenthash]`;
     const fontsRegexp = /\.(eot|otf|ttf|woff2?)$/;
-    const imagesRegexp = /\.(a?png|avif|gif|jpe?g|svg|webp)$/;
+    const imagesRegexp = /\.(a?png|avif|gif|ico|jpe?g|svg|webp)$/;
 
     const cssLoader: webpack.RuleSetRule = {
         loader: "css-loader",
