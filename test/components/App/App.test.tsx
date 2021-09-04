@@ -1,6 +1,7 @@
-import { getUnglobbedPath, mountPage } from "../../helpers";
 import App from "@/components/App";
 import pages, { Page } from "@/pages";
+
+import { getUnglobbedPath, mountPage } from "../../helpers";
 
 Object.entries(pages).forEach(([name, page]: [string, Page]) => {
     describe(`App@${name}`, () => {

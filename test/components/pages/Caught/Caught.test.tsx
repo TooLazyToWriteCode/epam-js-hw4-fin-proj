@@ -1,6 +1,7 @@
-import { mountPage } from "../../../helpers";
 import Caught from "@/components/pages/Caught";
 import pages from "@/pages";
+
+import { mountPage } from "../../../helpers";
 
 describe("pages/Caught", () => {
     beforeEach(() => {

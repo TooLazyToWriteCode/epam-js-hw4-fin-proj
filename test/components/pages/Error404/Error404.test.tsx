@@ -1,6 +1,7 @@
-import { mountPage } from "../../../helpers";
 import Error404 from "@/components/pages/Error404";
 import pages from "@/pages";
+
+import { mountPage } from "../../../helpers";
 
 describe("pages/Error404", () => {
     beforeEach(() => {

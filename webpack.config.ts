@@ -1,14 +1,13 @@
-import { WebpackManifestPlugin } from "webpack-manifest-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
-import HTMLWebpackPlugin from "html-webpack-plugin";
-import MiniCSSExtractPlugin from "mini-css-extract-plugin";
-import TerserWebpackPlugin from "terser-webpack-plugin";
 import TSCheckerPlugin from "fork-ts-checker-webpack-plugin";
-
+import HTMLWebpackPlugin from "html-webpack-plugin";
 // @ts-ignore TS7016
 import { idGenerator } from "incstr";
+import MiniCSSExtractPlugin from "mini-css-extract-plugin";
 import { join } from "path";
+import TerserWebpackPlugin from "terser-webpack-plugin";
 import webpack from "webpack";
+import { WebpackManifestPlugin } from "webpack-manifest-plugin";
 
 type Argv = NodeJS.ProcessEnv;
 type Cache = webpack.Configuration["cache"];

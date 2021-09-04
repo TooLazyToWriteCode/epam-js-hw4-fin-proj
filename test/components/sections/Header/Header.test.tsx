@@ -1,6 +1,7 @@
-import { getUnglobbedPath, mountPage } from "../../../helpers";
 import Header from "@/components/sections/Header";
 import pages, { Page } from "@/pages";
+
+import { getUnglobbedPath, mountPage } from "../../../helpers";
 
 Object.entries(pages).forEach(([name, page]: [string, Page]) => {
     describe(`sections/Header@${name}`, () => {

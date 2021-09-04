@@ -1,6 +1,6 @@
-import { join } from "path";
 import express from "express";
 import jsonServer from "json-server";
+import { join } from "path";
 
 const port = process.env.PORT === undefined ? 3333 : Number(process.env.PORT);
 const server = jsonServer.create();

@@ -1,7 +1,6 @@
-import { startDevServer } from "@cypress/webpack-dev-server";
-
 // @ts-ignore TS7016
 import codeCoveragePlugin from "@cypress/code-coverage/task";
+import { startDevServer } from "@cypress/webpack-dev-server";
 import "cypress";
 
 import webpackFunction from "../../webpack.config";

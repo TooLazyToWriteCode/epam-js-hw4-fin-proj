@@ -1,8 +1,9 @@
-import { Route, Switch } from "react-router-dom";
-import Header from "@/components/sections/Header";
 import loadable from "@loadable/component";
+import { Route, Switch } from "react-router-dom";
 
+import Header from "@/components/sections/Header";
 import pages from "@/pages";
+
 import styles from "./App.scss";
 
 const Caught = loadable(() => import("@/components/pages/Caught"));

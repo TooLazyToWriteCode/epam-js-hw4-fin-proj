@@ -1,5 +1,5 @@
-import { join } from "path";
 import fs from "fs";
+import { join } from "path";
 
 const testOutputDir = join(__dirname, "..", "out", "test");
 const coverageDir = join(testOutputDir, "coverage");

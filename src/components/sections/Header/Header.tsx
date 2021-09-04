@@ -1,9 +1,10 @@
-import { DoneAll, Home } from "@material-ui/icons";
-import { Link, useLocation } from "react-router-dom";
 import { Paper, StylesProvider, Tab, Tabs, Toolbar } from "@material-ui/core";
+import { DoneAll, Home } from "@material-ui/icons";
 import { useEffect, useState } from "react";
+import { Link, useLocation } from "react-router-dom";
 
 import pages from "@/pages";
+
 import styles from "./Header.scss";
 
 type PageIndex = number | false;
