@@ -6,8 +6,14 @@ import { useEffect, useState } from "react";
 import pages from "@/pages";
 import styles from "./Header.scss";
 
-const getPathIndex = (): number | false => {
-    switch (window.location.pathname.replace(/(?!^)\/$/, "")) {
+type Index = number | false;
+
+interface LocationState {
+    pathname: string;
+}
+
+const getPathIndex = (location: LocationState): Index => {
+    switch (location.pathname.replace(/(?!^)\/$/, "")) {
         case pages.home.path:
             return 0;
         case pages.caught.path:
@@ -19,16 +25,16 @@ const getPathIndex = (): number | false => {
 
 /** The header at the top of the page. */
 export const Header: React.FC<{}> = () => {
-    const [value, setValue] = useState(getPathIndex());
-    const location = useLocation();
+    const location = useLocation<LocationState>();
+    const [index, setIndex] = useState<Index>(getPathIndex(location));
 
-    useEffect(() => setValue(getPathIndex()), [location]);
+    useEffect(() => setIndex(getPathIndex(location)), [location]);
 
     return (
         <Paper component="header">
             <Toolbar variant="dense">
                 <StylesProvider injectFirst>
-                    <Tabs value={value} variant="fullWidth">
+                    <Tabs value={index} variant="fullWidth">
                         <Tab
                             classes={{ root: styles.tab }}
                             component={Link}
