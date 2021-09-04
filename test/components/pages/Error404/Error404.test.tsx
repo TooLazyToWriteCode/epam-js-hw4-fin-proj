@@ -1,15 +1,10 @@
-import { MemoryRouter } from "react-router-dom";
-import { mount } from "@cypress/react";
-
+import { mountPage } from "../../../helpers";
 import Error404 from "@/components/pages/Error404";
+import pages from "@/pages";
 
 describe("pages/Error404", () => {
     beforeEach(() => {
-        mount(
-            <MemoryRouter>
-                <Error404 />
-            </MemoryRouter>
-        );
+        mountPage(pages.home.path, <Error404 />);
     });
 
     it("has something", () => {

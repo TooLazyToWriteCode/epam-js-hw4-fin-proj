@@ -1,15 +1,10 @@
-import { MemoryRouter } from "react-router-dom";
-import { mount } from "@cypress/react";
-
+import { mountPage } from "../../../helpers";
 import Caught from "@/components/pages/Caught";
+import pages from "@/pages";
 
 describe("pages/Caught", () => {
     beforeEach(() => {
-        mount(
-            <MemoryRouter>
-                <Caught />
-            </MemoryRouter>
-        );
+        mountPage(pages.home.path, <Caught />);
     });
 
     it("has something", () => {

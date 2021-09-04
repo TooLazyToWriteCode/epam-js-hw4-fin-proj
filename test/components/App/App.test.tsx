@@ -1,37 +1,19 @@
-import { MemoryRouter } from "react-router-dom";
-import { mount } from "@cypress/react";
-
+import { getUnglobbedPath, mountPage } from "../../helpers";
 import App from "@/components/App";
-import pages from "@/pages";
+import pages, { Page } from "@/pages";
 
-describe("App", () => {
-    const mountPage = (url: string): void => {
-        mount(
-            <MemoryRouter initialEntries={[url]}>
-                <App />
-            </MemoryRouter>
-        );
-    };
+Object.entries(pages).forEach(([name, page]: [string, Page]) => {
+    describe(`App@${name}`, () => {
+        beforeEach(() => {
+            mountPage(getUnglobbedPath(page.path), <App />);
+        });
 
-    it("has the header", () => {
-        mountPage("/this-route-does-not-exist");
-        cy.get("header").should("exist").end();
-    });
+        it("has the header", () => {
+            cy.get("header").should("exist").end();
+        });
 
-    it("has the wrapper", () => {
-        mountPage("/this-route-does-not-exist");
-        cy.get(".components-App-App__wrap").should("exist").end();
-    });
-
-    it("has the caught pokemons page", () => {
-        mountPage(pages.caught.path);
-    });
-
-    it("has the 404 Not Found error page", () => {
-        mountPage("/this-route-does-not-exist");
-    });
-
-    it("has the home page", () => {
-        mountPage(pages.home.path);
+        it("has the wrapper", () => {
+            cy.get(".components-App-App__wrap").should("exist").end();
+        });
     });
 });
