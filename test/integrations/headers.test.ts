@@ -1,5 +1,4 @@
 import pages from "../../src/pages";
-
 import { goThroughPages } from "../helpers/pages";
 import { getNormalPath } from "../helpers/paths";
 
