@@ -34,9 +34,9 @@ export const Header: React.FC<{}> = () => {
     useEffect(() => setPageIndex(getPageIndex(location)), [location]);
 
     return (
-        <Paper component="header">
-            <Toolbar variant="dense">
-                <StylesProvider injectFirst>
+        <StylesProvider injectFirst>
+            <Paper component="header">
+                <Toolbar variant="dense">
                     <Tabs value={pageIndex} variant="fullWidth">
                         <Tab
                             classes={{ root: styles.tab }}
@@ -53,9 +53,9 @@ export const Header: React.FC<{}> = () => {
                             to={pages.caught.path}
                         />
                     </Tabs>
-                </StylesProvider>
-            </Toolbar>
-        </Paper>
+                </Toolbar>
+            </Paper>
+        </StylesProvider>
     );
 };
 
