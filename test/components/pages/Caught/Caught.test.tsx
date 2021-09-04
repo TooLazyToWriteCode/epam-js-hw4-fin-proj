@@ -1,13 +1,13 @@
 import { MemoryRouter } from "react-router-dom";
 import { mount } from "@cypress/react";
 
-import Home from "@/components/pages/Home";
+import Caught from "@/components/pages/Caught";
 
-describe("pages/Home", () => {
+describe("pages/Caught", () => {
     beforeEach(() => {
         mount(
             <MemoryRouter>
-                <Home />
+                <Caught />
             </MemoryRouter>
         );
     });
