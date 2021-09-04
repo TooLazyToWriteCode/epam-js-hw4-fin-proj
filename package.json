@@ -10,7 +10,7 @@
         "react": "^17.0.2",
         "react-dom": "^17.0.2",
         "react-redux": "^7.2.4",
-        "react-router-dom": "^5.2.1"
+        "react-router-dom": "^5.3.0"
     },
     "devDependencies": {
         "@babel/core": "^7.15.4",
@@ -43,20 +43,20 @@
         "json-server": "^0.16.3",
         "lodash": "^4.17.21",
         "mini-css-extract-plugin": "^2.2.2",
+        "nyc": "^15.1.0",
         "prettier": "^2.3.2",
         "regenerator-runtime": "^0.13.9",
         "sass": "^1.39.0",
         "sass-loader": "^12.1.0",
         "speed-measure-webpack-plugin": "^1.5.0",
         "style-loader": "^3.2.1",
-        "terser": "^5.7.2",
-        "terser-webpack-plugin": "^5.2.2",
+        "terser-webpack-plugin": "^5.2.3",
         "ts-loader": "^9.2.5",
         "ts-node": "^10.2.1",
         "typedoc": "^0.21.9",
         "typescript": "~4.4.2",
         "wait-on": "^6.0.0",
-        "webpack": "^5.51.2",
+        "webpack": "^5.52.0",
         "webpack-cli": "^4.8.0",
         "webpack-dev-server": "4.1.0",
         "webpack-manifest-plugin": "^4.0.2"
@@ -72,12 +72,14 @@
         "chk": "prettier --check .",
         "fmt": "prettier --write .",
         "serve:db": "ts-node ./server/index.ts",
-        "serve:dev:base": "concurrently --kill-others --names webpack,database,tests --prefix-colors blue,green,magenta --success first \"webpack serve --mode development\" \"ts-node ./server/index.ts\"",
-        "serve:dev:tdd": "concurrently --kill-others --names webpack,database,tests --prefix-colors blue,green,magenta --success first \"webpack serve --mode development\" \"ts-node ./server/index.ts\" \"cypress open-ct\"",
+        "serve:dev:base": "ts-node ./scripts/clearCoverage.ts && concurrently --kill-others --names webpack,database,tests --prefix-colors blue,green,magenta --success first \"webpack serve --mode development\" \"ts-node ./server/index.ts\"",
+        "serve:dev:tdd": "ts-node ./scripts/clearCoverage.ts && concurrently --kill-others --names webpack,database,tests --prefix-colors blue,green,magenta --success first \"webpack serve --mode development\" \"ts-node ./server/index.ts\" \"cypress open-ct\"",
         "serve:wds": "webpack serve --mode development",
-        "test:e2e:once": "concurrently --kill-others --names webpack,database,tests --prefix-colors blue,green,magenta --success first \"cross-env PORT=3030 webpack serve --mode development\" \"cross-env PORT=3333 ts-node ./server/index.ts\" \"wait-on tcp:3030 tcp:3333 && cypress run\"",
-        "test:e2e:gui": "concurrently --kill-others --names webpack,database,tests --prefix-colors blue,green,magenta --success first \"cross-env PORT=3030 webpack serve --mode development\" \"cross-env PORT=3333 ts-node ./server/index.ts\" \"wait-on tcp:3030 tcp:3333 && cypress open\"",
-        "test:unit:once": "cypress run-ct",
-        "test:unit:gui": "cypress open-ct"
+        "test:e2e:once": "ts-node ./scripts/clearCoverage.ts && concurrently --kill-others --names webpack,database,tests --prefix-colors blue,green,magenta --success first \"cross-env PORT=3030 webpack serve --mode development\" \"cross-env PORT=3333 ts-node ./server/index.ts\" \"wait-on tcp:3030 tcp:3333 && cypress run\"",
+        "test:e2e:gui": "ts-node ./scripts/clearCoverage.ts && concurrently --kill-others --names webpack,database,tests --prefix-colors blue,green,magenta --success first \"cross-env PORT=3030 webpack serve --mode development\" \"cross-env PORT=3333 ts-node ./server/index.ts\" \"wait-on tcp:3030 tcp:3333 && cypress open\"",
+        "test:unit:once": "ts-node ./scripts/clearCoverage.ts && cypress run-ct",
+        "test:unit:gui": "ts-node ./scripts/clearCoverage.ts && cypress open-ct",
+        "verify:coverage:for-e2e": "nyc report --check-coverage --lines 100",
+        "verify:coverage:for-unit": "nyc report --check-coverage --lines 100"
     }
 }
