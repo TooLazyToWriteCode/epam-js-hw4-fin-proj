@@ -1,8 +1,6 @@
 import CopyWebpackPlugin from "copy-webpack-plugin";
 import TSCheckerPlugin from "fork-ts-checker-webpack-plugin";
 import HTMLWebpackPlugin from "html-webpack-plugin";
-// @ts-ignore TS7016
-import { idGenerator } from "incstr";
 import MiniCSSExtractPlugin from "mini-css-extract-plugin";
 import { join } from "path";
 import TerserWebpackPlugin from "terser-webpack-plugin";
@@ -20,6 +18,48 @@ interface Mode {
     isDev: boolean;
     isProd: boolean;
     mode: "production" | "development";
+}
+
+const stringSetAt = (str: string, at: number, char: string): string => {
+    return str.slice(0, at) + char + str.slice(at + 1, str.length);
+};
+
+const classNameNextChar = (current: string): string => {
+    const charCode = current.charCodeAt(0);
+
+    switch (charCode) {
+        case "9".charCodeAt(0):
+            return "a";
+        case "z".charCodeAt(0):
+            return "A";
+        case "Z".charCodeAt(0):
+            return "0";
+        default:
+    }
+
+    return String.fromCharCode(charCode + 1);
+};
+
+function* classNameGenerate() {
+    let name = "0";
+
+    yield name;
+
+    while (1) {
+        for (let index = name.length - 1; index >= 0; --index) {
+            const next = classNameNextChar(name[index]);
+
+            name = stringSetAt(name, index, next);
+
+            if (next !== "0") {
+                break;
+            }
+
+            name = (index === 0 ? "" : "0") + name;
+        }
+
+        yield name;
+    }
 }
 
 const getBabelPlugins = (isDev: boolean): string[] => {
@@ -153,6 +193,8 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
     const fontsRegexp = /\.(eot|otf|ttf|woff2?)$/;
     const imagesRegexp = /\.(a?png|avif|gif|ico|jpe?g|svg|webp)$/;
 
+    const classNameGenerator = classNameGenerate();
+
     const cssLoader: webpack.RuleSetRule = {
         loader: "css-loader",
         options: {
@@ -162,7 +204,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
             modules: {
                 localIdentName: "[path][name]__[local]",
                 getLocalIdent: mode.isProd
-                    ? idGenerator({ prefix: "m_" })
+                    ? () => "m_" + classNameGenerator.next().value
                     : undefined,
             },
         },
