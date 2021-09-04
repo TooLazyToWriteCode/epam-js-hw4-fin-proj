@@ -1,6 +1,6 @@
 import { render } from "react-dom";
 import "regenerator-runtime/runtime";
 
-import App from "@/components/App";
+import Base from "@/Base";
 
-render(App, document.getElementById("app"));
+render(Base, document.getElementById("app"));
