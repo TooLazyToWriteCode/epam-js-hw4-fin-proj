@@ -2284,6 +2284,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/regenerator-runtime@npm:^0.13.1":
+  version: 0.13.1
+  resolution: "@types/regenerator-runtime@npm:0.13.1"
+  checksum: 1ee504c582a1b34da473b0f12a35ba3d45d94e1446f2006c09fcdbc3c8c59e74b6d73e37f2dd7c0d1ccb5888ef3b36fd644d6370fd03099cbd9cf5e1ea6013fe
+  languageName: node
+  linkType: hard
+
 "@types/responselike@npm:^1.0.0":
   version: 1.0.0
   resolution: "@types/responselike@npm:1.0.0"
@@ -10081,6 +10088,7 @@ resolve@1.1.7:
     "@types/react-dom": ^17.0.9
     "@types/react-redux": ^7.1.18
     "@types/react-router-dom": ^5.1.8
+    "@types/regenerator-runtime": ^0.13.1
     "@types/webpack-dev-server": ^4.1.0
     axios: ^0.21.2
     babel-loader: ^8.2.2
