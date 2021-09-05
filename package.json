@@ -82,7 +82,7 @@
         "test:e2e:gui": "ts-node ./scripts/clearCoverage.ts && concurrently --kill-others --names webpack,database,tests --prefix-colors blue,green,magenta --success first \"cross-env PORT=9030 SERVER_URL=http://localhost:9333 webpack serve --mode development\" \"cross-env PORT=9333 ts-node ./server/index.ts\" \"wait-on tcp:9030 tcp:9333 && cypress open\"",
         "test:unit:once": "ts-node ./scripts/clearCoverage.ts && cypress run-ct",
         "test:unit:gui": "ts-node ./scripts/clearCoverage.ts && cypress open-ct",
-        "verify:coverage:for-e2e": "nyc report --check-coverage --lines 100",
-        "verify:coverage:for-unit": "nyc report --check-coverage --lines 100"
+        "verify:coverage:for-e2e": "nyc report --check-coverage --lines 80",
+        "verify:coverage:for-unit": "nyc report --check-coverage --lines 80"
     }
 }
