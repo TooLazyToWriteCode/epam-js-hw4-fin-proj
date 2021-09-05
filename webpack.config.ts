@@ -77,7 +77,7 @@ const getBaseURL = (): string => {
 
     // The URL from which the application is served. It may be either relative
     // to the current hostname or absolute (for example, in a case CDN is used).
-    const url = process.env.BASE_URL === undefined ? "/" : process.env.BASE_URL;
+    const url = process.env.BASE_URL || "/";
 
     if (!url.endsWith("/")) {
         throw noSlashError;
@@ -100,7 +100,7 @@ const getCache = (dir: string, env: Env): Cache => {
 };
 
 const getDevServerPort = (): number | string => {
-    return process.env.PORT === undefined ? "auto" : Number(process.env.PORT);
+    return Number(process.env.PORT) || "auto";
 };
 
 const getDynamicCSSLoaders = (mode: Mode): Use[] => {
