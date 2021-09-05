@@ -1,14 +1,15 @@
-import fs from "fs";
+import { RmOptions, existsSync, rmSync } from "fs";
 import { join } from "path";
 
-const testOutputDir = join(__dirname, "..", "out", "test");
-const coverageDir = join(testOutputDir, "coverage");
-const nycOutputDir = join(testOutputDir, ".nyc_output");
+const testOutputDir: string = join(__dirname, "..", "out", "test");
+const coverageDir: string = join(testOutputDir, "coverage");
+const nycOutputDir: string = join(testOutputDir, ".nyc_output");
+const rmOptions: RmOptions = { force: true, recursive: true };
 
-if (fs.existsSync(coverageDir)) {
-    fs.rmSync(coverageDir, { force: true, recursive: true });
+if (existsSync(coverageDir)) {
+    rmSync(coverageDir, rmOptions);
 }
 
-if (fs.existsSync(nycOutputDir)) {
-    fs.rmSync(nycOutputDir, { force: true, recursive: true });
+if (existsSync(nycOutputDir)) {
+    rmSync(nycOutputDir, rmOptions);
 }
