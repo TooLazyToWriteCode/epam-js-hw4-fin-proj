@@ -5,6 +5,11 @@ import { join } from "path";
 const port: number = Number(process.env.PORT) || 3333;
 
 create()
+    .use((_, response, next) => {
+        response.header("Access-Control-Allow-Headers", "*");
+        response.header("Access-Control-Allow-Origin", "*");
+        next();
+    })
     .use("/images", staticDir(join(__dirname, "images")))
     .use(router(join(__dirname, "db.json")))
     .listen(port, () => console.log(`started (port: ${port})`));
