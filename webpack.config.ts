@@ -281,9 +281,8 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
             new webpack.EnvironmentPlugin({
                 BASE_URL: baseURL,
 
-                // The host & port of the server with the API.
-                SERVER_HOST: "localhost",
-                SERVER_PORT: "3333",
+                // The URL of the server with the API.
+                SERVER_URL: "http://localhost:3333",
 
                 // The API request template for an image of a pokemon. :id will
                 // be replaced with a pokemon ID. The server must accept this
@@ -295,9 +294,6 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
                 // will be replaced with a page number. The server must
                 // accept this number and return the corresponding page.
                 SERVER_POKEMONS_QUERY: "/pokemons?_limit=20&_page=:page",
-
-                // The amount of pokemons on a single page.
-                SERVER_POKEMONS_ON_PAGE: "20",
             }),
         ]),
         resolve: {
