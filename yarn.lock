@@ -1949,26 +1949,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@reduxjs/toolkit@npm:^1.6.1":
-  version: 1.6.1
-  resolution: "@reduxjs/toolkit@npm:1.6.1"
-  dependencies:
-    immer: ^9.0.1
-    redux: ^4.1.0
-    redux-thunk: ^2.3.0
-    reselect: ^4.0.0
-  peerDependencies:
-    react: ^16.14.0 || ^17.0.0
-    react-redux: ^7.2.1
-  peerDependenciesMeta:
-    react:
-      optional: true
-    react-redux:
-      optional: true
-  checksum: 487e34003671b4bf3fbb983dd4d6e23ddeea0170aaefee765e38a7942b317895c8fae91a82dd698489a072c4ca8be9d317749a329ad9fb0129c3ed96f6142c18
-  languageName: node
-  linkType: hard
-
 "@sideway/address@npm:^4.1.0":
   version: 4.1.2
   resolution: "@sideway/address@npm:4.1.2"
@@ -6760,13 +6740,6 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"immer@npm:^9.0.1":
-  version: 9.0.6
-  resolution: "immer@npm:9.0.6"
-  checksum: 75da22f3b32f3f14604eb389b4f50e84a14f2e42f306f0cbe4d2969aed54ec7fda9a7e9ca42ebae2ba73ec9bb6ec1001fafbac535accaf03860054ab0f7e8388
-  languageName: node
-  linkType: hard
-
 "import-fresh@npm:^3.1.0":
   version: 3.3.0
   resolution: "import-fresh@npm:3.3.0"
@@ -9809,14 +9782,7 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"redux-thunk@npm:^2.3.0":
-  version: 2.3.0
-  resolution: "redux-thunk@npm:2.3.0"
-  checksum: d13f442ffc91249b534bf14884c33feff582894be2562169637dc9d4d70aec6423bfe6d66f88c46ac027ac1c0cd07d6c2dd4a61cf7695b8e43491de679df9bcf
-  languageName: node
-  linkType: hard
-
-"redux@npm:^4.0.0, redux@npm:^4.1.0":
+"redux@npm:^4.0.0, redux@npm:^4.1.1":
   version: 4.1.1
   resolution: "redux@npm:4.1.1"
   dependencies:
@@ -10014,13 +9980,6 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
-"reselect@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "reselect@npm:4.0.0"
-  checksum: ac7dfc9ef2cdb42b6fc87a856f3ce904c2e4363a2bc1e6fb7eea5f78902a6f506e4388e6509752984877c6dbfe501100c076671d334799eb5a1bfe9936cb2c12
-  languageName: node
-  linkType: hard
-
 "resolve-cwd@npm:^3.0.0":
   version: 3.0.0
   resolution: "resolve-cwd@npm:3.0.0"
@@ -10174,7 +10133,6 @@ resolve@1.1.7:
     "@loadable/component": ^5.15.0
     "@material-ui/core": ^4.12.3
     "@material-ui/icons": ^4.11.2
-    "@reduxjs/toolkit": ^1.6.1
     "@trivago/prettier-plugin-sort-imports": ^2.0.4
     "@types/copy-webpack-plugin": ^8.0.1
     "@types/express": ^4.17.13
@@ -10209,6 +10167,7 @@ resolve@1.1.7:
     react-dom: ^17.0.2
     react-redux: ^7.2.4
     react-router-dom: ^5.3.0
+    redux: ^4.1.1
     regenerator-runtime: ^0.13.9
     sass: ^1.39.0
     sass-loader: ^12.1.0
