@@ -1,0 +1,29 @@
+$picture-size: 192px;
+
+.button {
+    font-weight: 600;
+    text-transform: none;
+    width: 100%;
+}
+
+.card {
+    display: flex;
+    margin: 28px 0;
+}
+
+.content {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.image {
+    flex: 0 0 auto;
+
+    width: $picture-size;
+    height: $picture-size;
+}
+
+.name {
+    padding-bottom: 16px;
+}
