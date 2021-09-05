@@ -9782,6 +9782,13 @@ fsevents@~2.3.2:
   languageName: node
   linkType: hard
 
+"redux-thunk@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "redux-thunk@npm:2.3.0"
+  checksum: d13f442ffc91249b534bf14884c33feff582894be2562169637dc9d4d70aec6423bfe6d66f88c46ac027ac1c0cd07d6c2dd4a61cf7695b8e43491de679df9bcf
+  languageName: node
+  linkType: hard
+
 "redux@npm:^4.0.0, redux@npm:^4.1.1":
   version: 4.1.1
   resolution: "redux@npm:4.1.1"
@@ -10168,6 +10175,7 @@ resolve@1.1.7:
     react-redux: ^7.2.4
     react-router-dom: ^5.3.0
     redux: ^4.1.1
+    redux-thunk: ^2.3.0
     regenerator-runtime: ^0.13.9
     sass: ^1.39.0
     sass-loader: ^12.1.0
