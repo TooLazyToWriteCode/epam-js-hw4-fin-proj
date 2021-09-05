@@ -3,9 +3,13 @@ import {
     Card,
     CardContent,
     CardMedia,
+    Link,
     StylesProvider,
     Typography,
 } from "@material-ui/core";
+import { Link as RouterLink } from "react-router-dom";
+
+import pages from "@/pages";
 
 import styles from "./PokeCard.scss";
 
@@ -20,10 +24,12 @@ export interface Props {
 
 /** The pokemon information card. */
 export const PokeCard: React.FC<Props> = (props) => {
+    const pathReplaced = pages.pokemon.path.replaceAll(":id", props.id);
+
     // webpack ensures that these are set, so we
     // can safely ignore the undefined case here.
     const imageURL = new URL(
-        process.env.SERVER_POKEMON_IMAGE_QUERY!.replace(":id", props.id),
+        process.env.SERVER_POKEMON_IMAGE_QUERY!.replaceAll(":id", props.id),
         process.env.SERVER_URL!
     );
 
@@ -32,8 +38,10 @@ export const PokeCard: React.FC<Props> = (props) => {
             <Card className={styles.card}>
                 <CardMedia
                     className={styles.image}
+                    component={RouterLink}
                     image={imageURL.toString()}
                     title={props.name}
+                    to={pathReplaced}
                 />
                 <CardContent className={styles.content}>
                     <Typography
@@ -41,7 +49,13 @@ export const PokeCard: React.FC<Props> = (props) => {
                         component="h5"
                         variant="h5"
                     >
-                        {props.name}
+                        <Link
+                            className={styles.link}
+                            component={RouterLink}
+                            to={pathReplaced}
+                        >
+                            {props.name}
+                        </Link>
                     </Typography>
                     <Button
                         className={styles.button}
