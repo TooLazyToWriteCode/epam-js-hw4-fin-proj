@@ -2,7 +2,7 @@ $picture-size: 192px;
 
 .button {
     font-weight: 600;
-    text-transform: none;
+    text-transform: capitalize;
     width: 100%;
 }
 
@@ -26,4 +26,5 @@ $picture-size: 192px;
 
 .name {
     padding-bottom: 16px;
+    text-transform: capitalize;
 }
