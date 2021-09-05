@@ -11,5 +11,5 @@ $fonts: "Roboto", $os-fonts, system-ui, sans-serif;
 }
 
 .wrap {
-    font: 400 16px $fonts;
+    font-family: $fonts;
 }
