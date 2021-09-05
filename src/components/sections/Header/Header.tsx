@@ -1,4 +1,4 @@
-import { Paper, StylesProvider, Tab, Tabs, Toolbar } from "@material-ui/core";
+import { AppBar, StylesProvider, Tab, Tabs, Toolbar } from "@material-ui/core";
 import { DoneAll, Home } from "@material-ui/icons";
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
@@ -36,8 +36,8 @@ export const Header: React.FC<{}> = () => {
 
     return (
         <StylesProvider injectFirst>
-            <Paper component="header">
-                <Toolbar variant="dense">
+            <AppBar component="header" position="fixed">
+                <Toolbar>
                     <Tabs value={pageIndex} variant="fullWidth">
                         <Tab
                             classes={{ root: styles.tab }}
@@ -55,7 +55,8 @@ export const Header: React.FC<{}> = () => {
                         />
                     </Tabs>
                 </Toolbar>
-            </Paper>
+            </AppBar>
+            <Toolbar className={styles.space} />
         </StylesProvider>
     );
 };
