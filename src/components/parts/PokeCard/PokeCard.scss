@@ -1,4 +1,7 @@
-$picture-size: 192px;
+@mixin size($size) {
+    width: $size;
+    height: $size;
+}
 
 .button {
     font-weight: 600;
@@ -18,14 +21,19 @@ $picture-size: 192px;
 }
 
 .image {
+    @include size(192px);
+
     flex: 0 0 auto;
     image-rendering: -webkit-optimize-contrast;
-
-    width: $picture-size;
-    height: $picture-size;
 }
 
 .name {
     padding-bottom: 16px;
     text-transform: capitalize;
+}
+
+@media (max-width: 512px) {
+    .image {
+        @include size(152px);
+    }
 }

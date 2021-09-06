@@ -17,7 +17,7 @@
 
 ### Basic
 
--   [ ] **Pagination** Is one of:
+-   [x] **Pagination** Is one of:
     -   [ ] **A "Load More" button** loads the next section in the common list.
     -   [x] **Endless scroll** loads the next section as a page end is reached.
     -   [ ] **Numbered pages (traditional)** have only one section per a page.
