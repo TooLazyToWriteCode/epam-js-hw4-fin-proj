@@ -21,7 +21,7 @@ export const getCaughtPokemons = async (page: number): Response => {
     return axios.get(query.replaceAll(":page", page.toString()));
 };
 
-export const postPokemons = async (id: string): Response => {
-    const query = process.env.SERVER_POST_POKEMON_CATCH!;
-    return axios.post(query, { id });
+export const postPokemons = async (id: string, name: string): Response => {
+    const query = process.env.SERVER_POST_POKEMON_CATCH!.replaceAll(":id", id);
+    return axios.put(query, { name, caught: true });
 };

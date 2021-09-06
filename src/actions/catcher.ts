@@ -15,8 +15,11 @@ export const catchPokemon = (id: string): CatcherAction => {
 };
 
 export const catchPokemonWithRequest =
-    (id: string): ThunkAction<void, RootState, unknown, CatcherAction> =>
+    (
+        id: string,
+        name: string
+    ): ThunkAction<void, RootState, unknown, CatcherAction> =>
     async (dispatch: AppDispatch) => {
-        await postPokemons(id);
+        await postPokemons(id, name);
         dispatch(catchPokemon(id));
     };

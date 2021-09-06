@@ -9,6 +9,7 @@ const port = Number(process.env.PORT) || 3333;
 create()
     .use((_, response, next) => {
         response.header("Access-Control-Allow-Headers", "*");
+        response.header("Access-Control-Allow-Methods", "*");
         response.header("Access-Control-Allow-Origin", "*");
         next();
     })

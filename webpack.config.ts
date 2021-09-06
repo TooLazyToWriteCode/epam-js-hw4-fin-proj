@@ -287,11 +287,11 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
                 ),
 
                 "process.env.SERVER_GET_POKEMON_CATCH": JSON.stringify(
-                    "/caughtPokemons?_limit=20&_page=:page"
+                    "/pokemons?caught_like=true&_limit=20&_page=:page"
                 ),
 
                 "process.env.SERVER_POST_POKEMON_CATCH":
-                    JSON.stringify("/caughtPokemons"),
+                    JSON.stringify("/pokemons/:id"),
 
                 // The API request template for an image of a pokemon. :id will
                 // be replaced with a pokemon ID. The server must accept this

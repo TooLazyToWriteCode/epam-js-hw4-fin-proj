@@ -69,7 +69,9 @@ export const PokeCard: React.FC<Props> = (props) => {
                         color="primary"
                         variant="contained"
                         onClick={() =>
-                            dispatch(catchPokemonWithRequest(props.id))
+                            dispatch(
+                                catchPokemonWithRequest(props.id, props.name)
+                            )
                         }
                         disabled={isCaught}
                     >

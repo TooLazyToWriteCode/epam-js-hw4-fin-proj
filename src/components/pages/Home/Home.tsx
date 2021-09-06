@@ -22,37 +22,47 @@ export const Home: React.FC<{}> = () => {
     const [cards, setCards] = useState<Pokemon[]>([]);
     const [page, setPage] = useState<number>(1);
     const isNeverQueried = useRef(true);
+    const [endReach, setEndReach] = useState<boolean>(false);
     const progress = useRef(null);
+    const leftCount = useRef(-1);
+
+    const observer = new IntersectionObserver((entities) => {
+        if (!isNeverQueried.current && entities[0].isIntersecting) {
+            setPage((page) => page + 1);
+        }
+    });
 
     useEffect(() => {
         (async () => {
-            let caughtPokemonsResponse: any;
-            let pokemonsResponse: any;
+            let pokemonsResponse: any = await queryPokemons(page);
+            isNeverQueried.current = false;
 
-            caughtPokemonsResponse = await getCaughtPokemons(page);
-            pokemonsResponse = await queryPokemons(page);
+            if (leftCount.current === -1) {
+                leftCount.current = Number(
+                    pokemonsResponse.headers["X-Total-Count".toLowerCase()]
+                );
+            }
 
             setCards((cards) => cards.concat(pokemonsResponse.data));
 
-            caughtPokemonsResponse.data.forEach((pokemon: { id: string }) => {
-                dispatch(catchPokemon(pokemon.id));
+            pokemonsResponse.data.forEach((pokemon: any) => {
+                if (pokemon.caught) {
+                    dispatch(catchPokemon(pokemon.id));
+                }
             });
 
-            isNeverQueried.current = false;
+            leftCount.current -= pokemonsResponse.data.length;
+
+            if (leftCount.current <= 0) {
+                setEndReach(true);
+                return;
+            }
         })();
     }, [page]);
 
     useEffect(() => {
         if (progress.current !== null) {
-            new IntersectionObserver((entities) => {
-                if (isNeverQueried.current) {
-                    return;
-                }
-
-                if (entities[0].isIntersecting) {
-                    setPage((page) => page + 1);
-                }
-            }).observe(progress.current);
+            observer.observe(progress.current);
         }
     }, [progress]);
 
@@ -61,9 +71,14 @@ export const Home: React.FC<{}> = () => {
             {cards.map((card) => (
                 <PokeCard id={card.id} key={card.id} name={card.name} />
             ))}
-            <StylesProvider injectFirst>
-                <CircularProgress className={styles.progress} ref={progress} />
-            </StylesProvider>
+            {!endReach && (
+                <StylesProvider injectFirst>
+                    <CircularProgress
+                        className={styles.progress}
+                        ref={progress}
+                    />
+                </StylesProvider>
+            )}
         </Container>
     );
 };
