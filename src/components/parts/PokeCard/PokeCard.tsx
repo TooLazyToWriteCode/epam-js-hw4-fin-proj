@@ -7,9 +7,13 @@ import {
     StylesProvider,
     Typography,
 } from "@material-ui/core";
+import { useDispatch } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 
+import { catchPokemonWithRequest } from "@/actions/catcher";
 import pages from "@/pages";
+import { CatcherState } from "@/reducers/catcher";
+import { AppDispatch, useAppSelector } from "@/store";
 
 import styles from "./PokeCard.scss";
 
@@ -24,7 +28,10 @@ export interface Props {
 
 /** The pokemon information card. */
 export const PokeCard: React.FC<Props> = (props) => {
+    const catcher: CatcherState = useAppSelector((state) => state.catcher);
+    const dispatch = useDispatch<AppDispatch>();
     const pathReplaced = pages.pokemon.path.replaceAll(":id", props.id);
+    const isCaught = props.id in catcher.caught;
 
     // webpack ensures that these are set, so we
     // can safely ignore the undefined case here.
@@ -61,8 +68,12 @@ export const PokeCard: React.FC<Props> = (props) => {
                         className={styles.button}
                         color="primary"
                         variant="contained"
+                        onClick={() =>
+                            dispatch(catchPokemonWithRequest(props.id))
+                        }
+                        disabled={isCaught}
                     >
-                        Catch!
+                        {(isCaught && "already caught") || "catch!"}
                     </Button>
                 </CardContent>
             </Card>

@@ -19,7 +19,7 @@
 
 -   [ ] **Pagination** Is one of:
     -   [ ] **A "Load More" button** loads the next section in the common list.
-    -   [ ] **Endless scroll** loads the next section as a page end is reached.
+    -   [x] **Endless scroll** loads the next section as a page end is reached.
     -   [ ] **Numbered pages (traditional)** have only one section per a page.
 -   [ ] **Adaptive Design**
 -   [x] **Navigation Menu**
@@ -27,7 +27,7 @@
 
 ### Pages
 
--   [ ] **The home page** contains tiles with diferent pokemons. Each tile
+-   [x] **The home page** contains tiles with diferent pokemons. Each tile
         should have a picture of a pokemon, its name and a "Catch" button. If
         a pokemon is already caught, then a button should be disabled. When a
         pokemon is clicked, a user should be redirected to a pokemon page.

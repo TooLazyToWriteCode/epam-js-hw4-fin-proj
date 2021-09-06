@@ -1,13 +1,18 @@
 import { CircularProgress, Container, StylesProvider } from "@material-ui/core";
+import { AxiosResponse } from "axios";
 import { useEffect, useRef, useState } from "react";
+import { useDispatch } from "react-redux";
 
+import { catchPokemon } from "@/actions/catcher";
 import PokeCard from "@/components/parts/PokeCard";
-import { Pokemon, queryPokemons } from "@/utilities/queries";
+import { AppDispatch } from "@/store";
+import { Pokemon, getCaughtPokemons, queryPokemons } from "@/utilities/queries";
 
 import styles from "./Home.scss";
 
 /** The home page. */
 export const Home: React.FC<{}> = () => {
+    const dispatch = useDispatch<AppDispatch>();
     /**
      * The infinite scroll is done with the help of the following tutorial,
      * refer to it and the `IntersectionObserver` docs for more information:
@@ -15,30 +20,41 @@ export const Home: React.FC<{}> = () => {
      */
 
     const [cards, setCards] = useState<Pokemon[]>([]);
-    const [page, setPage] = useState<number>(0);
+    const [page, setPage] = useState<number>(1);
+    const isNeverQueried = useRef(true);
     const progress = useRef(null);
 
-    const handleObserver: IntersectionObserverCallback = (entities) => {
-        if (entities[0].isIntersecting) {
-            setPage((page) => page + 1);
-        }
-    };
-
     useEffect(() => {
-        const observer = new IntersectionObserver(handleObserver, {
-            threshold: 0.1,
-        });
+        (async () => {
+            let caughtPokemonsResponse: any;
+            let pokemonsResponse: any;
 
-        if (progress.current !== null) {
-            observer.observe(progress.current);
-        }
-    }, []);
+            caughtPokemonsResponse = await getCaughtPokemons(page);
+            pokemonsResponse = await queryPokemons(page);
 
-    useEffect(() => {
-        queryPokemons(page).then((request) => {
-            setCards(cards.concat(request.data));
-        });
+            setCards((cards) => cards.concat(pokemonsResponse.data));
+
+            caughtPokemonsResponse.data.forEach((pokemon: { id: string }) => {
+                dispatch(catchPokemon(pokemon.id));
+            });
+
+            isNeverQueried.current = false;
+        })();
     }, [page]);
+
+    useEffect(() => {
+        if (progress.current !== null) {
+            new IntersectionObserver((entities) => {
+                if (isNeverQueried.current) {
+                    return;
+                }
+
+                if (entities[0].isIntersecting) {
+                    setPage((page) => page + 1);
+                }
+            }).observe(progress.current);
+        }
+    }, [progress]);
 
     return (
         <Container maxWidth="sm">
