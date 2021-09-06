@@ -34,7 +34,7 @@
 -   [ ] **A pokemon page** contains information for a given pokemon, such as an
         ID, a name, a picture, whether it is caught. If a pokemon is caught, a
         date when a pokemon was caught should be shown.
--   [ ] **The caught pokemons page** is same as the home page but only caught
+-   [x] **The caught pokemons page** is same as the home page but only caught
         pokemons should be shown.
 
 ## Recommendations
