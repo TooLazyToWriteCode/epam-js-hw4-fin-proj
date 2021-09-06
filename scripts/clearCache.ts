@@ -1,9 +1,8 @@
-import { RmOptions, existsSync, rmSync } from "fs";
+import { existsSync, rmSync } from "fs";
 import { join } from "path";
 
-const cacheDir: string = join(__dirname, "..", "out", "cache");
-const rmOptions: RmOptions = { force: true, recursive: true };
+const cacheDir = join(__dirname, "..", "out", "cache");
 
 if (existsSync(cacheDir)) {
-    rmSync(cacheDir, rmOptions);
+    rmSync(cacheDir, { force: true, recursive: true });
 }
