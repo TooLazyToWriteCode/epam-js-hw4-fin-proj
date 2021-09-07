@@ -4,5 +4,6 @@ import { URLParams } from "./Pokemon.types";
 
 export const Pokemon: React.FC<{}> = () => {
     const { id } = useParams<URLParams>();
+
     return <></>;
 };

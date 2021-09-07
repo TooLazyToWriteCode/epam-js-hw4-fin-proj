@@ -4,4 +4,4 @@ import { wrapIntoBrowserRouter } from "@/providers/router";
 
 import "./Base.css";
 
-export const Base = wrapIntoReduxProvider(wrapIntoBrowserRouter(<App />));
+export const Base = wrapIntoBrowserRouter(wrapIntoReduxProvider(<App />));
