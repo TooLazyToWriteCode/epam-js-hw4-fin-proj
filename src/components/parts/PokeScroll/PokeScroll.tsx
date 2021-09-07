@@ -1,4 +1,4 @@
-import { Button } from "@material-ui/core";
+import { Button, CircularProgress } from "@material-ui/core";
 import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 
@@ -59,9 +59,16 @@ export const PokeScroll: React.FC<Props> = (props) => {
                 ref={button}
                 variant="contained"
             >
-                {pokemons.hasReachedEnd
-                    ? "You have loaded them all!"
-                    : "Load More..."}
+                {pokemons.isLoadingPage ? (
+                    <CircularProgress
+                        className={styles.buttonProgress}
+                        size={25}
+                    />
+                ) : pokemons.hasReachedEnd ? (
+                    "You have loaded them all!"
+                ) : (
+                    "Load More..."
+                )}
             </Button>
         </>
     );

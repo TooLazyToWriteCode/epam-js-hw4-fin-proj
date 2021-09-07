@@ -11,6 +11,7 @@ export const pokemonsReducer: PokemonsReducer = (state = initial, action) => {
                 ...state,
                 hasOnceRequested: true,
                 hasReachedEnd: list.length === 0,
+                isLoadingPage: false,
                 list: state.list.concat(list),
             };
         case "LOAD_NEXT_POKEMONS":
@@ -18,12 +19,11 @@ export const pokemonsReducer: PokemonsReducer = (state = initial, action) => {
                 return state;
             }
 
-            return {
-                ...state,
-                page: state.page + 1,
-            };
+            return { ...state, page: state.page + 1 };
         case "RESET_POKEMONS":
             return { ...state, ...initial };
+        case "SET_LOADING_POKEMON_PAGE":
+            return { ...state, isLoadingPage: true };
         default:
             return state;
     }

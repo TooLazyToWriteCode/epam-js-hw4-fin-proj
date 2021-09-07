@@ -25,8 +25,16 @@ export const resetPokemons = (): PokemonsAction => {
     return { type };
 };
 
+export const setLoadingPokemonPage = (): PokemonsAction => {
+    const type = "SET_LOADING_POKEMON_PAGE";
+
+    return { type };
+};
+
 export const getPokemons = (page: number): PokemonsThunkAction => {
     return async (dispatch: AppDispatch) => {
+        dispatch(setLoadingPokemonPage());
+
         const response = await getPokemonsAPI(page);
 
         // TODO: What if a request fails?
@@ -36,6 +44,8 @@ export const getPokemons = (page: number): PokemonsThunkAction => {
 
 export const getCaughtPokemons = (page: number): PokemonsThunkAction => {
     return async (dispatch: AppDispatch) => {
+        dispatch(setLoadingPokemonPage());
+
         const response = await getCaughtAPI(page);
 
         // TODO: What if a request fails?
