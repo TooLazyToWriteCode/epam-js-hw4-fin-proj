@@ -24,9 +24,12 @@ export const Header: React.FC<{}> = () => {
 
     return (
         <>
-            <AppBar component="header" position="fixed">
+            <AppBar component="header">
                 <Toolbar>
-                    <Tabs value={pageTabs.tab}>
+                    <Tabs
+                        aria-label="Header Page Navigation"
+                        value={pageTabs.tab}
+                    >
                         <Tab
                             classes={{ root: styles.tab }}
                             component={Link}
@@ -44,7 +47,7 @@ export const Header: React.FC<{}> = () => {
                     </Tabs>
                 </Toolbar>
             </AppBar>
-            <Toolbar className={styles.space} />
+            <div className={styles.space}></div>
         </>
     );
 };
