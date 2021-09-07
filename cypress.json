@@ -1,11 +1,12 @@
 {
     "baseUrl": "http://localhost:9030",
-    "componentFolder": "./test/components",
+    "componentFolder": "./src/components",
     "downloadsFolder": "./out/test/downloads",
     "fixturesFolder": "./test/fixtures",
     "integrationFolder": "./test/integrations",
     "pluginsFile": "./test/plugins/index.ts",
     "screenshotsFolder": "./out/test/screenshots",
     "supportFile": "./test/support/index.ts",
+    "testFiles": ["**/*.spec.*", "**/*.test.*"],
     "videosFolder": "./out/test/videos"
 }
