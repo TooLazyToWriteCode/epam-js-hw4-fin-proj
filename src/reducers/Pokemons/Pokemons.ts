@@ -7,10 +7,6 @@ export const pokemonsReducer: PokemonsReducer = (state = initial, action) => {
         case "ADD_POKEMONS":
             const actionList = action.list || {};
 
-            if (!state.isLoadingPage) {
-                return state;
-            }
-
             return {
                 ...state,
                 hasReachedEnd: Object.keys(actionList).length === 0,
@@ -18,10 +14,6 @@ export const pokemonsReducer: PokemonsReducer = (state = initial, action) => {
                 list: { ...state.list, ...actionList },
             };
         case "LOAD_NEXT_POKEMONS":
-            if (state.isLoadingPage) {
-                return state;
-            }
-
             if (!state.hasOnceRequested) {
                 return { ...state, hasOnceRequested: true };
             }
