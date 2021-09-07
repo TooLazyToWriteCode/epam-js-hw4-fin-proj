@@ -1,16 +1,8 @@
 import { useParams } from "react-router-dom";
 
-import "./Pokemon.scss";
+import { URLParams } from "./Pokemon.types";
 
-/** The router (url) parameters. */
-export interface Params {
-    id: string;
-}
-
-/** The pokemon information page. */
 export const Pokemon: React.FC<{}> = () => {
-    const { id } = useParams<Params>();
+    const { id } = useParams<URLParams>();
     return <></>;
 };
-
-export default Pokemon;

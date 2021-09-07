@@ -1,5 +1,3 @@
-import Caught from "./Caught";
-
-export { Caught };
+import { Caught } from "./Caught";
 
 export default Caught;

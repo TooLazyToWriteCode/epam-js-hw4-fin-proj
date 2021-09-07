@@ -1,5 +1,3 @@
-import Pokemon from "./Pokemon";
-
-export { Pokemon };
+import { Pokemon } from "./Pokemon";
 
 export default Pokemon;

@@ -1,16 +1,7 @@
-import { Provider } from "react-redux";
-import { BrowserRouter } from "react-router-dom";
+import { App } from "@/components/App";
+import { wrapIntoReduxProvider } from "@/providers/redux";
+import { wrapIntoBrowserRouter } from "@/providers/router";
 
-import App from "@/components/App";
-import { store } from "@/store";
+import "./Base.css";
 
-/** The base element for providers, etc. */
-export const Base: React.ReactElement = (
-    <Provider store={store}>
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    </Provider>
-);
-
-export default Base;
+export const Base = wrapIntoReduxProvider(wrapIntoBrowserRouter(<App />));

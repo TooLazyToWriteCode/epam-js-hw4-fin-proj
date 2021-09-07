@@ -1,44 +1,32 @@
-import { AppBar, StylesProvider, Tab, Tabs, Toolbar } from "@material-ui/core";
+import { AppBar, Tab, Tabs, Toolbar } from "@material-ui/core";
 import { DoneAll, Home } from "@material-ui/icons";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
-import pages from "@/pages";
+import { changePageTab } from "@/actions/PageTabs";
+import { useAppSelector } from "@/components/hooks/useAppSelector";
+import { pages } from "@/config/Pages";
+import { Location } from "@/types/location";
 
-import styles from "./Header.scss";
+import { useStyles } from "./Header.styles";
 
-type PageIndex = number | false;
-
-interface LocationState {
-    pathname: string;
-}
-
-const getPageIndex = (location: LocationState): PageIndex => {
-    switch (location.pathname.replace(/(?!^)\/$/, "")) {
-        case pages.home.path:
-            return 0;
-        case pages.caught.path:
-            return 1;
-        default:
-            return false;
-    }
-};
-
-/** The header at the top of the page. */
 export const Header: React.FC<{}> = () => {
-    const location = useLocation<LocationState>();
+    const pageTabs = useAppSelector((state) => state.pageTabs);
 
-    const [pageIndex, setPageIndex] = useState<PageIndex>(
-        getPageIndex(location)
-    );
+    const dispatch = useDispatch();
+    const location = useLocation<Location>();
+    const styles = useStyles();
 
-    useEffect(() => setPageIndex(getPageIndex(location)), [location]);
+    useEffect(() => {
+        dispatch(changePageTab(location));
+    }, [location]);
 
     return (
-        <StylesProvider injectFirst>
+        <>
             <AppBar component="header" position="fixed">
                 <Toolbar>
-                    <Tabs value={pageIndex} variant="fullWidth">
+                    <Tabs value={pageTabs.tab}>
                         <Tab
                             classes={{ root: styles.tab }}
                             component={Link}
@@ -57,8 +45,6 @@ export const Header: React.FC<{}> = () => {
                 </Toolbar>
             </AppBar>
             <Toolbar className={styles.space} />
-        </StylesProvider>
+        </>
     );
 };
-
-export default Header;
