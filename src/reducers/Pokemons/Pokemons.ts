@@ -7,16 +7,23 @@ export const pokemonsReducer: PokemonsReducer = (state = initial, action) => {
         case "ADD_POKEMONS":
             const actionList = action.list || {};
 
+            if (!state.isLoadingPage) {
+                return state;
+            }
+
             return {
                 ...state,
-                hasOnceRequested: true,
                 hasReachedEnd: Object.keys(actionList).length === 0,
                 isLoadingPage: false,
                 list: { ...state.list, ...actionList },
             };
         case "LOAD_NEXT_POKEMONS":
-            if (!state.hasOnceRequested) {
+            if (state.isLoadingPage) {
                 return state;
+            }
+
+            if (!state.hasOnceRequested) {
+                return { ...state, hasOnceRequested: true };
             }
 
             return { ...state, page: state.page + 1 };
@@ -31,6 +38,10 @@ export const pokemonsReducer: PokemonsReducer = (state = initial, action) => {
         case "RESET_POKEMONS":
             return { ...state, ...initial };
         case "SET_LOADING_POKEMON_PAGE":
+            if (state.isLoadingPage) {
+                return state;
+            }
+
             return { ...state, isLoadingPage: true };
         default:
             return state;
