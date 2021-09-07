@@ -1,3 +1,8 @@
 import { PokemonsState } from "./Pokemons.types";
 
-export const initial: PokemonsState = { list: [], page: 1 };
+export const initial: PokemonsState = {
+    hasOnceRequested: false,
+    hasReachedEnd: false,
+    list: [],
+    page: 1,
+};

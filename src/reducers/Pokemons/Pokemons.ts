@@ -5,9 +5,13 @@ import { PokemonsReducer } from "./Pokemons.types";
 export const pokemonsReducer: PokemonsReducer = (state = initial, action) => {
     switch (action.type) {
         case "ADD_POKEMONS":
+            const list = action.list || [];
+
             return {
                 ...state,
-                list: state.list.concat(action.list || []),
+                hasOnceRequested: true,
+                hasReachedEnd: list.length === 0,
+                list: state.list.concat(list),
                 page: state.page + 1,
             };
         case "RESET_POKEMONS":
