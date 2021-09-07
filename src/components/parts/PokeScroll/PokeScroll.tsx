@@ -1,10 +1,12 @@
 import { Button, CircularProgress } from "@material-ui/core";
 import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 import { loadNextPokemons } from "@/actions/Pokemons";
 import { useAppSelector } from "@/components/hooks/useAppSelector";
 import { PokeCard } from "@/components/parts/PokeCard";
+import { Location } from "@/config/Location/Locaation.types";
 import { useBigButton } from "@/stylesheets/BigButton";
 
 import { useStyles } from "./PokeScroll.styles";
@@ -26,12 +28,13 @@ export const PokeScroll: React.FC<Props> = (props) => {
     const bigButton = useBigButton();
     const button = useRef(null);
     const dispatch = useDispatch();
+    const location = useLocation<Location>();
     const observer = new IntersectionObserver(handleObserver);
     const styles = useStyles();
 
     useEffect(() => {
         dispatch(props.getCallback(pokemons.page));
-    }, [pokemons.page]);
+    }, [pokemons.page, location]);
 
     useEffect(() => {
         if (button.current !== null) {

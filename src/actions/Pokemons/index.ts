@@ -6,6 +6,7 @@ import {
     getCaughtPokemons,
     putPokemon,
     resetPokemons,
+    setLoadingPokemonPage,
 } from "./Pokemons";
 
 export {
@@ -16,4 +17,5 @@ export {
     getCaughtPokemons,
     putPokemon,
     resetPokemons,
+    setLoadingPokemonPage,
 };
