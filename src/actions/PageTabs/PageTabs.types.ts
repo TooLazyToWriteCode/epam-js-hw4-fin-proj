@@ -1,5 +1,7 @@
 import { Action } from "redux";
 
-import { PageTabsState } from "@/states/PageTabs/PageTabs.types";
+export interface PageTabsBaseAction {
+    tab: number | false;
+}
 
-export type PageTabsAction = Action<string> & PageTabsState;
+export type PageTabsAction = Action<string> & PageTabsBaseAction;
