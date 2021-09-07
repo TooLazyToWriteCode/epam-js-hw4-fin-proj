@@ -237,13 +237,6 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
                     use: getDynamicCSSLoaders(mode).concat([cssLoader]),
                 },
                 {
-                    test: /\.s(a|c)ss$/,
-                    use: getDynamicCSSLoaders(mode).concat([
-                        cssLoader,
-                        "sass-loader",
-                    ]),
-                },
-                {
                     test: /\.tsx?$/,
                     loader: "babel-loader",
                     options: {
@@ -298,30 +291,26 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
                     "http://localhost:3333"
                 ),
 
-                // The API request template for a page of caught pokemons.
                 // `:page` will be replaced with a page number. The server must
                 // accept this number and return the corresponding page.
                 "process.env.SERVER_GET_CAUGHT_POKEMONS": JSON.stringify(
                     "/pokemons?caught_like=true&_limit=20&_page=:page"
                 ),
 
-                // The API request template for updating a record of a pokemon.
                 // `:id` will be replaced with a pokemon ID. The server must
                 // accept this number along with the updated pokemon record as a
                 // JSON data object and return the status of the request.
-                "process.env.SERVER_PUT_CAUGHT_POKEMON":
+                "process.env.SERVER_PUT_POKEMON":
                     JSON.stringify("/pokemons/:id"),
 
-                // The API request template for an image of a pokemon. `:id`
-                // will be replaced with a pokemon ID. The server must accept
-                // this number and return either the corresponding image or the
-                // 404 Not Found error page.
+                // `:id` will be replaced with a pokemon ID. The server must
+                // accept this number and return either the corresponding image
+                // or the 404 Not Found error page.
                 "process.env.SERVER_GET_POKEMON_IMAGE":
                     JSON.stringify("/images/:id.png"),
 
-                // The API request template for a page of pokemons. `:page` will
-                // be replaced with a page number. The server must accept this
-                // number and return the corresponding page.
+                // `:page` will be replaced with a page number. The server must
+                // accept this number and return the corresponding page.
                 "process.env.SERVER_GET_POKEMONS": JSON.stringify(
                     "/pokemons?_limit=20&_page=:page"
                 ),
