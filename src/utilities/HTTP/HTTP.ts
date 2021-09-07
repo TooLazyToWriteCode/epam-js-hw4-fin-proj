@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { Pokemon } from "@/types/pokemons";
+import { replaceID, replacePage } from "@/utilities/Replace";
 
 import { PokemonsResponse, UndefinedResponse } from "./HTTP.types";
 
@@ -13,25 +14,25 @@ const serverURL = process.env.SERVER_URL!;
 const http = axios.create({ baseURL: serverURL });
 
 export const getCaughtPokemons = async (page: number): PokemonsResponse => {
-    const url = process.env.SERVER_GET_CAUGHT_POKEMONS!;
+    const url = replacePage(process.env.SERVER_GET_CAUGHT_POKEMONS!, page);
 
-    return http.get(url.replaceAll(":page", page.toString()));
+    return http.get(url);
 };
 
 export const getPokemonImageSrc = (id: string): string => {
-    const url = process.env.SERVER_GET_POKEMON_IMAGE!;
+    const url = replaceID(process.env.SERVER_GET_POKEMON_IMAGE!, id);
 
-    return new URL(url.replaceAll(":id", id), serverURL).toString();
+    return new URL(url, serverURL).toString();
 };
 
 export const getPokemons = async (page: number): PokemonsResponse => {
-    const url = process.env.SERVER_GET_POKEMONS!;
+    const url = replacePage(process.env.SERVER_GET_POKEMONS!, page);
 
-    return http.get(url.replaceAll(":page", page.toString()));
+    return http.get(url);
 };
 
 export const putPokemons = async (pokemon: Pokemon): UndefinedResponse => {
-    const url = process.env.SERVER_PUT_POKEMON!.replaceAll(":id", pokemon.id);
+    const url = replaceID(process.env.SERVER_PUT_POKEMON!, pokemon.id);
 
     return http.put(url, pokemon);
 };
