@@ -4,6 +4,9 @@ import { Pokemon } from "@/types/pokemons";
 
 import { PokemonsResponse, UndefinedResponse } from "./HTTP.types";
 
+// webpack ensures that `process.env.*` are set, so
+// we can safely ignore the undefined case in them.
+
 const serverURL = process.env.SERVER_URL!;
 
 /** @see https://github.com/axios/axios */
