@@ -1,5 +1,6 @@
 import {
     addPokemons,
+    checkIntersection,
     loadNextPokemons,
     getPokemons,
     getCaughtPokemons,
@@ -8,6 +9,7 @@ import {
 
 export {
     addPokemons,
+    checkIntersection,
     loadNextPokemons,
     getPokemons,
     getCaughtPokemons,

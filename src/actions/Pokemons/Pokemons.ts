@@ -13,6 +13,12 @@ export const addPokemons = (list: Pokemon[]): PokemonsAction => {
     return { type, list };
 };
 
+export const checkIntersection = (isIntersecting: boolean): PokemonsAction => {
+    const type = "CHECK_INTERSECTION";
+
+    return isIntersecting ? loadNextPokemons() : { type };
+};
+
 export const loadNextPokemons = (): PokemonsAction => {
     const type = "LOAD_NEXT_POKEMONS";
 
