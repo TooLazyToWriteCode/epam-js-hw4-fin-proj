@@ -20,8 +20,8 @@ export const Header: React.FC<{}> = () => {
     const styles = useStyles();
 
     useEffect(() => {
-        dispatch(changePageTab(location));
         dispatch(resetPokemons());
+        dispatch(changePageTab(location));
     }, [location]);
 
     return (

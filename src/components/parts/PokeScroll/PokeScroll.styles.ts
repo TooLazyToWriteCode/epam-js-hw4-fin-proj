@@ -5,6 +5,6 @@ export const useStyles = makeStyles((theme) => ({
         margin: `${theme.spacing(3)}px auto`,
     },
     buttonProgress: {
-        color: theme.palette.primary.contrastText,
+        color: theme.palette.action.disabled,
     },
 }));

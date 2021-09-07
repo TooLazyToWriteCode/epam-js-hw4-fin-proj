@@ -15,18 +15,19 @@ export const PokeScroll: React.FC<Props> = (props) => {
     // refer to it and the `IntersectionObserver` docs for more information:
     // https://dev.to/hunterjsbit/react-infinite-scroll-in-few-lines-588f.
 
+    const handleObserver: IntersectionObserverCallback = (entries) => {
+        if (entries[0].isIntersecting) {
+            dispatch(loadNextPokemons());
+        }
+    };
+
     const pokemons = useAppSelector((state) => state.pokemons);
 
     const bigButton = useBigButton();
     const button = useRef(null);
     const dispatch = useDispatch();
+    const observer = new IntersectionObserver(handleObserver);
     const styles = useStyles();
-
-    const observer = new IntersectionObserver((entries) => {
-        if (entries[0].isIntersecting) {
-            dispatch(loadNextPokemons());
-        }
-    });
 
     useEffect(() => {
         dispatch(props.getCallback(pokemons.page));
@@ -54,7 +55,7 @@ export const PokeScroll: React.FC<Props> = (props) => {
                     ${bigButton.bigButton}
                 `}
                 color="primary"
-                disabled={pokemons.hasReachedEnd}
+                disabled={pokemons.isLoadingPage || pokemons.hasReachedEnd}
                 onClick={() => dispatch(loadNextPokemons())}
                 ref={button}
                 variant="contained"
