@@ -2,7 +2,7 @@ import { Button } from "@material-ui/core";
 import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 
-import { checkIntersection, loadNextPokemons } from "@/actions/Pokemons";
+import { loadNextPokemons } from "@/actions/Pokemons";
 import { useAppSelector } from "@/components/hooks/useAppSelector";
 import { PokeCard } from "@/components/parts/PokeCard";
 import { useBigButton } from "@/stylesheets/BigButton";
@@ -23,7 +23,9 @@ export const PokeScroll: React.FC<Props> = (props) => {
     const styles = useStyles();
 
     const observer = new IntersectionObserver((entries) => {
-        dispatch(checkIntersection(entries[0].isIntersecting));
+        if (entries[0].isIntersecting) {
+            dispatch(loadNextPokemons());
+        }
     });
 
     useEffect(() => {
