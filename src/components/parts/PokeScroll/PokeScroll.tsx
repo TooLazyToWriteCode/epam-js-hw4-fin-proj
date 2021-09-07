@@ -7,8 +7,8 @@ import { useAppSelector } from "@/components/hooks/useAppSelector";
 import { PokeCard } from "@/components/parts/PokeCard";
 import { useBigButton } from "@/stylesheets/BigButton";
 
-import { Props } from "./PokeScroll.types";
 import { useStyles } from "./PokeScroll.styles";
+import { Props } from "./PokeScroll.types";
 
 export const PokeScroll: React.FC<Props> = (props) => {
     // The infinite scroll is done with the help of the following tutorial,
