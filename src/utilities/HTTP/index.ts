@@ -1,3 +1,8 @@
-import { getCaughtPokemons, getPokemons, putPokemons } from "./HTTP";
+import {
+    getCaughtPokemons,
+    getPokemonImageSrc,
+    getPokemons,
+    putPokemons,
+} from "./HTTP";
 
-export { getCaughtPokemons, getPokemons, putPokemons };
+export { getCaughtPokemons, getPokemons, getPokemonImageSrc, putPokemons };
