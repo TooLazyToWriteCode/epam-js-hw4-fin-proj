@@ -1,4 +1,5 @@
 import loadable from "@loadable/component";
+import { Container } from "@material-ui/core";
 import { Route, Switch } from "react-router-dom";
 
 import { Header } from "@/components/sections/Header";
@@ -17,12 +18,14 @@ export const App: React.FC<{}> = () => {
     return (
         <div className={styles.wrap}>
             <Header />
-            <Switch>
-                <Route path={pages.caught.path} children={<Caught />} />
-                <Route path={pages.error404.path} children={<Error404 />} />
-                <Route path={pages.home.path} children={<Home />} exact />
-                <Route path={pages.pokemon.path} children={<Pokemon />} />
-            </Switch>
+            <Container maxWidth="sm">
+                <Switch>
+                    <Route path={pages.caught.path} children={<Caught />} />
+                    <Route path={pages.error404.path} children={<Error404 />} />
+                    <Route path={pages.home.path} children={<Home />} exact />
+                    <Route path={pages.pokemon.path} children={<Pokemon />} />
+                </Switch>
+            </Container>
         </div>
     );
 };
