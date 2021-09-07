@@ -20,7 +20,7 @@ interface Mode {
     mode: "production" | "development";
 }
 
-const stringSetAt = (str: string, at: number, char: string): string => {
+const stringReplaceAt = (str: string, at: number, char: string): string => {
     return str.slice(0, at) + char + str.slice(at + 1, str.length);
 };
 
@@ -40,23 +40,31 @@ const classNameNextChar = (current: string): string => {
     return String.fromCharCode(charCode + 1);
 };
 
+const classNameNextName = (current: string): string => {
+    for (let index = current.length - 1; index >= 0; --index) {
+        const next = classNameNextChar(current[index]);
+
+        current = stringReplaceAt(current, index, next);
+
+        if (next !== "0") {
+            break;
+        }
+
+        if (index === 0) {
+            current = "0" + current;
+        }
+    }
+
+    return current;
+};
+
 function* classNameGenerate() {
     let name = "0";
 
     yield name;
 
     while (1) {
-        for (let index = name.length - 1; index >= 0; --index) {
-            const next = classNameNextChar(name[index]);
-
-            name = stringSetAt(name, index, next);
-
-            if (next !== "0") {
-                break;
-            }
-
-            name = (index === 0 ? "" : "0") + name;
-        }
+        name = classNameNextName(name);
 
         yield name;
     }
