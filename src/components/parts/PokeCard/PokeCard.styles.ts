@@ -1,9 +1,6 @@
 import { makeStyles } from "@material-ui/core/styles";
 
-const imageSize = (size: number) => ({
-    height: size,
-    width: size,
-});
+import { squareSize } from "@/stylesheets/SquareSize";
 
 export const useStyles = makeStyles((theme) => ({
     button: {
@@ -17,7 +14,7 @@ export const useStyles = makeStyles((theme) => ({
         width: "100%",
     },
     image: {
-        ...imageSize(theme.spacing(16)),
+        ...squareSize(theme.spacing(16)),
         flex: "0 0 auto",
         imageRendering: "-webkit-optimize-contrast",
     },
