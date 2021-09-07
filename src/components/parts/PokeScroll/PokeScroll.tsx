@@ -42,7 +42,7 @@ export const PokeScroll: React.FC<Props> = (props) => {
 
     return (
         <>
-            {pokemons.list.map((pokemon) => (
+            {Object.values(pokemons.list).map((pokemon) => (
                 <PokeCard
                     key={pokemon.id}
                     pokemon={pokemon}

@@ -1,8 +1,9 @@
-import { Pokemon } from "@/config/Pokemons/Pokemons.types";
+import { Pokemon, PokemonsList } from "@/config/Pokemons/Pokemons.types";
 import { AppDispatch } from "@/config/Store/Store.types";
 import {
     getCaughtPokemons as getCaughtAPI,
     getPokemons as getPokemonsAPI,
+    putPokemon as putPokemonAPI,
 } from "@/utilities/HTTP";
 
 import { PokemonsAction, PokemonsThunkAction } from "./Pokemons.types";
@@ -10,7 +11,17 @@ import { PokemonsAction, PokemonsThunkAction } from "./Pokemons.types";
 export const addPokemons = (list: Pokemon[]): PokemonsAction => {
     const type = "ADD_POKEMONS";
 
-    return { type, list };
+    const listWithIDs = list.reduce((previous, current) => {
+        return { ...previous, [current.id]: current };
+    }, {} as PokemonsList);
+
+    return { type, list: listWithIDs };
+};
+
+export const changePokemon = (pokemon: Pokemon): PokemonsAction => {
+    const type = "CHANGE_POKEMON";
+
+    return { type, pokemon };
 };
 
 export const loadNextPokemons = (): PokemonsAction => {
@@ -50,5 +61,14 @@ export const getCaughtPokemons = (page: number): PokemonsThunkAction => {
 
         // TODO: What if a request fails?
         dispatch(addPokemons(response.data));
+    };
+};
+
+export const putPokemon = (pokemon: Pokemon): PokemonsThunkAction => {
+    return async (dispatch: AppDispatch) => {
+        await putPokemonAPI(pokemon);
+
+        // TODO: What if a request fails?
+        dispatch(changePokemon(pokemon));
     };
 };

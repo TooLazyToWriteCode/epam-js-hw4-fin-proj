@@ -4,3 +4,5 @@ export interface Pokemon {
 
     caught?: Date;
 }
+
+export type PokemonsList = { [id: Pokemon["id"]]: Pokemon };

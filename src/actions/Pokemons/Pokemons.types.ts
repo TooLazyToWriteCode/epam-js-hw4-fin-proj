@@ -1,11 +1,12 @@
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 
-import { Pokemon } from "@/config/Pokemons/Pokemons.types";
+import { Pokemon, PokemonsList } from "@/config/Pokemons/Pokemons.types";
 import { RootState } from "@/states/Root/Root.types";
 
 export interface PokemonsBaseAction {
-    list?: Pokemon[];
+    list?: PokemonsList;
+    pokemon?: Pokemon;
 }
 
 export type PokemonsAction = Action<string> & PokemonsBaseAction;

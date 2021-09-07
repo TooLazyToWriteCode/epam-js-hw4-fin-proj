@@ -19,7 +19,7 @@ export const getCaughtPokemons = async (page: number): PokemonsResponse => {
     return http.get(url);
 };
 
-export const getPokemonImageSrc = (id: string): string => {
+export const getPokemonImageSource = (id: string): string => {
     const url = replaceID(process.env.SERVER_GET_POKEMON_IMAGE!, id);
 
     return new URL(url, serverURL).toString();
@@ -31,7 +31,7 @@ export const getPokemons = async (page: number): PokemonsResponse => {
     return http.get(url);
 };
 
-export const putPokemons = async (pokemon: Pokemon): UndefinedResponse => {
+export const putPokemon = async (pokemon: Pokemon): UndefinedResponse => {
     const url = replaceID(process.env.SERVER_PUT_POKEMON!, pokemon.id);
 
     return http.put(url, pokemon);

@@ -4,6 +4,6 @@ export const initial: PokemonsState = {
     hasOnceRequested: false,
     hasReachedEnd: false,
     isLoadingPage: true,
-    list: [],
+    list: {},
     page: 1,
 };

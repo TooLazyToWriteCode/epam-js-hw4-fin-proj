@@ -294,7 +294,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
                 // `:page` will be replaced with a page number. The server must
                 // accept this number and return the corresponding page.
                 "process.env.SERVER_GET_CAUGHT_POKEMONS": JSON.stringify(
-                    "/pokemons?caught_like=true&_limit=20&_page=:page"
+                    "/pokemons?caught_like&_limit=20&_page=:page"
                 ),
 
                 // `:id` will be replaced with a pokemon ID. The server must

@@ -1,9 +1,9 @@
-import { Pokemon } from "@/config/Pokemons/Pokemons.types";
+import { Pokemon, PokemonsList } from "@/config/Pokemons/Pokemons.types";
 
 export interface PokemonsState {
     hasOnceRequested: boolean;
     hasReachedEnd: boolean;
     isLoadingPage: boolean;
-    list: Pokemon[];
+    list: PokemonsList;
     page: number;
 }
