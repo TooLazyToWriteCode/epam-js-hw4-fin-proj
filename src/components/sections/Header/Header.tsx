@@ -5,6 +5,7 @@ import { useDispatch } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 
 import { changePageTab } from "@/actions/PageTabs";
+import { resetPokemons } from "@/actions/Pokemons";
 import { useAppSelector } from "@/components/hooks/useAppSelector";
 import { Location } from "@/config/Location/Location.types";
 import { pages } from "@/config/Pages";
@@ -20,6 +21,7 @@ export const Header: React.FC<{}> = () => {
 
     useEffect(() => {
         dispatch(changePageTab(location));
+        dispatch(resetPokemons());
     }, [location]);
 
     return (
