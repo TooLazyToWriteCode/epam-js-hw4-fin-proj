@@ -225,7 +225,11 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
         module: {
             rules: [
                 {
-                    test: /\.(sa|s?c)ss$/,
+                    test: /\.css$/,
+                    use: getDynamicCSSLoaders(mode).concat([cssLoader]),
+                },
+                {
+                    test: /\.s(a|c)ss$/,
                     use: getDynamicCSSLoaders(mode).concat([
                         cssLoader,
                         "sass-loader",
