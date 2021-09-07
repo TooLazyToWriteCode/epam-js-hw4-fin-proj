@@ -1,5 +1,5 @@
+import { Location } from "@/config/Location/Location.types";
 import { pages } from "@/config/Pages";
-import { Location } from "@/types/location";
 
 import { PageTabsAction } from "./PageTabs.types";
 

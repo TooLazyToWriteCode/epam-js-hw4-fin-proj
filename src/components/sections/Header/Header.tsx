@@ -6,8 +6,8 @@ import { Link, useLocation } from "react-router-dom";
 
 import { changePageTab } from "@/actions/PageTabs";
 import { useAppSelector } from "@/components/hooks/useAppSelector";
+import { Location } from "@/config/Location/Location.types";
 import { pages } from "@/config/Pages";
-import { Location } from "@/types/location";
 
 import { useStyles } from "./Header.styles";
 

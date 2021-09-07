@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { Pokemon } from "@/types/pokemons";
+import { Pokemon } from "@/config/Pokemons/Pokemons.types";
 import { replaceID, replacePage } from "@/utilities/Replace";
 
 import { PokemonsResponse, UndefinedResponse } from "./HTTP.types";
