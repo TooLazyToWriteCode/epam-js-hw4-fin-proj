@@ -9,6 +9,7 @@ import {
 import { Link as RouterLink } from "react-router-dom";
 
 import { pages } from "@/config/Pages";
+import { useBigButton } from "@/stylesheets/BigButton";
 import { getPokemonImageSrc } from "@/utilities/HTTP";
 import { replaceID } from "@/utilities/Replace";
 
@@ -17,8 +18,9 @@ import { Props } from "./PokeCard.types";
 
 export const PokeCard: React.FC<Props> = (props) => {
     const styles = useStyles();
+    const bigButton = useBigButton();
 
-    const isCaught = typeof props.pokemon.caught === "undefined";
+    const isCaught = typeof props.pokemon.caught !== "undefined";
     const realPath = replaceID(pages.pokemon.path, props.pokemon.id);
 
     return (
@@ -42,7 +44,7 @@ export const PokeCard: React.FC<Props> = (props) => {
                 </Typography>
                 {props.showButton && (
                     <Button
-                        className={styles.button}
+                        className={bigButton.bigButton}
                         color="primary"
                         variant="contained"
                         disabled={isCaught}

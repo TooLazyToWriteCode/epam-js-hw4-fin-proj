@@ -7,16 +7,22 @@ import {
 
 import { PokemonsAction, PokemonsThunkAction } from "./Pokemons.types";
 
-export const resetPokemons = (): PokemonsAction => {
-    const type = "RESET_POKEMONS";
-
-    return { type };
-};
-
 export const addPokemons = (list: Pokemon[]): PokemonsAction => {
     const type = "ADD_POKEMONS";
 
     return { type, list };
+};
+
+export const loadNextPokemons = (): PokemonsAction => {
+    const type = "LOAD_NEXT_POKEMONS";
+
+    return { type };
+};
+
+export const resetPokemons = (): PokemonsAction => {
+    const type = "RESET_POKEMONS";
+
+    return { type };
 };
 
 export const getPokemons = (page: number): PokemonsThunkAction => {

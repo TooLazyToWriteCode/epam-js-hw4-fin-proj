@@ -1,3 +1,15 @@
-import { resetPokemons } from "./Pokemons";
+import {
+    addPokemons,
+    loadNextPokemons,
+    getPokemons,
+    getCaughtPokemons,
+    resetPokemons,
+} from "./Pokemons";
 
-export { resetPokemons };
+export {
+    addPokemons,
+    loadNextPokemons,
+    getPokemons,
+    getCaughtPokemons,
+    resetPokemons,
+};

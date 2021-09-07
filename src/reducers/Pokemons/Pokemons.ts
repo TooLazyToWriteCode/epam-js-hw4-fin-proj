@@ -12,6 +12,10 @@ export const pokemonsReducer: PokemonsReducer = (state = initial, action) => {
                 hasOnceRequested: true,
                 hasReachedEnd: list.length === 0,
                 list: state.list.concat(list),
+            };
+        case "LOAD_NEXT_POKEMONS":
+            return {
+                ...state,
                 page: state.page + 1,
             };
         case "RESET_POKEMONS":
