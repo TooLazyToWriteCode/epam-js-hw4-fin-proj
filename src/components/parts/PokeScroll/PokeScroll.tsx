@@ -6,7 +6,7 @@ import { useLocation } from "react-router-dom";
 import { loadNextPokemons } from "@/actions/Pokemons";
 import { useAppSelector } from "@/components/hooks/useAppSelector";
 import { PokeCard } from "@/components/parts/PokeCard";
-import { Location } from "@/config/Location/Locaation.types";
+import { Location } from "@/config/Location/Location.types";
 import { useBigButton } from "@/stylesheets/BigButton";
 
 import { useStyles } from "./PokeScroll.styles";
