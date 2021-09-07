@@ -58,7 +58,11 @@ export const PokeScroll: React.FC<Props> = (props) => {
                     ${bigButton.bigButton}
                 `}
                 color="primary"
-                disabled={pokemons.isLoadingPage || pokemons.hasReachedEnd}
+                disabled={
+                    !pokemons.hasOnceRequested ||
+                    pokemons.hasReachedEnd ||
+                    pokemons.isLoadingPage
+                }
                 onClick={() => dispatch(loadNextPokemons())}
                 ref={button}
                 variant="contained"
