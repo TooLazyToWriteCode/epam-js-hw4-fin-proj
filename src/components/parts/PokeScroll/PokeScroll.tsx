@@ -6,6 +6,7 @@ import { useLocation } from "react-router-dom";
 import { loadNextPokemons } from "@/actions/Pokemons";
 import { useAppSelector } from "@/components/hooks/useAppSelector";
 import { PokeCard } from "@/components/parts/PokeCard";
+import { Error } from "@/components/sections/Error";
 import { Location } from "@/config/Location/Location.types";
 import { useBigButton } from "@/stylesheets/BigButton";
 
@@ -43,7 +44,9 @@ export const PokeScroll: React.FC<Props> = (props) => {
         }
     }, [button]);
 
-    return (
+    return pokemons.hasErrorOccured ? (
+        <Error />
+    ) : (
         <>
             {Object.values(pokemons.list).map((pokemon) => (
                 <PokeCard

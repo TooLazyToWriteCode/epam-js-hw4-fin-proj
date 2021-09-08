@@ -1,10 +1,10 @@
 import { CircularProgress } from "@material-ui/core";
 import { useDispatch } from "react-redux";
-import { Redirect, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import { getPokemon } from "@/actions/Pokemons";
 import { useAppSelector } from "@/components/hooks/useAppSelector";
-import { pages } from "@/config/Pages";
+import { Error } from "@/components/sections/Error";
 
 import { useStyles } from "./Pokemon.styles";
 import { URLParams } from "./Pokemon.types";
@@ -22,7 +22,7 @@ export const Pokemon: React.FC<{}> = () => {
     }, []);
 
     return pokemons.hasErrorOccured ? (
-        <Redirect to={pages.error.path} />
+        <Error />
     ) : pokemons.pokemon === undefined ? (
         <CircularProgress className={styles.loading} />
     ) : (
