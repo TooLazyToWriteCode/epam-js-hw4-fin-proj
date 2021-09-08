@@ -38,6 +38,7 @@ export const PokeCard: React.FC<Props> = (props) => {
     return (
         <Card className={`${styles.wrap} ${block.centered}`}>
             <CardMedia
+                aria-label={props.pokemon.name}
                 className={styles.image}
                 component={props.profile ? "div" : RouterLink}
                 image={getPokemonImageSource(props.pokemon.id)}
