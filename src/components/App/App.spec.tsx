@@ -1,8 +1,8 @@
-import { App } from "./App";
-
 import { mountPage } from "@/utilities/Test/mount";
-import { getNormalPath } from "@/utilities/Test/paths";
 import { goThroughPages } from "@/utilities/Test/pages";
+import { getNormalPath } from "@/utilities/Test/paths";
+
+import { App } from "./App";
 
 goThroughPages((name, page) => {
     describe(`App@${name}`, () => {
