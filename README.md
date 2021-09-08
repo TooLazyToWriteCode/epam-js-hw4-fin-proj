@@ -41,12 +41,12 @@
 
 -   [ ] Cover the application with the unit tests.
 -   [x] Use a CSS framework to spend less time on creating the layout.
--   [ ] Support the latest versions of the modern web browsers.
+-   [x] Support the latest versions of the modern web browsers.
 -   [ ] Try to use as much of your skills and knowledge as possible.
--   [ ] Create the accessible to as many people as possible design.
+-   [x] Create the accessible to as many people as possible design.
 -   [ ] Put caught pokemons in a separate collection and use it +
         `json-server` to get them.
--   [ ] Make a maintainable architecture, at least separate the business
+-   [x] Make a maintainable architecture, at least separate the business
         logic from the views.
 
 ## Installation
