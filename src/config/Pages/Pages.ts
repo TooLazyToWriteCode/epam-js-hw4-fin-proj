@@ -5,6 +5,10 @@ export const pages: Pages = {
         name: "Caught Pokemons",
         path: "/caught",
     },
+    error: {
+        name: "Error",
+        path: "/error",
+    },
     error404: {
         name: "Page Not Found",
         path: "*",

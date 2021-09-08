@@ -13,6 +13,8 @@ export const pokemonsReducer: PokemonsReducer = (state = initial, action) => {
                 isLoadingPage: false,
                 list: { ...state.list, ...actionList },
             };
+        case "ERROR_OCCURED":
+            return { ...state, hasErrorOccured: true };
         case "LOAD_NEXT_POKEMONS":
             if (!state.hasOnceRequested) {
                 return { ...state, hasOnceRequested: true };
@@ -35,6 +37,8 @@ export const pokemonsReducer: PokemonsReducer = (state = initial, action) => {
             }
 
             return { ...state, isLoadingPage: true };
+        case "SET_POKEMON":
+            return { ...state, pokemon: action.pokemon };
         default:
             return state;
     }

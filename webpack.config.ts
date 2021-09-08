@@ -300,7 +300,7 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
                 // `:id` will be replaced with a pokemon ID. The server must
                 // accept this number along with the updated pokemon record as a
                 // JSON data object and return the status of the request.
-                "process.env.SERVER_PUT_POKEMON":
+                "process.env.SERVER_GET_POKEMON":
                     JSON.stringify("/pokemons/:id"),
 
                 // `:id` will be replaced with a pokemon ID. The server must
@@ -314,6 +314,11 @@ export default (env: Argv = {}, argv: Env = {}): webpack.Configuration => {
                 "process.env.SERVER_GET_POKEMONS": JSON.stringify(
                     "/pokemons?_limit=20&_page=:page"
                 ),
+
+                // `:id` will be replaced with a pokemon ID. The server must
+                // accept this number and return the corresponding pokemon.
+                "process.env.SERVER_PUT_POKEMON":
+                    JSON.stringify("/pokemons/:id"),
             }),
         ]),
         resolve: {

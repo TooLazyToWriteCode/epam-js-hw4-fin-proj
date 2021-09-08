@@ -5,6 +5,7 @@ export interface Page {
 
 export interface Pages {
     readonly caught: Page;
+    readonly error: Page;
     readonly error404: Page;
     readonly home: Page;
     readonly pokemon: Page;

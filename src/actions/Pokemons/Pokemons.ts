@@ -2,6 +2,7 @@ import { Pokemon, PokemonsList } from "@/config/Pokemons/Pokemons.types";
 import { AppDispatch } from "@/config/Store/Store.types";
 import {
     getCaughtPokemons as getCaughtAPI,
+    getPokemon as getPokemonAPI,
     getPokemons as getPokemonsAPI,
     putPokemon as putPokemonAPI,
 } from "@/utilities/HTTP";
@@ -24,6 +25,12 @@ export const changePokemon = (pokemon: Pokemon): PokemonsAction => {
     return { type, pokemon };
 };
 
+export const errorOccured = (): PokemonsAction => {
+    const type = "ERROR_OCCURED";
+
+    return { type };
+};
+
 export const loadNextPokemons = (): PokemonsAction => {
     const type = "LOAD_NEXT_POKEMONS";
 
@@ -42,33 +49,42 @@ export const setLoadingPokemonPage = (): PokemonsAction => {
     return { type };
 };
 
+export const setPokemon = (pokemon: Pokemon): PokemonsAction => {
+    const type = "SET_POKEMON";
+
+    return { type, pokemon };
+};
+
+export const getPokemon = (id: string): PokemonsThunkAction => {
+    return (dispatch: AppDispatch) => {
+        getPokemonAPI(id)
+            .then((response) => dispatch(setPokemon(response.data)))
+            .catch(() => dispatch(errorOccured()));
+    };
+};
+
 export const getPokemons = (page: number): PokemonsThunkAction => {
-    return async (dispatch: AppDispatch) => {
+    return (dispatch: AppDispatch) => {
         dispatch(setLoadingPokemonPage());
-
-        const response = await getPokemonsAPI(page);
-
-        // TODO: What if a request fails?
-        dispatch(addPokemons(response.data));
+        getPokemonsAPI(page)
+            .then((response) => dispatch(addPokemons(response.data)))
+            .catch(() => dispatch(errorOccured()));
     };
 };
 
 export const getCaughtPokemons = (page: number): PokemonsThunkAction => {
-    return async (dispatch: AppDispatch) => {
+    return (dispatch: AppDispatch) => {
         dispatch(setLoadingPokemonPage());
-
-        const response = await getCaughtAPI(page);
-
-        // TODO: What if a request fails?
-        dispatch(addPokemons(response.data));
+        getCaughtAPI(page)
+            .then((response) => dispatch(addPokemons(response.data)))
+            .catch(() => dispatch(errorOccured()));
     };
 };
 
 export const putPokemon = (pokemon: Pokemon): PokemonsThunkAction => {
-    return async (dispatch: AppDispatch) => {
-        await putPokemonAPI(pokemon);
-
-        // TODO: What if a request fails?
-        dispatch(changePokemon(pokemon));
+    return (dispatch: AppDispatch) => {
+        putPokemonAPI(pokemon)
+            .then(() => dispatch(changePokemon(pokemon)))
+            .catch(() => dispatch(errorOccured()));
     };
 };
