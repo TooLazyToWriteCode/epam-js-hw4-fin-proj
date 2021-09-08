@@ -75,7 +75,8 @@ at `<rootDir>/out/build/production`.
 yarn run build:docs
 ```
 
-Build the documentation from the source files using TypeDoc.
+Build the documentation from the source files using TypeDoc. The documentation
+will end up in the `<rootDir>/out/docs` directory.
 
 ```
 yarn run chk
@@ -119,7 +120,8 @@ Start the webpack development server only.
 yarn run test:e2e:once
 ```
 
-Run the E2E test suite one time.
+Run the E2E test suite one time. The output infromation about the run will
+be in the `<rootDir>/out/test` directory.
 
 ```
 yarn run test:e2e:gui
@@ -131,7 +133,8 @@ Start the Cypress E2E tests utility.
 yarn run test:unit:once
 ```
 
-Run the unit test suite one time.
+Run the unit test suite one time.. The output infromation about the run will
+be in the `<rootDir>/out/test` directory.
 
 ```
 yarn run test:unit:gui
