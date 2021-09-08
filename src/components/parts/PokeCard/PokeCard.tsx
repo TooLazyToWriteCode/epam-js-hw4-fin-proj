@@ -13,8 +13,8 @@ import { Link as RouterLink } from "react-router-dom";
 import { putPokemon } from "@/actions/Pokemons";
 import { useAppSelector } from "@/components/hooks/useAppSelector";
 import { pages } from "@/config/Pages";
-import { useButton } from "@/stylesheets/Button";
 import { useBlock } from "@/stylesheets/Block";
+import { useButton } from "@/stylesheets/Button";
 import { getPokemonImageSource } from "@/utilities/HTTP";
 import { replaceID } from "@/utilities/Replace";
 

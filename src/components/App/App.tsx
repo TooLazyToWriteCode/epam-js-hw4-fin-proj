@@ -2,8 +2,8 @@ import loadable from "@loadable/component";
 import { Container } from "@material-ui/core";
 import { Route, Switch } from "react-router-dom";
 
-import { Header } from "@/components/sections/Header";
 import { ErrorBoundary } from "@/components/sections/ErrorBoundary";
+import { Header } from "@/components/sections/Header";
 import { pages } from "@/config/Pages";
 
 import { useStyles } from "./App.styles";

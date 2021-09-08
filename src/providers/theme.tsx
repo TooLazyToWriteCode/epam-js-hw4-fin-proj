@@ -12,7 +12,7 @@ const theme = createTheme({
 });
 
 export const wrapIntoThemeProvider = (
-    element: React.ReactElement
-): React.ReactElement => {
+    element: React.ReactNode
+): React.ReactNode => {
     return <ThemeProvider theme={theme}>{element}</ThemeProvider>;
 };

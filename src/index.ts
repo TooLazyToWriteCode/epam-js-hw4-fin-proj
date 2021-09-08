@@ -3,4 +3,4 @@ import "regenerator-runtime/runtime";
 
 import { Base } from "@/Base";
 
-render(Base, document.getElementById("app"));
+render(Base as React.ReactElement, document.getElementById("app"));

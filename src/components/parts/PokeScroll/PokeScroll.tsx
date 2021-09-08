@@ -8,8 +8,8 @@ import { useAppSelector } from "@/components/hooks/useAppSelector";
 import { PokeCard } from "@/components/parts/PokeCard";
 import { Error } from "@/components/sections/Error";
 import { Location } from "@/config/Location/Location.types";
-import { useButton } from "@/stylesheets/Button";
 import { useBlock } from "@/stylesheets/Block";
+import { useButton } from "@/stylesheets/Button";
 
 import { Props } from "./PokeScroll.types";
 
