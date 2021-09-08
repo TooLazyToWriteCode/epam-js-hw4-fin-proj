@@ -7,6 +7,7 @@ export const useStyles = makeStyles((theme) => ({
         width: "100%",
     },
     image: {
+        backgroundColor: theme.palette.secondary.light,
         height: theme.spacing(16),
         flex: "0 0 auto",
         imageRendering: "-webkit-optimize-contrast",
