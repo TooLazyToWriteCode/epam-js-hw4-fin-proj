@@ -21,7 +21,7 @@
     -   [x] **A "Load More" button** loads the next section in the common list.
     -   [x] **Endless scroll** loads the next section as a page end is reached.
     -   [ ] **Numbered pages (traditional)** have only one section per a page.
--   [ ] **Adaptive Design**
+-   [x] **Adaptive Design**
 -   [x] **Navigation Menu**
 -   [x] **Redux for the state management**
 
@@ -31,7 +31,7 @@
         should have a picture of a pokemon, its name and a "Catch" button. If
         a pokemon is already caught, then a button should be disabled. When a
         pokemon is clicked, a user should be redirected to a pokemon page.
--   [ ] **A pokemon page** contains information for a given pokemon, such as an
+-   [x] **A pokemon page** contains information for a given pokemon, such as an
         ID, a name, a picture, whether it is caught. If a pokemon is caught, a
         date when a pokemon was caught should be shown.
 -   [x] **The caught pokemons page** is same as the home page but only caught
