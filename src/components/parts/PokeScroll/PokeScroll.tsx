@@ -9,6 +9,7 @@ import { PokeCard } from "@/components/parts/PokeCard";
 import { Error } from "@/components/sections/Error";
 import { Location } from "@/config/Location/Location.types";
 import { useBigButton } from "@/stylesheets/BigButton";
+import { useBlock } from "@/stylesheets/Block";
 
 import { useStyles } from "./PokeScroll.styles";
 import { Props } from "./PokeScroll.types";
@@ -30,6 +31,7 @@ export const PokeScroll: React.FC<Props> = (props) => {
     const button = useRef(null);
     const dispatch = useDispatch();
     const location = useLocation<Location>();
+    const block = useBlock();
     const observer = new IntersectionObserver(handleObserver);
     const styles = useStyles();
 
@@ -57,7 +59,7 @@ export const PokeScroll: React.FC<Props> = (props) => {
             ))}
             <Button
                 className={`
-                    ${styles.button}
+                    ${block.centered}
                     ${bigButton.bigButton}
                 `}
                 color="primary"

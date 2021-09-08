@@ -16,8 +16,10 @@ export const useStyles = makeStyles((theme) => ({
         paddingBottom: theme.spacing(2.5),
         textTransform: "capitalize",
     },
+    profileTitle: {
+        paddingBottom: theme.spacing(0),
+    },
     wrap: {
         display: "flex",
-        margin: `${theme.spacing(3)}px 0`,
     },
 }));

@@ -12,6 +12,7 @@ import { Link as RouterLink } from "react-router-dom";
 import { putPokemon } from "@/actions/Pokemons";
 import { pages } from "@/config/Pages";
 import { useBigButton } from "@/stylesheets/BigButton";
+import { useBlock } from "@/stylesheets/Block";
 import { getPokemonImageSource } from "@/utilities/HTTP";
 import { replaceID } from "@/utilities/Replace";
 
@@ -22,6 +23,7 @@ export const PokeCard: React.FC<Props> = (props) => {
     const dispatch = useDispatch();
     const styles = useStyles();
     const bigButton = useBigButton();
+    const block = useBlock();
 
     const isCaught = typeof props.pokemon.caught !== "undefined";
     const realPath = replaceID(pages.pokemon.path, props.pokemon.id);
@@ -34,25 +36,59 @@ export const PokeCard: React.FC<Props> = (props) => {
     };
 
     return (
-        <Card className={styles.wrap}>
+        <Card className={`${styles.wrap} ${block.centered}`}>
             <CardMedia
                 className={styles.image}
-                component={RouterLink}
+                component={props.profile ? "div" : RouterLink}
                 image={getPokemonImageSource(props.pokemon.id)}
                 title={props.pokemon.name}
                 to={realPath}
             />
             <CardContent className={styles.content}>
                 <Typography
-                    className={styles.title}
+                    className={`${styles.title} ${
+                        props.profile ? styles.profileTitle : ""
+                    }`}
                     component="h5"
                     variant="h5"
                 >
-                    <Link component={RouterLink} to={realPath}>
-                        {props.pokemon.name}
-                    </Link>
+                    {props.profile ? (
+                        <>
+                            {props.pokemon.name}
+                            <Typography
+                                component="span"
+                                variant="h5"
+                                color="textSecondary"
+                            >
+                                {` #${props.pokemon.id}`}
+                            </Typography>
+                        </>
+                    ) : (
+                        <Link component={RouterLink} to={realPath}>
+                            {props.pokemon.name}
+                        </Link>
+                    )}
                 </Typography>
-                {props.showButton && (
+                {props.profile && (
+                    <>
+                        <Typography color="textSecondary">
+                            {props.pokemon.caught ? (
+                                <>
+                                    {`Caught on: ${new Intl.DateTimeFormat(
+                                        undefined,
+                                        {
+                                            dateStyle: "short",
+                                            timeStyle: "short",
+                                        }
+                                    ).format(new Date(props.pokemon.caught))}`}
+                                </>
+                            ) : (
+                                <>Never caught</>
+                            )}
+                        </Typography>
+                    </>
+                )}
+                {!props.profile && props.showButton && (
                     <Button
                         className={bigButton.bigButton}
                         color="primary"

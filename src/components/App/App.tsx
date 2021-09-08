@@ -22,19 +22,12 @@ export const App: React.FC<{}> = () => {
             <Container maxWidth="sm">
                 <ErrorBoundary>
                     <Switch>
-                        <Route path={pages.caught.path} children={<Caught />} />
-                        <Route
-                            path={pages.home.path}
-                            children={<Home />}
-                            exact
-                        />
-                        <Route
-                            path={pages.pokemon.path}
-                            children={<Pokemon />}
-                        />
+                        <Route path={pages.caught.path} component={Caught} />
+                        <Route path={pages.home.path} component={Home} exact />
+                        <Route path={pages.pokemon.path} component={Pokemon} />
                         <Route
                             path={pages.error404.path}
-                            children={<Error404 />}
+                            component={Error404}
                         />
                     </Switch>
                 </ErrorBoundary>
