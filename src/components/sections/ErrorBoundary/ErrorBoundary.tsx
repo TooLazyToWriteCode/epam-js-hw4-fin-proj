@@ -15,7 +15,9 @@ export class ErrorBoundary extends Component<{}, State> {
         return { hasError: true };
     }
 
-    override render() {
+    // Added due to Prettier saying it's syntax error with `override` here.
+    // @ts-ignore TS4114
+    render() {
         if (this.state.hasError) {
             return <Error />;
         }
