@@ -54,3 +54,103 @@
 1. Install Yarn by running `npm i -g yarn`.
 2. Install the dependencies by running `yarn install`.
 3. (optional) Install the recommendations in VSCode.
+
+## Usage
+
+```
+yarn run build:dev
+```
+
+Build the application for development. The built application can then be found
+at `<rootDir>/out/build/development`.
+
+```
+yarn run build:prod
+```
+
+Build the application for production. The built application can then be found
+at `<rootDir>/out/build/production`.
+
+```
+yarn run build:docs
+```
+
+Build the documentation from the source files using TypeDoc.
+
+```
+yarn run chk
+```
+
+Check the formatting of the source files using Prettier.
+
+```
+yarn run fmt
+```
+
+Format the source files using Prettier.
+
+```
+yarn run serve:db
+```
+
+Start the JSON server (backend) only.
+
+```
+yarn run serve:dev:base
+```
+
+Start the JSON server (backend) and the webpack development server. No other
+utilities will be launched.
+
+```
+yarn run serve:dev:tdd
+```
+
+Same as `serve:dev:base` but also starts the Cypress unit tests utility. Useful
+if the TDD approach is used.
+
+```
+yarn run serve:wds
+```
+
+Start the webpack development server only.
+
+```
+yarn run test:e2e:once
+```
+
+Run the E2E test suite one time.
+
+```
+yarn run test:e2e:gui
+```
+
+Start the Cypress E2E tests utility.
+
+```
+yarn run test:unit:once
+```
+
+Run the unit test suite one time.
+
+```
+yarn run test:unit:gui
+```
+
+Start the Cypress unit tests utility.
+
+```
+yarn run verify:coverage:for-e2e
+```
+
+Outputs the coverage infromation and verifies that enough lines are covered as
+per the E2E tests requirements. It does not run any tests by itself, so please
+note that the E2E test suite should be manually run right before that command.
+
+```
+yarn run verify:coverage:for-unit
+```
+
+Outputs the coverage infromation and verifies that enough lines are covered as
+per the unit tests requirements. It does not run any tests by itself, so please
+note that the unit test suite should be manually run right before that command.
