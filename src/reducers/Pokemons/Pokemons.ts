@@ -30,7 +30,7 @@ export const pokemonsReducer: PokemonsReducer = (state = initial, action) => {
 
             return { ...state, list: stateListCopy };
         case "RESET_POKEMONS":
-            return { ...state, ...initial };
+            return initial;
         case "SET_LOADING_POKEMON":
             if (action.pokemon !== undefined) {
                 stateListCopy[action.pokemon.id].updating = true;

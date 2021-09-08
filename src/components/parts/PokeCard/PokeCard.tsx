@@ -11,7 +11,6 @@ import { useDispatch } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 
 import { putPokemon } from "@/actions/Pokemons";
-import { useAppSelector } from "@/components/hooks/useAppSelector";
 import { pages } from "@/config/Pages";
 import { useBlock } from "@/stylesheets/Block";
 import { useButton } from "@/stylesheets/Button";
@@ -22,7 +21,6 @@ import { useStyles } from "./PokeCard.styles";
 import { Props } from "./PokeCard.types";
 
 export const PokeCard: React.FC<Props> = (props) => {
-    const pokemons = useAppSelector((state) => state.pokemons);
     const dispatch = useDispatch();
     const styles = useStyles();
     const button = useButton();
