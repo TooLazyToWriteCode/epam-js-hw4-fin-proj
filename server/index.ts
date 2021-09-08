@@ -4,6 +4,7 @@ import { join } from "path";
 
 import database from "./db.json";
 
+const images = join(__dirname, "images");
 const port = Number(process.env.PORT) || 3333;
 
 create()
@@ -13,6 +14,13 @@ create()
         response.header("Access-Control-Allow-Origin", "*");
         next();
     })
-    .use("/images", staticDir(join(__dirname, "images")))
+    .use("/images", staticDir(images))
+    .use((_, response, next) => {
+        if (response.req.url.startsWith("/images")) {
+            response.sendFile(join(images, "0.png"));
+        } else {
+            next();
+        }
+    })
     .use(router({ ...database, caughtPokemons: [] }))
     .listen(port, () => console.log(`started (:${port})`));
