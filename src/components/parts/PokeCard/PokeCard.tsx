@@ -3,6 +3,7 @@ import {
     Card,
     CardContent,
     CardMedia,
+    CircularProgress,
     Link,
     Typography,
 } from "@material-ui/core";
@@ -10,8 +11,9 @@ import { useDispatch } from "react-redux";
 import { Link as RouterLink } from "react-router-dom";
 
 import { putPokemon } from "@/actions/Pokemons";
+import { useAppSelector } from "@/components/hooks/useAppSelector";
 import { pages } from "@/config/Pages";
-import { useBigButton } from "@/stylesheets/BigButton";
+import { useButton } from "@/stylesheets/Button";
 import { useBlock } from "@/stylesheets/Block";
 import { getPokemonImageSource } from "@/utilities/HTTP";
 import { replaceID } from "@/utilities/Replace";
@@ -20,9 +22,10 @@ import { useStyles } from "./PokeCard.styles";
 import { Props } from "./PokeCard.types";
 
 export const PokeCard: React.FC<Props> = (props) => {
+    const pokemons = useAppSelector((state) => state.pokemons);
     const dispatch = useDispatch();
     const styles = useStyles();
-    const bigButton = useBigButton();
+    const button = useButton();
     const block = useBlock();
 
     const isCaught = typeof props.pokemon.caught !== "undefined";
@@ -91,13 +94,22 @@ export const PokeCard: React.FC<Props> = (props) => {
                 )}
                 {!props.profile && props.showButton && (
                     <Button
-                        className={bigButton.bigButton}
+                        className={button.big}
                         color="primary"
                         onClick={catchPokemon}
                         variant="contained"
-                        disabled={isCaught}
+                        disabled={isCaught || props.pokemon.updating}
                     >
-                        {isCaught ? "already caught" : "catch!"}
+                        {props.pokemon.updating ? (
+                            <CircularProgress
+                                className={button.progressDisabled}
+                                size={24}
+                            />
+                        ) : isCaught ? (
+                            "already caught"
+                        ) : (
+                            "catch!"
+                        )}
                     </Button>
                 )}
             </CardContent>

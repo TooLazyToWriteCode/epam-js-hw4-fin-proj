@@ -43,6 +43,12 @@ export const resetPokemons = (): PokemonsAction => {
     return { type };
 };
 
+export const setLoadingPokemon = (pokemon: Pokemon): PokemonsAction => {
+    const type = "SET_LOADING_POKEMON";
+
+    return { type, pokemon };
+};
+
 export const setLoadingPokemonPage = (): PokemonsAction => {
     const type = "SET_LOADING_POKEMON_PAGE";
 
@@ -83,6 +89,7 @@ export const getCaughtPokemons = (page: number): PokemonsThunkAction => {
 
 export const putPokemon = (pokemon: Pokemon): PokemonsThunkAction => {
     return (dispatch: AppDispatch) => {
+        dispatch(setLoadingPokemon(pokemon));
         putPokemonAPI(pokemon)
             .then(() => dispatch(changePokemon(pokemon)))
             .catch(() => dispatch(errorOccured()));

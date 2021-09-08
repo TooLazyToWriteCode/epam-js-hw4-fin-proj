@@ -8,10 +8,9 @@ import { useAppSelector } from "@/components/hooks/useAppSelector";
 import { PokeCard } from "@/components/parts/PokeCard";
 import { Error } from "@/components/sections/Error";
 import { Location } from "@/config/Location/Location.types";
-import { useBigButton } from "@/stylesheets/BigButton";
+import { useButton } from "@/stylesheets/Button";
 import { useBlock } from "@/stylesheets/Block";
 
-import { useStyles } from "./PokeScroll.styles";
 import { Props } from "./PokeScroll.types";
 
 export const PokeScroll: React.FC<Props> = (props) => {
@@ -27,24 +26,23 @@ export const PokeScroll: React.FC<Props> = (props) => {
 
     const pokemons = useAppSelector((state) => state.pokemons);
 
-    const bigButton = useBigButton();
-    const button = useRef(null);
+    const button = useButton();
+    const buttonRef = useRef(null);
     const dispatch = useDispatch();
     const location = useLocation<Location>();
     const block = useBlock();
     const observer = new IntersectionObserver(handleObserver);
-    const styles = useStyles();
 
     useEffect(() => {
         dispatch(props.getCallback(pokemons.page));
     }, [pokemons.page, location]);
 
     useEffect(() => {
-        if (button.current !== null) {
+        if (buttonRef.current !== null) {
             observer.disconnect();
-            observer.observe(button.current);
+            observer.observe(buttonRef.current);
         }
-    }, [button]);
+    }, [buttonRef]);
 
     return pokemons.hasErrorOccured ? (
         <Error />
@@ -60,7 +58,7 @@ export const PokeScroll: React.FC<Props> = (props) => {
             <Button
                 className={`
                     ${block.centered}
-                    ${bigButton.bigButton}
+                    ${button.big}
                 `}
                 color="primary"
                 disabled={
@@ -69,13 +67,13 @@ export const PokeScroll: React.FC<Props> = (props) => {
                     pokemons.isLoadingPage
                 }
                 onClick={() => dispatch(loadNextPokemons())}
-                ref={button}
+                ref={buttonRef}
                 variant="contained"
             >
                 {pokemons.isLoadingPage ? (
                     <CircularProgress
-                        className={styles.buttonProgress}
-                        size={25}
+                        className={button.progressDisabled}
+                        size={24}
                     />
                 ) : pokemons.hasReachedEnd ? (
                     "You have loaded them all!"
